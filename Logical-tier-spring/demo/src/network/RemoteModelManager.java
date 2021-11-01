@@ -9,12 +9,13 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-public class RemoteModelManager implements RemoteModle {
+public class RemoteModelManager implements RemoteModel
+{
 
-    private RemoteModle server;
+    private RemoteModel server;
 
     public RemoteModelManager() throws MalformedURLException, NotBoundException, RemoteException {
-        this.server = (RemoteModle) Naming.lookup("rmi://localhost:1099/Server");
+        this.server = (RemoteModel) Naming.lookup("rmi://localhost:1099/Server");
 
     }
 
