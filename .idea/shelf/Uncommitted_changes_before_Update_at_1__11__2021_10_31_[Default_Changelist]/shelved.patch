@@ -1,0 +1,171 @@
+Index: Data Tier/src/database/AccountDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Data Tier/src/database/AccountDAO.java	(date 1635755103651)
++++ Data Tier/src/database/AccountDAO.java	(date 1635755103651)
+@@ -0,0 +1,9 @@
++package database;
++
++import model.User;
++
++public interface AccountDAO
++{
++  User getAccountByUsername(String username);
++  void register(String username, String password,String role);
++}
+Index: Data Tier/src/database/AccountDAOImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Data Tier/src/database/AccountDAOImpl.java	(date 1635755623971)
++++ Data Tier/src/database/AccountDAOImpl.java	(date 1635755623971)
+@@ -0,0 +1,82 @@
++package database;
++
++import model.User;
++
++import java.sql.Connection;
++import java.sql.DriverManager;
++import java.sql.SQLException;
++import java.sql.*;
++
++public class AccountDAOImpl implements AccountDAO
++{
++  private static AccountDAOImpl instance;
++
++  private AccountDAOImpl() throws SQLException
++  {
++    DriverManager.registerDriver(new org.postgresql.Driver());
++  }
++
++  public static synchronized AccountDAOImpl getInstance() throws SQLException
++  {
++    if (instance == null)
++    {
++      instance = new AccountDAOImpl();
++    }
++    return instance;
++  }
++
++  private Connection getConnection() throws SQLException
++  {
++    return DriverManager.getConnection(
++        "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep", //change schema after db is done
++        "bzjrfgwn", "ZPXdZD4hJLi7bjSr5foQeqn2ithW6iQV");
++  }
++
++
++  @Override public User getAccountByUsername(String username)
++  {
++    try (Connection connection = getConnection())
++    {
++      PreparedStatement statement = connection.prepareStatement(
++          "SELECT username,password,role FROM Account WHERE username = ?");
++
++      statement.setString(1, username); //change according to db
++
++      ResultSet resultSet = statement.executeQuery();
++
++      while (resultSet.next())
++      {
++        String usernameDb = resultSet.getString("username");
++        String password = resultSet.getString("password");
++        String role = resultSet.getString("role");
++
++        if(usernameDb == null) return null;
++        else
++        {
++          User toReturn = new User(usernameDb, password, role);
++          return toReturn;
++        }
++      }
++    }
++    catch(SQLException s){
++      System.out.println(s);
++    }
++    return null;
++  }
++
++  @Override public void register(String username, String password, String role)
++  {
++    try(Connection connection = getConnection())
++    {
++      PreparedStatement statement = connection.prepareStatement(
++          "INSERT INTO Account (username, password, role) VALUES (?,?,?)");
++      statement.setString(1, username); // maybe different index according to database
++      statement.setString(2, password);
++      statement.setString(3, role);
++
++
++      statement.executeUpdate();
++    }
++    catch(SQLException s){}
++  }
++}
+Index: Data Tier/Data Tier.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Data Tier/Data Tier.iml	(date 1635689818626)
++++ Data Tier/Data Tier.iml	(date 1635689818626)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="postgresql-42.2.19" level="application" />
++  </component>
++</module>
+\ No newline at end of file
+Index: Data Tier/src/model/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Data Tier/src/model/User.java	(date 1635754824033)
++++ Data Tier/src/model/User.java	(date 1635754824033)
+@@ -0,0 +1,35 @@
++package model;
++
++public class User
++{
++
++  private String username,password, role;
++
++  public User(String username, String password, String role)
++  {
++    this.username = username;
++    this.password = password;
++    this.role = role;
++  }
++
++  public String getUsername()
++  {
++    return username;
++  }
++
++  public String getPassword()
++  {
++    return username;
++  }
++
++  public String getRole()
++  {
++    return role;
++  }
++
++  @Override public String toString()
++  {
++    return "User{" + "username='" + username + '\'' + ", password='" + password
++        + '\'' + ", role='" + role + '\'' + '}';
++  }
++}
