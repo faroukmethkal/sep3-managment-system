@@ -1,0 +1,140 @@
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\appsettings.Development.json
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\appsettings.json
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.StaticWebAssets.xml
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.exe
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.deps.json
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.runtimeconfig.json
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.runtimeconfig.dev.json
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\ref\BlazorSep3LoginExample.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.pdb
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.Views.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.Views.pdb
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.csproj.AssemblyReference.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.GeneratedMSBuildEditorConfig.editorconfig
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.AssemblyInfoInputs.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.AssemblyInfo.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.csproj.CoreCompileInputs.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.MvcApplicationPartsAssemblyInfo.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorComponent.input.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorComponent.output.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\BlazorSep3LoginExample.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.TagHelpers.input.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.TagHelpers.output.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorCoreGenerate.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\App.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorAssemblyInfo.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorAssemblyInfo.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\staticwebassets\BlazorSep3LoginExample.StaticWebAssets.Manifest.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\staticwebassets\BlazorSep3LoginExample.StaticWebAssets.xml
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\scopedcss\bundle\BlazorSep3LoginExample.styles.css
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\scopedcss\projectbundle\BlazorSep3LoginExample.bundle.scp.css
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorTargetAssemblyInfo.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorTargetAssemblyInfo.cs
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.Views.pdb
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\ref\BlazorSep3LoginExample.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.pdb
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.genruntimeconfig.cache
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.csproj.CopyComplete
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Forms.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Web.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.JSInterop.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\System.IO.Pipelines.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\IdentityModel.dll
+F:\VIA\Third Semester\SEP3\LoginExample\BlazorSep3LoginExample\BlazorSep3LoginExample\bin\Debug\net5.0\Blazored.LocalStorage.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\appsettings.json
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.StaticWebAssets.xml
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.exe
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.deps.json
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.runtimeconfig.json
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.runtimeconfig.dev.json
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\ref\BlazorSep3LoginExample.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.pdb
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.Views.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\BlazorSep3LoginExample.Views.pdb
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\Blazored.LocalStorage.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\IdentityModel.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\Microsoft.JSInterop.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\bin\Debug\net5.0\System.IO.Pipelines.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.csproj.AssemblyReference.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.AssemblyInfoInputs.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.AssemblyInfo.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.csproj.CoreCompileInputs.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorComponent.input.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorComponent.output.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\RazorDeclaration\BlazorSep3LoginExample.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.TagHelpers.input.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.TagHelpers.output.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorCoreGenerate.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\App.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorAssemblyInfo.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorAssemblyInfo.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\staticwebassets\BlazorSep3LoginExample.StaticWebAssets.Manifest.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\staticwebassets\BlazorSep3LoginExample.StaticWebAssets.xml
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\scopedcss\bundle\BlazorSep3LoginExample.styles.css
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\scopedcss\projectbundle\BlazorSep3LoginExample.bundle.scp.css
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorTargetAssemblyInfo.cache
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.RazorTargetAssemblyInfo.cs
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.Views.pdb
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.csproj.CopyComplete
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\ref\BlazorSep3LoginExample.dll
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.pdb
+C:\Users\horse\Desktop\sep3-LoginExample-blazor-server\BlazorSep3LoginExample\obj\Debug\net5.0\BlazorSep3LoginExample.genruntimeconfig.cache

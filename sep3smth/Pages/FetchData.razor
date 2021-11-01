@@ -1,0 +1,20 @@
+﻿@page "/fetchdata"
+
+@using BlazorSep3LoginExample.Data
+@inject WeatherForecastService ForecastService
+@inject AuthenticationStateProvider TokenProvider;
+@inject IHttpClientFactory httpClientFactory;
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+    
+
+    }
+
+}

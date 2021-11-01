@@ -1,0 +1,50 @@
+@page "/counter"
+@using System.Net.Http.Headers
+@using System.Text.Json
+@using BlazorSep3LoginExample.Authentication
+@using BlazorSep3LoginExample.model
+@using Task = System.Threading.Tasks.Task
+@inject AuthenticationStateProvider TokenProvider;
+@inject IHttpClientFactory httpClientFactory;
+<h1>Counter</h1>
+
+<p>
+    @foreach (NewTask task in tasks)
+    {
+        <p>Title: @task.title</p>
+        <p>Description: @task.description</p>
+        <p>Number of team: @task.numberOFTeam</p>
+
+    }
+</p>
+
+
+@code {
+    private List<NewTask> tasks = new List<NewTask>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+         var token = await ((CustomAuthenticationStateProvider) TokenProvider).GetTokenAsync();
+        
+        var httpClient = httpClientFactory.CreateClient("UserService");
+        
+        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        var response = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get, "api/task"));
+        if (response.StatusCode.ToString().ToLower().Equals("ok"))
+        {
+            var stringresponse = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(stringresponse);
+             tasks = JsonSerializer.Deserialize<List<NewTask>>(stringresponse);
+              
+        }
+        else
+        {
+            Console.WriteLine("Fail to get content");
+            Console.WriteLine();
+        }
+      
+
+    }
+
+}

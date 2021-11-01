@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\anzym\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\anzym\\.nuget\\packages"
+    ]
+  }
+}

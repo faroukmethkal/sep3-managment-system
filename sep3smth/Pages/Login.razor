@@ -1,0 +1,67 @@
+﻿@page "/Login"
+@using BlazorSep3LoginExample.model
+@using BlazorSep3LoginExample.Authentication
+@using BlazorSep3LoginExample.Data
+@using BlazorSep3LoginExample.DAL;
+@using BlazorSep3LoginExample.BLL;
+@using System.Data;
+@using Task = System.Threading.Tasks.Task
+@inject AuthenticationStateProvider authenticationStateProvider;
+@inject NavigationManager NavigationManaget; 
+@inject IServiceUser _serviceUser;
+
+<EditForm class="container" Model="@User" OnValidSubmit="@SubmitCredentials">
+    <div class="main">
+
+        <div class="form-group" id="DebuggingPurposesUsername">
+            <label>username</label>
+            <input type="text" placeholder="Username" @bind="username"/>
+
+        </div>
+
+        <div class="form-group">
+            <label>password</label>
+            <input type="password" placeholder="Password" @bind="password"/>
+
+        </div>
+        <div class="form-group">
+            <button class="btn-success" type="submit">
+                Login
+            </button>
+        </div>
+    </div>
+
+
+</EditForm>
+
+
+@code {
+    public LoginUser User { get; set; } = new LoginUser();
+    private string password;
+    private string token;
+    private string username;
+    private string role;
+    async Task SubmitCredentials()
+    {
+        Dictionary<string, string> values = await ((ServiceUser) _serviceUser).ValidateUser(User);
+        if (values != null)
+        {
+            if (values.TryGetValue("access_token", out token))
+                if (values.TryGetValue("role", out role))
+                    if (values.TryGetValue("username", out username))
+                        ((CustomAuthenticationStateProvider) authenticationStateProvider).SetTokenAsync(token);
+            NavigationManaget.NavigateTo("/counter");
+        }
+    }
+
+    userDAL _userDAL = new userDAL();
+    userBLL _userBLL = new userBLL();
+    DataTable dt = new DataTable();
+
+    async Task SubmitDBCredentials()
+    {
+        _userDAL.username = username;
+        _userDAL.username = password;
+        dt = _userBLL.login(_userDAL);
+    }
+}
