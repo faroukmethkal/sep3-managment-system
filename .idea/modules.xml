@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Logical-tier-spring/demo/demo.iml" filepath="$PROJECT_DIR$/Logical-tier-spring/demo/demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/sep3-managment-system.iml" filepath="$PROJECT_DIR$/.idea/sep3-managment-system.iml" />
     </modules>
   </component>
