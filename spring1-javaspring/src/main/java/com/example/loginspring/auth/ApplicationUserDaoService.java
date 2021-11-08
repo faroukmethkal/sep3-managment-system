@@ -1,7 +1,7 @@
 package com.example.loginspring.auth;
 
 
-import com.example.loginspring.domain.Model;
+import com.example.loginspring.domain.ProfileLogic;
 import model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,14 +17,14 @@ import java.util.Collection;
 public class ApplicationUserDaoService implements ApplicationUserDao {
 
     private final PasswordEncoder passwordEncoder;
-    private Model model;
+    private ProfileLogic ProfileLogic;
 
 
 
     @Autowired
-    public ApplicationUserDaoService(PasswordEncoder passwordEncoder, Model model) {
+    public ApplicationUserDaoService(PasswordEncoder passwordEncoder, ProfileLogic ProfileLogic) {
         this.passwordEncoder = passwordEncoder;
-        this.model = model;
+        this.ProfileLogic = ProfileLogic;
     }
 
 
@@ -40,7 +40,7 @@ public class ApplicationUserDaoService implements ApplicationUserDao {
     }
 
     private ApplicationUser findUserByUsername(String username) throws RemoteException {
-        Account account = model.findUserByUsername(username);
+        Account account = ProfileLogic.findUserByUsername(username);
         String myusername = account.getUsername().trim();
         String password = account.getPassword().trim();
         String role = account.getRole().trim();

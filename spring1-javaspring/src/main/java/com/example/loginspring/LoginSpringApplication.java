@@ -1,7 +1,7 @@
 package com.example.loginspring;
 
-import com.example.loginspring.domain.Model;
-import com.example.loginspring.domain.ModelManager;
+import com.example.loginspring.domain.ProfileLogic;
+import com.example.loginspring.domain.ProfileLogicManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,7 +13,7 @@ import java.rmi.RemoteException;
 public class LoginSpringApplication {
 
     public static void main(String[] args) throws MalformedURLException, NotBoundException, RemoteException {
-        Model model = new ModelManager();
+        ProfileLogic ProfileLogic = new ProfileLogicManager();
         SpringApplication.run(LoginSpringApplication.class, args);
     }
 
