@@ -64,15 +64,15 @@ public class AccountDAOImpl implements AccountDAO
     return null;
   }
 
-  @Override public void register(String username, String password, String role)
+  @Override public void addAccount(Account account)
   {
     try(Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "INSERT INTO Account (username, password, role) VALUES (?,?,?)");
-      statement.setString(1, username); // maybe different index according to database
-      statement.setString(2, password);
-      statement.setString(3, role);
+      statement.setString(1, account.getUsername());
+      statement.setString(2, account.getPassword());
+      statement.setString(3, account.getRole());
 
 
       statement.executeUpdate();
