@@ -18,12 +18,12 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProfileModelManager implements ProfileModel
+public class RemoteRemoteProfileManager implements RemoteProfile
 {
     private AccountDAO accountDB;
     private ProfileDAO profileDB;
 
-    public ProfileModelManager()
+    public RemoteRemoteProfileManager()
         throws RemoteException, MalformedURLException, SQLException
     {
          startRegistry();
