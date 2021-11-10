@@ -4,79 +4,82 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Profile implements Serializable {
-  private String username;
-  private String firstName;
-  private String lastName;
-  private Specialties speciality;
-  private LocalDate birthday;
-  private String Role;
+    private String firstName;
+    private String lastName;
+    private Specialties specialties;
+    private LocalDate birthday;
+    private String Role;
+    private String username;
 
-  public Profile(String username, String firstName, String lastName, Specialties speciality, LocalDate birthday) {
-    this.username = username;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.speciality = speciality;
-    this.birthday = birthday;
-  }
+    public Profile() {
 
-  public String getUsername()
-  {
-    return username;
-  }
+    }
 
-  public void setUsername(String username)
-  {
-    this.username = username;
-  }
 
-  public String getFirstName() {
-    return firstName;
-  }
+    public Profile(String username, String firstName, String lastName, Specialties specialties, LocalDate birthday) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.specialties = specialties;
+        this.birthday = birthday;
+        this.username = username;
+    }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public String getLastName() {
-    return lastName;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+    public String getFirstName() {
+        return firstName;
+    }
 
-  public Specialties getSpecialties() {
-    return speciality;
-  }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-  public void setSpecialties(Specialties speciality) {
-    this.speciality = speciality;
-  }
+    public String getLastName() {
+        return lastName;
+    }
 
-  public LocalDate getBirthday() {
-    return birthday;
-  }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-  public void setBirthday(LocalDate birthday) {
-    this.birthday = birthday;
-  }
+    public Specialties getSpecialties() {
+        return specialties;
+    }
 
-  public String getRole() {
-    return Role;
-  }
+    public void setSpecialties(Specialties specialties) {
+        this.specialties = specialties;
+    }
 
-  public void setRole(String role) {
-    Role = role;
-  }
+    public LocalDate getBirthday() {
+        return birthday;
+    }
 
-  @Override
-  public String toString() {
-    return "Profile{" +
-        "firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", specialties=" + speciality +
-        ", birthday=" + birthday +
-        ", Role='" + Role + '\'' +
-        '}';
-  }
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getRole() {
+        return Role;
+    }
+
+    public void setRole(String role) {
+        Role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", specialties=" + specialties +
+                ", birthday=" + birthday +
+                ", Role='" + Role + '\'' +
+                '}';
+    }
 }
