@@ -7,11 +7,11 @@ public class Profile implements Serializable {
   private String username;
   private String firstName;
   private String lastName;
-  private Speciality speciality;
+  private Specialties speciality;
   private LocalDate birthday;
   private String Role;
 
-  public Profile(String username, String firstName, String lastName, Speciality speciality, LocalDate birthday) {
+  public Profile(String username, String firstName, String lastName, Specialties speciality, LocalDate birthday) {
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -45,11 +45,11 @@ public class Profile implements Serializable {
     this.lastName = lastName;
   }
 
-  public Speciality getSpecialties() {
+  public Specialties getSpecialties() {
     return speciality;
   }
 
-  public void setSpecialties(Speciality speciality) {
+  public void setSpecialties(Specialties speciality) {
     this.speciality = speciality;
   }
 
@@ -67,5 +67,16 @@ public class Profile implements Serializable {
 
   public void setRole(String role) {
     Role = role;
+  }
+
+  @Override
+  public String toString() {
+    return "Profile{" +
+        "firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", specialties=" + speciality +
+        ", birthday=" + birthday +
+        ", Role='" + Role + '\'' +
+        '}';
   }
 }

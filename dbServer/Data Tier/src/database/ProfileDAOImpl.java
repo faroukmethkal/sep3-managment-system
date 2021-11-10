@@ -2,6 +2,7 @@ package database;
 
 import model.Account;
 import model.Profile;
+import model.Specialties;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileDAOImpl implements ProfileDAO
 {
@@ -56,7 +59,39 @@ public class ProfileDAOImpl implements ProfileDAO
         System.out.println(java.sql.Date.valueOf(profile.getBirthday()));
         System.out.println(profile.getSpecialties().toString());
       }
-      catch(SQLException s){}
+      catch(SQLException s){
+        System.out.println("SQLException - Nothing was added to database");
+      }
 
+  }
+
+  @Override public List<Profile> getAllProfiles()
+  {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("select * from profile");
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Profile> profiles = new ArrayList<Profile>();
+
+          while (resultSet.next())
+          {
+            String username = resultSet.getString("username");
+            String firstname = resultSet.getString("firstname");
+            String lastname = resultSet.getString("lastname");
+            LocalDate birthday = resultSet.getDate("birthday").toLocalDate();
+            Specialties specialties = Specialties.valueOf(resultSet.getString("Speciality"));
+            Profile p = new Profile(username,firstname,lastname,specialties,birthday);
+            System.out.println(p.toString());
+            profiles.add(p);
+          }
+          return profiles;
+    }
+    catch (SQLException s)
+    {
+      System.out.println("SQLException - returned null");
+      return null;
+    }
   }
 }

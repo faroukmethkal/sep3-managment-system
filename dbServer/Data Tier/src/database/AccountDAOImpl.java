@@ -1,11 +1,16 @@
 package database;
 
 import model.Account;
+import model.Profile;
+import model.Specialties;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccountDAOImpl implements AccountDAO
 {
@@ -78,5 +83,33 @@ public class AccountDAOImpl implements AccountDAO
       statement.executeUpdate();
     }
     catch(SQLException s){}
+  }
+
+  @Override public List<Account> getAllAccounts()
+  {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("select * from account");
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Account> accounts = new ArrayList<Account>();
+
+      while (resultSet.next())
+      {
+        String username = resultSet.getString("username");
+        String password = resultSet.getString("password");
+        String role = resultSet.getString("role");
+        Account a = new Account(username, password, role);
+        System.out.println(a.toString());
+        accounts.add(a);
+      }
+      return accounts;
+    }
+    catch (SQLException s)
+    {
+      System.out.println("SQLException - returned null");
+      return null;
+    }
   }
 }

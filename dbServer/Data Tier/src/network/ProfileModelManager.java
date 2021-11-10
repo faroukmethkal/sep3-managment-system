@@ -16,12 +16,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.util.List;
 
-public class RemoteModelManager implements RemoteModel{
+public class ProfileModelManager implements ProfileModel
+{
     private AccountDAO accountDB;
     private ProfileDAO profileDB;
 
-    public RemoteModelManager()
+    public ProfileModelManager()
         throws RemoteException, MalformedURLException, SQLException
     {
          startRegistry();
@@ -54,9 +56,21 @@ public class RemoteModelManager implements RemoteModel{
         return account;
     }
 
-    @Override public void addProfile(Profile profile)
+    @Override public void createEmployee(Profile profile, Account account)
+        throws RemoteException
     {
+        accountDB.addAccount(account);
         profileDB.AddProfile(profile);
+    }
+
+    @Override public List<Profile> getAllProfiles() throws RemoteException
+    {
+        return profileDB.getAllProfiles();
+    }
+
+    @Override public List<Account> getAllAccounts() throws RemoteException
+    {
+        return accountDB.getAllAccounts();
     }
 
 }
