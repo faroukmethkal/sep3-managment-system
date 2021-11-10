@@ -4,24 +4,20 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Profile implements Serializable {
+
+    private String username;
     private String firstName;
     private String lastName;
     private Specialties specialties;
     private LocalDate birthday;
     private String Role;
-    private String username;
-
-    public Profile() {
-
-    }
-
 
     public Profile(String username, String firstName, String lastName, Specialties specialties, LocalDate birthday) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.specialties = specialties;
         this.birthday = birthday;
-        this.username = username;
     }
 
     public String getUsername() {
@@ -72,14 +68,11 @@ public class Profile implements Serializable {
         Role = role;
     }
 
-    @Override
-    public String toString() {
-        return "Profile{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", specialties=" + specialties +
-                ", birthday=" + birthday +
-                ", Role='" + Role + '\'' +
-                '}';
+    @Override public String toString()
+    {
+        return "Profile{" + "username='" + username + '\'' + ", firstName='"
+            + firstName + '\'' + ", lastName='" + lastName + '\''
+            + ", specialties=" + specialties + ", birthday=" + birthday
+            + ", Role='" + Role + '\'' + '}';
     }
 }
