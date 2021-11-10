@@ -1,0 +1,261 @@
+@import '';
+
+/* _content/BlazorSep3/Pages/AddEmployee.razor.rz.scp.css */
+main[b-swyd6ass2n]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+
+}
+select[b-swyd6ass2n]
+{
+    width: 15rem; height: 2rem;
+    border: none;
+    margin-left: 4.3rem;
+    border-radius: 10px 10px 10px 10px;
+    border-bottom: 1px solid #8d8a8a;
+    box-shadow: 0px 10px 22px -7px rgba(94,118,217,1);
+}
+
+.header[b-swyd6ass2n]{
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-left:8rem;
+    color: #3333a1;
+
+
+}
+.form-Contanier[b-swyd6ass2n]{
+    background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 50%, rgba(237,237,237,1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    width: 32rem;
+    height: 40rem;
+    box-shadow: 10px 3px 22px -9px rgba(0,0,0,0.75);
+    border: 1px solid #282e73;
+    border-radius: 24px 34px 24px 24px;
+    padding: 1rem;
+
+
+}
+
+.form-field[b-swyd6ass2n]{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.form-field label[b-swyd6ass2n]{
+    font-weight: 400;
+    font-size: 1.5rem;
+    font-color: #3b3b80;
+}
+
+.form-field input[b-swyd6ass2n]{
+    width: 12rem;
+    border: none;
+    border-radius: 10px 10px 10px 10px;
+    border-bottom: 1px solid #8d8a8a;
+    box-shadow: 0px 10px 22px -7px rgba(94,118,217,1);
+    height: 2rem;
+}
+.form-field input:focus[b-swyd6ass2n]{
+    outline: none;
+    border-bottom: 2px solid #8d8a8a;
+
+}
+
+.myStyle[b-swyd6ass2n]{
+    font-size: .9rem;
+    padding: 2px 5px;
+
+}
+.footer[b-swyd6ass2n]{
+    display: flex;
+    justify-content: space-around;
+}
+.error[b-swyd6ass2n]{
+    color: red;
+    font-weight: 200;
+    font-size: 1.2rem;
+}
+/* _content/BlazorSep3/Pages/Index.razor.rz.scp.css */
+/* _content/BlazorSep3/Pages/Login.razor.rz.scp.css */
+.main[b-nu0ng3xqlj]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        height: 80%;
+
+}
+.header[b-nu0ng3xqlj]{
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-left:8rem;
+    color: #3333a1;
+
+
+}
+.form-Contanier[b-nu0ng3xqlj]{
+    background: linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 50%, rgba(237,237,237,1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    width: 26rem;
+    height: 22rem;
+    box-shadow: 10px 3px 22px -9px rgba(0,0,0,0.75);
+    border: 1px solid #282e73;
+    border-radius: 24px 34px 24px 24px;
+    padding: 1rem;
+
+
+}
+
+.form-field[b-nu0ng3xqlj]{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.form-field label[b-nu0ng3xqlj]{
+    font-weight: 400;
+    font-size: 1.5rem;
+    font-color: #3b3b80;
+}
+
+.form-field input[b-nu0ng3xqlj]{
+    width: 12rem;
+    border: none;
+    border-radius: 10px 10px 10px 10px;
+    border-bottom: 1px solid #8d8a8a;
+    box-shadow: 0px 10px 22px -7px rgba(94,118,217,1);
+    height: 2rem;
+}
+.form-field input:focus[b-nu0ng3xqlj]{
+    outline: none;
+    border-bottom: 2px solid #8d8a8a;
+
+}
+
+.myStyle[b-nu0ng3xqlj]{
+    font-size: .9rem;
+    padding: 2px 5px;
+
+}
+.footer[b-nu0ng3xqlj]{
+    display: flex;
+    justify-content: space-around;
+}
+.error[b-nu0ng3xqlj]{
+    color: red;
+    font-weight: 200;
+    font-size: 1.2rem;
+}
+/* _content/BlazorSep3/Pages/Welcome.razor.rz.scp.css */
+.main[b-yejqgnzrbs]{
+    height: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.main h1[b-yejqgnzrbs]{
+    color: white;
+    font-size: 3.2rem;
+    font-weight: 400;
+    font-family: Helvetica, sans-serif;
+
+}
+ 
+.main h2[b-yejqgnzrbs], h3[b-yejqgnzrbs]{
+    color: white;
+    font-size: 1.7rem;
+    font-weight: 400;
+}
+
+.main_header[b-yejqgnzrbs]{
+    align-self: center;
+}
+.main_logged[b-yejqgnzrbs]{
+    align-self:  start;
+}
+/* _content/BlazorSep3/Shared/MainLayout.razor.rz.scp.css */
+*[b-lr18gg4jnm]{
+    
+    background-image:  linear-gradient(to left bottom, rgb(10, 10, 10), rgba(0,0,255,0.5)), url('images/businessman-hand.jpg');
+    
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* _content/BlazorSep3/Shared/NavMenu.razor.rz.scp.css */
+/*
+.navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.top-row {
+    height: 3.5rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+}
+
+.oi {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+    top: -2px;
+}
+
+.nav-item {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item ::deep a {
+        color: #d7d7d7;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+    }
+
+.nav-item ::deep a.active {
+    background-color: rgba(255,255,255,0.25);
+    color: white;
+}
+
+.nav-item ::deep a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .collapse {
+        !* Never collapse the sidebar for wide screens *!
+        display: block;
+    }
+}
+*/
