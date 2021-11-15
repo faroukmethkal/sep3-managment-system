@@ -17,17 +17,6 @@
       <Content Update="Pages\ManageEmployee\AddEmployee.razor.css">
         <DependentUpon>AddEmployee.razor</DependentUpon>
       </Content>
-      <Content Include="Pages\Admin\ManageEmployee\AddEmployee.razor.css" />
-      <Content Include="Pages\Admin\ManageEmployee\EmployeeSideNav.razor.css" />
-      <Content Include="Pages\Admin\ManageEmployee\ManageEmployee.razor.css" />
-      <Content Include="Pages\Admin\ManageEmployee\ViewAllAccount.razor.css" />
-      <Content Include="Pages\Admin\ManageEmployee\ViewAllProfile.razor.css" />
-      <Content Include="Pages\Admin\ManageShift\AddShift.razor.css" />
-      <Content Include="Pages\Admin\ManageShift\ManageShift.razor.css" />
-      <Content Include="Pages\Admin\ManageShift\ShiftNavSide.razor.css" />
-      <Content Include="Pages\Admin\ManageTask\AddTask.razor.css" />
-      <Content Include="Pages\Admin\ManageTask\ManageTask.razor.css" />
-      <Content Include="Pages\Admin\ManageTask\TaskNavSide.razor.css" />
     </ItemGroup>
 
     <ItemGroup>

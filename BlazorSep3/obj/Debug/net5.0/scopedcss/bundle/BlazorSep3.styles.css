@@ -1,3 +1,466 @@
+/* _content/BlazorSep3/Pages/Admin/ManageEmployee/AddEmployee.razor.rz.scp.css */
+.content[b-ojg9t56vmu] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-ojg9t56vmu] {
+    background-color: #fff;
+    flex: 1;
+}
+
+
+.form[b-ojg9t56vmu] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 88vh;
+    background-color: #F3F4F6;
+    padding: 2rem;
+}
+.form__group[b-ojg9t56vmu]{
+    display: flex;
+    align-items: start;
+}
+.form__group span[b-ojg9t56vmu]{
+    margin-right: 1rem;
+}
+
+.form__group:not(:last-child)[b-ojg9t56vmu] {
+    margin-bottom: 1rem;
+}
+.error-message[b-ojg9t56vmu]{
+    color: red;
+}
+.icon[b-ojg9t56vmu]{
+}
+
+.form__input[b-ojg9t56vmu] {
+    font-size: 1.5rem;
+    padding: 1.5rem 1.5rem;
+    border-radius: 2px;
+    background-color: rbga(#fff, 0.5);
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 30rem;
+    display: block;
+    transition: all .3s;
+    height: 2.3rem;
+}
+.form__input_select[b-ojg9t56vmu] {
+    font-size: 1.5rem;
+    border-radius: 2px;
+    background-color: rbga(#fff, 0.5);
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 30rem;
+    display: block;
+    transition: all .3s;
+    height: 2.9rem;
+
+}
+
+.form__input_select:focus[b-ojg9t56vmu] {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #55c57a;
+}
+
+.form__input:focus[b-ojg9t56vmu] {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #55c57a;
+}
+
+.form__input:focus:invalid[b-ojg9t56vmu] {
+
+    border-bottom: 3px solid #ff7730;
+}
+
+.form__input[b-ojg9t56vmu]::-webkit-input-placeholder {
+    color: #999;
+}
+
+
+.form__label[b-ojg9t56vmu] {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: .7rem;
+    display: block;
+    transition: all .3s;
+}
+
+
+.form__input:placeholder-shown + .form__label[b-ojg9t56vmu] {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+}
+
+
+.form-header[b-ojg9t56vmu] {
+    justify-self: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h2[b-ojg9t56vmu]{
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: .2rem;
+}
+
+
+.button-white[b-ojg9t56vmu] {
+    text-transform: uppercase;
+    padding: .4rem 2rem;
+    margin-left: 2rem;
+    border-radius: 100px;
+    transition: all, .2s;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: .2rem;
+}
+
+.button-white:hover[b-ojg9t56vmu] {
+    background-color:#34D399;
+    color: #fff;
+}
+
+
+.button-white[b-ojg9t56vmu] {
+    background-color:#059669;
+    color: #fff;
+
+}
+/* _content/BlazorSep3/Pages/Admin/ManageEmployee/EmployeeSideNav.razor.rz.scp.css */
+.sidebar[b-1q63xrc06v] {
+    flex: 0 0 18% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    background-color: #333;
+}
+
+.side-nav[b-1q63xrc06v] {
+    font-size: 1.2rem;
+    list-style: none;
+    padding: 0;
+}
+
+.side-nav__item[b-1q63xrc06v] {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: #eb2f64;
+    transform: scaleY(0);
+    transition: transform .2s,
+    width .4s cubic-bezier(1, 0, 0, 1) .2s,
+    background-color .1s;
+}
+
+.nav-item:first-of-type[b-1q63xrc06v] {
+    padding-top: 3.5rem;
+}
+
+.nav-item[b-1q63xrc06v] {
+}
+
+.nav-item:last-of-type[b-1q63xrc06v] {
+    padding-bottom: 1rem;
+}
+
+.nav-item[b-1q63xrc06v]  a {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7rem;
+    color: #faf9f9;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1.5rem 1.5rem;
+    margin-bottom: .3rem;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: start;
+}
+
+.nav-item[b-1q63xrc06v]  a.active {
+    background-color: #FF3366;
+
+}
+
+.nav-item[b-1q63xrc06v]  a:hover {
+    background-color: #FF3366;
+
+}
+
+
+.side-nav__icon[b-1q63xrc06v] {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 2rem;
+    fill: currentColor;
+}
+/* _content/BlazorSep3/Pages/Admin/ManageEmployee/ManageEmployee.razor.rz.scp.css */
+.content[b-z05fls7e57] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-z05fls7e57] {
+    background-color: #fff;
+    flex: 1;
+}
+
+
+
+
+
+/* _content/BlazorSep3/Pages/Admin/ManageEmployee/ViewAllAccount.razor.rz.scp.css */
+.content[b-i1oonn7s1f] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-i1oonn7s1f] {
+    background-color: #fff;
+    flex: 1;
+}
+/* _content/BlazorSep3/Pages/Admin/ManageEmployee/ViewAllProfile.razor.rz.scp.css */
+.content[b-dpmqsdio88] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-dpmqsdio88] {
+    background-color: #fff;
+    flex: 1;
+}
+/* _content/BlazorSep3/Pages/Admin/ManageShift/AddShift.razor.rz.scp.css */
+.content[b-4lgi0nl7bg] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-4lgi0nl7bg] {
+    background-color: #fff;
+    flex: 1;
+}
+/* _content/BlazorSep3/Pages/Admin/ManageShift/ManageShift.razor.rz.scp.css */
+.content[b-l90yhd42li] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-l90yhd42li] {
+    background-color: #fff;
+    flex: 1;
+}
+/* _content/BlazorSep3/Pages/Admin/ManageShift/ShiftNavSide.razor.rz.scp.css */
+.sidebar[b-x4axjtmepz] {
+    flex: 0 0 18% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    background-color: #333;
+}
+
+.side-nav[b-x4axjtmepz] {
+    font-size: 1.2rem;
+    list-style: none;
+    padding: 0;
+}
+
+.side-nav__item[b-x4axjtmepz] {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: #eb2f64;
+    transform: scaleY(0);
+    transition: transform .2s,
+    width .4s cubic-bezier(1, 0, 0, 1) .2s,
+    background-color .1s;
+}
+
+.nav-item:first-of-type[b-x4axjtmepz] {
+    padding-top: 3.5rem;
+}
+
+.nav-item[b-x4axjtmepz] {
+}
+
+.nav-item:last-of-type[b-x4axjtmepz] {
+    padding-bottom: 1rem;
+}
+
+.nav-item[b-x4axjtmepz]  a {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7rem;
+    color: #faf9f9;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1.5rem 1.5rem;
+    margin-bottom: .3rem;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: start;
+}
+
+.nav-item[b-x4axjtmepz]  a.active {
+    background-color: #FF3366;
+
+}
+
+.nav-item[b-x4axjtmepz]  a:hover {
+    background-color: #FF3366;
+
+}
+
+
+.side-nav__icon[b-x4axjtmepz] {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 2rem;
+    fill: currentColor;
+}
+/* _content/BlazorSep3/Pages/Admin/ManageTask/AddTask.razor.rz.scp.css */
+.content[b-f5ypzovfwh] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-f5ypzovfwh] {
+    background-color: #fff;
+    flex: 1;
+}
+/* _content/BlazorSep3/Pages/Admin/ManageTask/ManageTask.razor.rz.scp.css */
+.content[b-l29e9n9pv8] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-l29e9n9pv8] {
+    background-color: #fff;
+    flex: 1;
+}
+/* _content/BlazorSep3/Pages/Admin/ManageTask/TaskNavSide.razor.rz.scp.css */
+.sidebar[b-nn8520mob5] {
+    flex: 0 0 18% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    background-color: #333;
+}
+
+.side-nav[b-nn8520mob5] {
+    font-size: 1.2rem;
+    list-style: none;
+    padding: 0;
+}
+
+.side-nav__item[b-nn8520mob5] {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: #eb2f64;
+    transform: scaleY(0);
+    transition: transform .2s,
+    width .4s cubic-bezier(1, 0, 0, 1) .2s,
+    background-color .1s;
+}
+
+.nav-item:first-of-type[b-nn8520mob5] {
+    padding-top: 3.5rem;
+}
+
+.nav-item[b-nn8520mob5] {
+}
+
+.nav-item:last-of-type[b-nn8520mob5] {
+    padding-bottom: 1rem;
+}
+
+.nav-item[b-nn8520mob5]  a {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7rem;
+    color: #faf9f9;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1.5rem 1.5rem;
+    margin-bottom: .3rem;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: start;
+}
+
+.nav-item[b-nn8520mob5]  a.active {
+    background-color: #FF3366;
+
+}
+
+.nav-item[b-nn8520mob5]  a:hover {
+    background-color: #FF3366;
+
+}
+
+
+.side-nav__icon[b-nn8520mob5] {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 2rem;
+    fill: currentColor;
+}
 /* _content/BlazorSep3/Pages/Index.razor.rz.scp.css */
 /*
 
@@ -267,469 +730,6 @@ h2[b-9r1eiim46e] {
     background-color:#059669;
     color: #fff;
 
-}
-/* _content/BlazorSep3/Pages/ManageEmployee/AddEmployee.razor.rz.scp.css */
-.content[b-ie82jlbcrz] {
-    display: flex;
-    height: 91vh;
-}
-
-/******
-Content view 
-*******/
-
-.content-view[b-ie82jlbcrz] {
-    background-color: #fff;
-    flex: 1;
-}
-
-
-.form[b-ie82jlbcrz] {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 88vh;
-    background-color: #F3F4F6;
-    padding: 2rem;
-}
-.form__group[b-ie82jlbcrz]{
-    display: flex;
-    align-items: start;
-}
-.form__group span[b-ie82jlbcrz]{
-    margin-right: 1rem;
-}
-
-.form__group:not(:last-child)[b-ie82jlbcrz] {
-    margin-bottom: 1rem;
-}
-.error-message[b-ie82jlbcrz]{
-    color: red;
-}
-.icon[b-ie82jlbcrz]{
-}
-
-.form__input[b-ie82jlbcrz] {
-    font-size: 1.5rem;
-    padding: 1.5rem 1.5rem;
-    border-radius: 2px;
-    background-color: rbga(#fff, 0.5);
-    border: none;
-    border-bottom: 3px solid transparent;
-    width: 30rem;
-    display: block;
-    transition: all .3s;
-    height: 2.3rem;
-}
-.form__input_select[b-ie82jlbcrz] {
-    font-size: 1.5rem;
-    border-radius: 2px;
-    background-color: rbga(#fff, 0.5);
-    border: none;
-    border-bottom: 3px solid transparent;
-    width: 30rem;
-    display: block;
-    transition: all .3s;
-    height: 2.9rem;
-
-}
-
-.form__input_select:focus[b-ie82jlbcrz] {
-    outline: none;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
-    border-bottom: 3px solid #55c57a;
-}
-
-.form__input:focus[b-ie82jlbcrz] {
-    outline: none;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
-    border-bottom: 3px solid #55c57a;
-}
-
-.form__input:focus:invalid[b-ie82jlbcrz] {
-
-    border-bottom: 3px solid #ff7730;
-}
-
-.form__input[b-ie82jlbcrz]::-webkit-input-placeholder {
-    color: #999;
-}
-
-
-.form__label[b-ie82jlbcrz] {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-left: 2rem;
-    margin-top: .7rem;
-    display: block;
-    transition: all .3s;
-}
-
-
-.form__input:placeholder-shown + .form__label[b-ie82jlbcrz] {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-4rem);
-}
-
-
-.form-header[b-ie82jlbcrz] {
-    justify-self: center;
-    margin-bottom: 2rem;
-}
-
-.form-header h2[b-ie82jlbcrz]{
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: .2rem;
-}
-
-
-.button-white[b-ie82jlbcrz] {
-    text-transform: uppercase;
-    padding: .4rem 2rem;
-    margin-left: 2rem;
-    border-radius: 100px;
-    transition: all, .2s;
-    font-size: 1.2rem;
-    font-weight: 400;
-    letter-spacing: .2rem;
-}
-
-.button-white:hover[b-ie82jlbcrz] {
-    background-color:#34D399;
-    color: #fff;
-}
-
-
-.button-white[b-ie82jlbcrz] {
-    background-color:#059669;
-    color: #fff;
-
-}
-/* _content/BlazorSep3/Pages/ManageEmployee/EmployeeSideNav.razor.rz.scp.css */
-.sidebar[b-6uq5a4f5en] {
-    flex: 0 0 18% 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    background-color: #333;
-}
-
-.side-nav[b-6uq5a4f5en] {
-    font-size: 1.2rem;
-    list-style: none;
-    padding: 0;
-}
-
-.side-nav__item[b-6uq5a4f5en] {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 3px;
-    background-color: #eb2f64;
-    transform: scaleY(0);
-    transition: transform .2s,
-    width .4s cubic-bezier(1, 0, 0, 1) .2s,
-    background-color .1s;
-}
-
-.nav-item:first-of-type[b-6uq5a4f5en] {
-    padding-top: 3.5rem;
-}
-
-.nav-item[b-6uq5a4f5en] {
-}
-
-.nav-item:last-of-type[b-6uq5a4f5en] {
-    padding-bottom: 1rem;
-}
-
-.nav-item[b-6uq5a4f5en]  a {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    line-height: 1.7rem;
-    color: #faf9f9;
-    text-decoration: none;
-    text-transform: uppercase;
-    padding: 1.5rem 1.5rem;
-    margin-bottom: .3rem;
-    position: relative;
-    z-index: 10;
-    display: flex;
-    justify-content: start;
-}
-
-.nav-item[b-6uq5a4f5en]  a.active {
-    background-color: #FF3366;
-
-}
-
-.nav-item[b-6uq5a4f5en]  a:hover {
-    background-color: #FF3366;
-
-}
-
-
-.side-nav__icon[b-6uq5a4f5en] {
-    width: 1.75rem;
-    height: 1.75rem;
-    margin-right: 2rem;
-    fill: currentColor;
-}
-/* _content/BlazorSep3/Pages/ManageEmployee/ManageEmployee.razor.rz.scp.css */
-.content[b-2adg0movvy] {
-    display: flex;
-    height: 91vh;
-}
-
-/******
-Content view 
-*******/
-
-.content-view[b-2adg0movvy] {
-    background-color: #fff;
-    flex: 1;
-}
-
-
-
-
-
-/* _content/BlazorSep3/Pages/ManageEmployee/ViewAllAccount.razor.rz.scp.css */
-.content[b-raz7zmdqqb] {
-    display: flex;
-    height: 91vh;
-}
-
-/******
-Content view 
-*******/
-
-.content-view[b-raz7zmdqqb] {
-    background-color: #fff;
-    flex: 1;
-}
-/* _content/BlazorSep3/Pages/ManageEmployee/ViewAllProfile.razor.rz.scp.css */
-.content[b-t3hc6cox90] {
-    display: flex;
-    height: 91vh;
-}
-
-/******
-Content view 
-*******/
-
-.content-view[b-t3hc6cox90] {
-    background-color: #fff;
-    flex: 1;
-}
-/* _content/BlazorSep3/Pages/ManageShift/AddShift.razor.rz.scp.css */
-.content[b-nwflzzxtp8] {
-    display: flex;
-    height: 91vh;
-}
-
-/******
-Content view 
-*******/
-
-.content-view[b-nwflzzxtp8] {
-    background-color: #fff;
-    flex: 1;
-}
-/* _content/BlazorSep3/Pages/ManageShift/ManageShift.razor.rz.scp.css */
-.content[b-3zctvph3fw] {
-    display: flex;
-    height: 91vh;
-}
-
-/******
-Content view 
-*******/
-
-.content-view[b-3zctvph3fw] {
-    background-color: #fff;
-    flex: 1;
-}
-/* _content/BlazorSep3/Pages/ManageShift/ShiftNavSide.razor.rz.scp.css */
-.sidebar[b-2l44b84z3m] {
-    flex: 0 0 18% 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    background-color: #333;
-}
-
-.side-nav[b-2l44b84z3m] {
-    font-size: 1.2rem;
-    list-style: none;
-    padding: 0;
-}
-
-.side-nav__item[b-2l44b84z3m] {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 3px;
-    background-color: #eb2f64;
-    transform: scaleY(0);
-    transition: transform .2s,
-    width .4s cubic-bezier(1, 0, 0, 1) .2s,
-    background-color .1s;
-}
-
-.nav-item:first-of-type[b-2l44b84z3m] {
-    padding-top: 3.5rem;
-}
-
-.nav-item[b-2l44b84z3m] {
-}
-
-.nav-item:last-of-type[b-2l44b84z3m] {
-    padding-bottom: 1rem;
-}
-
-.nav-item[b-2l44b84z3m]  a {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    line-height: 1.7rem;
-    color: #faf9f9;
-    text-decoration: none;
-    text-transform: uppercase;
-    padding: 1.5rem 1.5rem;
-    margin-bottom: .3rem;
-    position: relative;
-    z-index: 10;
-    display: flex;
-    justify-content: start;
-}
-
-.nav-item[b-2l44b84z3m]  a.active {
-    background-color: #FF3366;
-
-}
-
-.nav-item[b-2l44b84z3m]  a:hover {
-    background-color: #FF3366;
-
-}
-
-
-.side-nav__icon[b-2l44b84z3m] {
-    width: 1.75rem;
-    height: 1.75rem;
-    margin-right: 2rem;
-    fill: currentColor;
-}
-/* _content/BlazorSep3/Pages/ManageTask/AddTask.razor.rz.scp.css */
-.content[b-ve6iqmitxl] {
-    display: flex;
-    height: 91vh;
-}
-
-/******
-Content view 
-*******/
-
-.content-view[b-ve6iqmitxl] {
-    background-color: #fff;
-    flex: 1;
-}
-/* _content/BlazorSep3/Pages/ManageTask/ManageTask.razor.rz.scp.css */
-.content[b-gbfxq5cqtb] {
-    display: flex;
-    height: 91vh;
-}
-
-/******
-Content view 
-*******/
-
-.content-view[b-gbfxq5cqtb] {
-    background-color: #fff;
-    flex: 1;
-}
-/* _content/BlazorSep3/Pages/ManageTask/TaskNavSide.razor.rz.scp.css */
-.sidebar[b-hcwn2hgq6y] {
-    flex: 0 0 18% 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    background-color: #333;
-}
-
-.side-nav[b-hcwn2hgq6y] {
-    font-size: 1.2rem;
-    list-style: none;
-    padding: 0;
-}
-
-.side-nav__item[b-hcwn2hgq6y] {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 3px;
-    background-color: #eb2f64;
-    transform: scaleY(0);
-    transition: transform .2s,
-    width .4s cubic-bezier(1, 0, 0, 1) .2s,
-    background-color .1s;
-}
-
-.nav-item:first-of-type[b-hcwn2hgq6y] {
-    padding-top: 3.5rem;
-}
-
-.nav-item[b-hcwn2hgq6y] {
-}
-
-.nav-item:last-of-type[b-hcwn2hgq6y] {
-    padding-bottom: 1rem;
-}
-
-.nav-item[b-hcwn2hgq6y]  a {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    line-height: 1.7rem;
-    color: #faf9f9;
-    text-decoration: none;
-    text-transform: uppercase;
-    padding: 1.5rem 1.5rem;
-    margin-bottom: .3rem;
-    position: relative;
-    z-index: 10;
-    display: flex;
-    justify-content: start;
-}
-
-.nav-item[b-hcwn2hgq6y]  a.active {
-    background-color: #FF3366;
-
-}
-
-.nav-item[b-hcwn2hgq6y]  a:hover {
-    background-color: #FF3366;
-
-}
-
-
-.side-nav__icon[b-hcwn2hgq6y] {
-    width: 1.75rem;
-    height: 1.75rem;
-    margin-right: 2rem;
-    fill: currentColor;
 }
 /* _content/BlazorSep3/Shared/MainLayout.razor.rz.scp.css */
 .main[b-lr18gg4jnm]{
