@@ -1,11 +1,155 @@
 ﻿@page "/AddTask"
+@using BlazorSep3.model
+@using BlazorSep3.Data
+@using System.ComponentModel.DataAnnotations
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ITaskServices taskServices;
+
+<header></header>
 <div class="content">
     <TaskNavSide/>
-    <main class="content-view">
-        <h1>Add Task</h1>
-    </main>
-</div>
+     <main class="content-view">
+         <div class="form">
+                <div class="form-header">
+                    <h2>
+                        Add new task
+                    </h2>
+                </div>
+                <div>
+                    <span class="error-message">@errorMessage</span>
+                </div>
+    
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-pencil"/>
+                    </div>
+                    <div>
+                        <label class="form__label">Title</label>
+                        <input type="text" class="form__input" placeholder="Title" @bind="@task.Title">
+                    </div>
+    
+                </div>
+    
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-briefcase"/>
+                    </div>
+                    <div>
+                        <label class="form__label">Description</label>
+                        <input type="text" class="form__input" placeholder="Description" @bind="task.Description">
+                    </div>
+                </div>
 
-@code {
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-person"/>
+                    </div>
+                    <div>
+                        <div>
+                            <label class="form__label">Speciality</label>
+                            <select name="specialties" class="form__input_select" @bind="currentSpec">
+                                @foreach (var speciality in Enum.GetValues(typeof(Specialities)))
+                                {
+                                    <option value="@speciality">@speciality</option>
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form__label">Number of people</label>
+                            <input type="number" class="form__input" placeholder="NumberOfPeople" @bind="currentPeople">
+                        </div>
+                        <div class="form__group">
+                            <button class="button-spec" type="submit" @onclick="AddToSpecialties">Add Speciality</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="specialty-message">@textSpecialty</span>
+                </div>
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-calendar"/>
+                    </div>
+                    <div>
+                        <label class="form__label">StartDate</label>
+                        <input type="date" class="form__input" placeholder="StartDate" @bind="task.StartDate"
+                               min=@DateTime.Today>
+                    </div>
+                </div>
+                
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-calculator"/>
+                    </div>
+                    <div>
+                        <label class="form__label">Estimate</label>
+                        <input type="number" class="form__input" placeholder="Estimate" @bind="task.Estimate"
+                               min="1">
+                    </div>
+                 </div>
+                
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-calendar"/>
+                    </div>
+                    <div>
+                        <label class="form__label">Deadline</label>
+                        <input type="date" class="form__input" placeholder="Deadline" @bind="task.Deadline"
+                               min=@DateTime.Today.AddDays(1)>
+                    </div>
+                 </div>
+    
+                <div class="form__group">
+                    <button class="button-white" type="submit" @onclick="AddTaskk">Add Task</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    @code {
+    
+        [CascadingParameter]
+        public MainLayout Layout { get; set; }
+    
+        private string errorMessage;
+        private Taskk task = new Taskk();
+        private string currentSpec = Specialities.VIDEOGAMEDESIGNER.ToString();
+        
+        [Range(1,int.MaxValue)]
+        private int currentPeople = 1;
 
-}
+        private string textSpecialty;
+        
+        private async Task AddTaskk()
+        {
+            try
+            {
+                Console.WriteLine(task);
+                await taskServices.AddTask(task);
+                errorMessage = "";
+                NavigationManager.NavigateTo("/ManageTask");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                errorMessage = e.Message;
+            }
+        }
+
+        private void AddToSpecialties()
+        {
+            task.Specialities.Add(currentSpec,currentPeople);
+            textSpecialty = "Speciality "+currentSpec+" for "+currentPeople+
+            " has been added to this task";
+            currentSpec = Specialities.VIDEOGAMEDESIGNER.ToString();
+            currentPeople = 1;
+        }
+
+        protected override void OnInitialized()
+        {
+            task.StartDate = DateTime.Today;
+            task.Deadline = DateTime.Today.AddDays(7);
+        }
+
+    }

@@ -32,4 +32,10 @@
       <_ContentIncludedByDefault Remove="Pages\ManageTask\TaskNavSide.razor" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Pages\Admin\ManageTask\ViewAllTasks.css">
+        <DependentUpon>ViewAllTasks.razor.razor</DependentUpon>
+      </None>
+    </ItemGroup>
+
 </Project>
