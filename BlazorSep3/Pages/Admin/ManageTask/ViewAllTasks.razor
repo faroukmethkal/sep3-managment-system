@@ -1,0 +1,97 @@
+﻿@page "/ViewAllTasks"
+@using BlazorSep3.model
+@using BlazorSep3.Data
+@inject NavigationManager NavigationManager
+@inject ITaskServices taskServices;
+@inject IJSRuntime _jsRuntime;
+
+
+<div class="content">
+    <TaskNavSide/>
+    <main class="content-view">
+        <h1>All Tasks</h1>
+    </main>
+    <div>
+        Search for: <input type="text" @oninput="@((arg) => FilterByName(arg))" style="width: 200px"/>
+    </div>
+    @if (tasksToShow == null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+    else if (!tasksToShow.Any())
+    {
+        <p>
+            <em>No Tasks to show. </em>
+        </p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>Estimate</th>
+                <th>Deadline</th>
+                <th>Number of employees</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in tasksToShow)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.Estimate</td>
+                    <td>@item.Deadline</td>
+                    <td>@item.GetFinalNumberOfPeople()</td>
+                    <td>
+                        <button @onclick="@(() => Edit(item.id))">
+                            <i class="oi oi-pencil" style="color:#1b6ec2"/>
+                        </button>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    private IList<Taskk> tasksToShow;
+    private IList<Taskk> tasks;
+    private string? filterByName;
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+    
+
+    private void ExecuteFilter()
+    {
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower()))|| filterByName == null).ToList();
+    }
+
+    private void Edit(int id)
+    {
+        NavigationManager.NavigateTo($"ManageTask/{id}");
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        tasks = await taskServices.getTasks();
+    }
+}
