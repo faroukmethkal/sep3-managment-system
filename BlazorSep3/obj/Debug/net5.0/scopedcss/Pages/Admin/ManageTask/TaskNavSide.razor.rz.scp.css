@@ -1,0 +1,72 @@
+.sidebar[b-nn8520mob5] {
+    flex: 0 0 18% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    background-color: #333;
+}
+
+.side-nav[b-nn8520mob5] {
+    font-size: 1.2rem;
+    list-style: none;
+    padding: 0;
+}
+
+.side-nav__item[b-nn8520mob5] {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: #eb2f64;
+    transform: scaleY(0);
+    transition: transform .2s,
+    width .4s cubic-bezier(1, 0, 0, 1) .2s,
+    background-color .1s;
+}
+
+.nav-item:first-of-type[b-nn8520mob5] {
+    padding-top: 3.5rem;
+}
+
+.nav-item[b-nn8520mob5] {
+}
+
+.nav-item:last-of-type[b-nn8520mob5] {
+    padding-bottom: 1rem;
+}
+
+.nav-item[b-nn8520mob5]  a {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7rem;
+    color: #faf9f9;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1.5rem 1.5rem;
+    margin-bottom: .3rem;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: start;
+}
+
+.nav-item[b-nn8520mob5]  a.active {
+    background-color: #FF3366;
+
+}
+
+.nav-item[b-nn8520mob5]  a:hover {
+    background-color: #FF3366;
+
+}
+
+
+.side-nav__icon[b-nn8520mob5] {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 2rem;
+    fill: currentColor;
+}

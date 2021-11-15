@@ -1,0 +1,13 @@
+.content[b-f5ypzovfwh] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-f5ypzovfwh] {
+    background-color: #fff;
+    flex: 1;
+}
