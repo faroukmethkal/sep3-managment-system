@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = BlazorSep3
-build_property.ProjectDir = C:\Users\terez\RiderProjects\BlazorSEP3\BlazorSep3\
+build_property.ProjectDir = F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\

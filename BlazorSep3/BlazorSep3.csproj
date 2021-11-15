@@ -12,4 +12,35 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Remove="Pages\Welcome.razor" />
+      <Content Update="Pages\ManageEmployee\AddEmployee.razor.css">
+        <DependentUpon>AddEmployee.razor</DependentUpon>
+      </Content>
+      <Content Include="Pages\Admin\ManageEmployee\AddEmployee.razor.css" />
+      <Content Include="Pages\Admin\ManageEmployee\EmployeeSideNav.razor.css" />
+      <Content Include="Pages\Admin\ManageEmployee\ManageEmployee.razor.css" />
+      <Content Include="Pages\Admin\ManageEmployee\ViewAllAccount.razor.css" />
+      <Content Include="Pages\Admin\ManageEmployee\ViewAllProfile.razor.css" />
+      <Content Include="Pages\Admin\ManageShift\AddShift.razor.css" />
+      <Content Include="Pages\Admin\ManageShift\ManageShift.razor.css" />
+      <Content Include="Pages\Admin\ManageShift\ShiftNavSide.razor.css" />
+      <Content Include="Pages\Admin\ManageTask\AddTask.razor.css" />
+      <Content Include="Pages\Admin\ManageTask\ManageTask.razor.css" />
+      <Content Include="Pages\Admin\ManageTask\TaskNavSide.razor.css" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Pages\Admin" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\ManageShift\AddShift.razor" />
+      <_ContentIncludedByDefault Remove="Pages\ManageShift\ManageShift.razor" />
+      <_ContentIncludedByDefault Remove="Pages\ManageShift\ShiftNavSide.razor" />
+      <_ContentIncludedByDefault Remove="Pages\ManageTask\AddTask.razor" />
+      <_ContentIncludedByDefault Remove="Pages\ManageTask\ManageTask.razor" />
+      <_ContentIncludedByDefault Remove="Pages\ManageTask\TaskNavSide.razor" />
+    </ItemGroup>
+
 </Project>

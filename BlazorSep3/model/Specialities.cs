@@ -1,3 +1,5 @@
+using Microsoft.OpenApi.Extensions;
+
 namespace BlazorSep3.model
 {
     public enum Specialities

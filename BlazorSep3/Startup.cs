@@ -33,10 +33,15 @@ namespace BlazorSep3
             services.AddScoped<IServiceUser, ServiceUser>();
             
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
-            services.AddHttpClient("UserService", client =>
+            services.AddHttpClient<IServiceUser,ServiceUser>(client =>
             {
                 client.BaseAddress = new Uri("http://localhost:8080/");
             });
+            services.AddHttpClient<ITaskServices,TaskServices>(client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:8080/");
+            });
+            
             
             services.AddAuthorization(options =>
             {

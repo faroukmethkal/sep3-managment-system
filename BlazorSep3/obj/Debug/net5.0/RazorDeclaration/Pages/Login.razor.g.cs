@@ -10,105 +10,105 @@ namespace BlazorSep3.Pages
     using System.Collections.Generic;
     using System.Linq;
 #nullable restore
-#line 1 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\_Imports.razor"
+#line 1 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\_Imports.razor"
+#line 2 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\_Imports.razor"
+#line 4 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\_Imports.razor"
+#line 5 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\_Imports.razor"
+#line 6 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\_Imports.razor"
+#line 7 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\_Imports.razor"
+#line 8 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\_Imports.razor"
+#line 9 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using BlazorSep3;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\Pages\Login.razor"
+#line 2 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Login.razor"
 using System;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\Pages\Login.razor"
+#line 3 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Login.razor"
 using System.Threading.Tasks;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\Pages\Login.razor"
+#line 4 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Login.razor"
 using BlazorSep3.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\Pages\Login.razor"
+#line 5 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Login.razor"
 using BlazorSep3.Authentication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\Pages\Login.razor"
+#line 6 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Login.razor"
 using BlazorSep3.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\Pages\Login.razor"
+#line 7 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Login.razor"
 using Microsoft.AspNetCore.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\Pages\Login.razor"
+#line 8 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Login.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
@@ -123,8 +123,9 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\terez\RiderProjects\BlazorSep3LoginExample\BlazorSep3\Pages\Login.razor"
+#line 39 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Login.razor"
        
+
     [CascadingParameter]
     public MainLayout Layout { get; set; }
 
@@ -145,9 +146,8 @@ using Microsoft.AspNetCore.Components.Authorization;
             errorMessage = e.Message;
         }
     }
-          
-        
-    
+
+
 
 #line default
 #line hidden

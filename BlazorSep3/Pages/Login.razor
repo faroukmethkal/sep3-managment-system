@@ -10,48 +10,34 @@
 @inject NavigationManager NavgMan
 @inject IServiceUser _serviceUser;
 
-<div class="main">
-
-    <div class="form-Contanier">
-        <div class="header">
-            <span> Login </span>
-            <br/> <span class="error">@errorMessage</span>
-        </div>
-        <div class="form-field">
-            <div>
-                <label class="username">
-                    <span class="oi oi-person"/> Username
-                </label>
-            </div>
-            <div>
-                <input placeholder="User Name" @bind="@username"/>
-
-            </div>
-        </div>
-        <div class="form-field">
-            <div>
-                <label class="password">
-                    <span class="oi oi-lock-locked"/> Password
-                </label>
-            </div>
-            <div>
-                <input type="password" placeholder="Password" @bind="password"/>
-
-            </div>
-        </div>
-        <div class="form-field footer">
-            <div>
-                <button class="btn btn-success" type="submit" @onclick="PerformLogin">Login</button>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
+   <div class="form">
+       <div class="form-header">
+           <h2>
+               Login
+           </h2>
+       </div>
+       <div>
+           <span class="error-message">@errorMessage</span>
+       </div>
+   
+       <div class="form__group">
+           <input type="text" class="form__input" placeholder="Username" @bind="@username" >
+           <label for="name" class="form__label">Username</label>
+       </div>
+   
+       <div class="form__group">
+           <input type="password" class="form__input" placeholder="Password"  @bind="@password">
+           <label class="form__label">Password</label>
+       </div>
+   
+       <div class="form__group">
+           <button class="button-white" type="submit"  @onclick="PerformLogin">Login</button>
+       </div>
+   </div> 
 
 
 @code {
+
     [CascadingParameter]
     public MainLayout Layout { get; set; }
 
@@ -72,7 +58,6 @@
             errorMessage = e.Message;
         }
     }
-          
-        
-    }
-    
+
+
+}

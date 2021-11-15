@@ -86,13 +86,13 @@ namespace BlazorSep3.Authentication
             return identity;
         }
         
-        public async Task Register(Profile profile)
+        /*public async Task Register(Profile profile)
         {
             // here should be some evaulation
            /* if (string.IsNullOrEmpty(username)) throw new Exception("Enter username");
             if (string.IsNullOrEmpty(password)) throw new Exception("Enter password");
 
-            ClaimsIdentity identity = new ClaimsIdentity();*/
+            ClaimsIdentity identity = new ClaimsIdentity();#1#
             try
             {
                 await serverData.RegisterUser(profile);
@@ -101,6 +101,6 @@ namespace BlazorSep3.Authentication
             {
                 throw new Exception(e.Message);
             }
-        }
+        }*/
     }
 }
