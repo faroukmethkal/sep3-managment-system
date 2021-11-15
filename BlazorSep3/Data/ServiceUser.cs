@@ -75,11 +75,10 @@ namespace BlazorSep3.Data
 
         public async Task RegisterUser(Profile profile)
         {
-            if (profile.FirstName == null) throw new Exception("Enter first name");
-            if (profile.LastName == null) throw new Exception("Enter last name");
-            if (profile.Birthday == null) throw new Exception("Enter Birthday name");
-            if (profile.Specialities == null) throw new Exception("Enter specialities");
-            if (profile.Role == null) throw new Exception("Enter role");
+            if (string.IsNullOrEmpty(profile.FirstName)) throw new Exception("Enter first name");
+            if (string.IsNullOrEmpty(profile.LastName)) throw new Exception("Enter last name");
+            if (string.IsNullOrEmpty(profile.Specialities)) throw new Exception("Enter specialities");
+            if (string.IsNullOrEmpty(profile.Role)) throw new Exception("Enter role");
 
             string serializedProfile = JsonConvert.SerializeObject(profile);
             Account currentAccount = await GetCurrentAccount();

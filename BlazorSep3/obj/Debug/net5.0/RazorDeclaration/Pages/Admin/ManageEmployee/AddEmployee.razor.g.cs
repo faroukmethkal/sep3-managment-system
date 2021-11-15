@@ -124,7 +124,9 @@ using BlazorSep3.Data;
     {
         try
         {
-            _serviceUser.RegisterUser(profile);
+            await  _serviceUser.RegisterUser(profile);
+            errorMessage = "";
+            NavigationManager.NavigateTo("/ManageEmployee");
         }
         catch (Exception e)
         {
