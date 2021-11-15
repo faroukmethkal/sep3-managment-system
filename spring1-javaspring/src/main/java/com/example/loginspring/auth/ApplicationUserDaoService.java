@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 
-@Repository() // tels spring this class need to be instantiated to be able to autowired it
+@Repository()
 public class ApplicationUserDaoService implements ApplicationUserDao {
 
     private final PasswordEncoder passwordEncoder;
@@ -43,7 +43,7 @@ public class ApplicationUserDaoService implements ApplicationUserDao {
         Account account = ProfileLogic.findUserByUsername(username);
         String myusername = account.getUsername().trim();
         String password = account.getPassword().trim();
-        String role = account.getRole().trim();
+        String role = account.getRole().toString().trim();
         Collection<SimpleGrantedAuthority> authorities= new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_"+role));
         ApplicationUser applicationUser = new ApplicationUser(

@@ -2,25 +2,30 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Profile implements Serializable {
+
+    private String username;
     private String firstName;
     private String lastName;
     private Specialties specialties;
     private LocalDate birthday;
-    private String Role;
+    private Role role;
 
-    public Profile() {
-
-    }
-
-
-    public Profile(String firstName, String lastName, Specialties specialties, LocalDate birthday) {
+    public Profile(String username, String firstName, String lastName, Specialties specialties, LocalDate birthday) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.specialties = specialties;
         this.birthday = birthday;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
@@ -55,22 +60,19 @@ public class Profile implements Serializable {
         this.birthday = birthday;
     }
 
-    public String getRole() {
-        return Role;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRole(String role) {
-        Role = role;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "Profile{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", specialties=" + specialties +
-                ", birthday=" + birthday +
-                ", Role='" + Role + '\'' +
-                '}';
+    @Override public String toString()
+    {
+        return "Profile{" + "username='" + username + '\'' + ", firstName='"
+                + firstName + '\'' + ", lastName='" + lastName + '\''
+                + ", specialties=" + specialties + ", birthday=" + birthday
+                + ", Role='" + getRole().toString() + '\'' + '}';
     }
 }

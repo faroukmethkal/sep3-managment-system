@@ -1,7 +1,4 @@
 package network;
-
-
-
 import model.Account;
 import model.Profile;
 
@@ -43,14 +40,20 @@ public class RemoteProfileManager implements RemoteProfile {
     }
 
     @Override
-    public List<Account> getAllAccount() {
+    public List<Profile> getAllProfiles() throws RemoteException {
+        return server.getAllProfiles();
+    }
+
+    @Override
+    public List<Account> getAllAccounts() throws RemoteException {
         try {
-            return server.getAllAccount();
+            return server.getAllAccounts();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
 
         return null;
     }
+
 
 }

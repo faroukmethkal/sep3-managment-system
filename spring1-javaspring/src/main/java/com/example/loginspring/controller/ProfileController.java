@@ -2,30 +2,48 @@ package com.example.loginspring.controller;
 
 
 import com.example.loginspring.domain.ProfileLogic;
+import model.Account;
 import model.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/profile")
 public class ProfileController {
-    private ProfileLogic ProfileLogic;
+    private ProfileLogic profileLogic;
 
     @Autowired
-    public ProfileController(ProfileLogic ProfileLogic) {
-        this.ProfileLogic = ProfileLogic;
+    public ProfileController(ProfileLogic profileLogic) {
+        this.profileLogic = profileLogic;
     }
+
 
     @PostMapping
     @PreAuthorize("hasAnyRole('ROLE_admin')")
     public void createEmployee(@RequestBody Profile profile) {
-          this.ProfileLogic.createEmployee(profile);
-           System.out.println(profile);
+        this.profileLogic.createEmployee(profile);
+
     }
 
+    @PreAuthorize("hasAnyRole('Role_admin')")
+    @GetMapping()
+    public List<Profile> getAllProfile(
+            @RequestParam @Nullable Boolean isPartTimeEmpl,
+            @RequestParam @Nullable Boolean isFullTimeEmpl){
+
+       return profileLogic.getAllProfiles(isPartTimeEmpl, isFullTimeEmpl);
+
+    }
+    @PreAuthorize("hasAnyRole('Role_admin')")
+    @GetMapping("/account")
+    public List<Account> getAllAccount(){
+
+        return profileLogic.getAllAccount();
+
+    }
 
 }

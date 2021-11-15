@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface RemoteProfile extends Remote {
     Account login(String username) throws RemoteException;
-    void createEmployee(Profile IProfile, Account account) throws RemoteException;
-    List<Account> getAllAccount() throws RemoteException;
-
+    void createEmployee(Profile profile, Account account) throws RemoteException;
+    List<Profile> getAllProfiles() throws RemoteException;
+    List<Account> getAllAccounts() throws RemoteException;
 }
