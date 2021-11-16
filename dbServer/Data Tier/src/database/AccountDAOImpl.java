@@ -2,6 +2,7 @@ package database;
 
 import model.Account;
 import model.Profile;
+import model.Role;
 import model.Specialties;
 
 import java.sql.Connection;
@@ -58,7 +59,7 @@ public class AccountDAOImpl implements AccountDAO
         if(usernameDb == null) return null;
         else
         {
-          Account toReturn = new Account(usernameDb, password, role);
+          Account toReturn = new Account(usernameDb, password, Role.valueOf(role));
           return toReturn;
         }
       }
@@ -77,7 +78,7 @@ public class AccountDAOImpl implements AccountDAO
           "INSERT INTO Account (username, password, role) VALUES (?,?,?)");
       statement.setString(1, account.getUsername());
       statement.setString(2, account.getPassword());
-      statement.setString(3, account.getRole());
+      statement.setString(3, account.getRole().toString());
 
 
       statement.executeUpdate();
@@ -100,7 +101,7 @@ public class AccountDAOImpl implements AccountDAO
         String username = resultSet.getString("username");
         String password = resultSet.getString("password");
         String role = resultSet.getString("role");
-        Account a = new Account(username, password, role);
+        Account a = new Account(username, password, Role.valueOf(role));
         System.out.println(a.toString());
         accounts.add(a);
       }

@@ -10,7 +10,7 @@ public class Profile implements Serializable {
     private String lastName;
     private Specialties specialties;
     private LocalDate birthday;
-    private String Role;
+    private Role Role;
 
     public Profile(String username, String firstName, String lastName, Specialties specialties, LocalDate birthday) {
         this.username = username;
@@ -60,11 +60,11 @@ public class Profile implements Serializable {
         this.birthday = birthday;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return Role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         Role = role;
     }
 
