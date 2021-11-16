@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Bd6UtmK3NJnlz3RWUozo9Qy7WIcpcXf/8cTv4HG6p65FNgC/pVNjmC/FN6qQjV0v1rk4gTcF5JWWdymZuhPZcg==",
+  "dgSpecHash": "PHmyw6E29BHh71pFTOdBbCbba/KUt6j8RLTYIxWIVNlk5FenRlDFLbUM+OgR6y1pDBEoi78fSgxdRRPKu3GtnA==",
   "success": true,
-  "projectFilePath": "F:\\VIA\\Third Semester\\SEP3\\sep3-managment-system-blazor-server\\BlazorSep3\\BlazorSep3.csproj",
+  "projectFilePath": "F:\\VIA\\Third Semester\\SEP3\\Backup\\sep3-managment-system-blazor-server\\BlazorSep3\\BlazorSep3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Farouk\\.nuget\\packages\\blazored.localstorage\\4.1.5\\blazored.localstorage.4.1.5.nupkg.sha512",
     "C:\\Users\\Farouk\\.nuget\\packages\\bracketshow.blazornavigationmanagerextensions\\1.1.0\\bracketshow.blazornavigationmanagerextensions.1.1.0.nupkg.sha512",
