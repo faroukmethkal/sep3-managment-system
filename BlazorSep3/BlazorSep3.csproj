@@ -33,7 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Pages\Admin\ManageTask\ViewAllTasks.razor.css">
+      <None Update="Pages\Admin\ManageTask\ViewAllTasks.css">
         <DependentUpon>ViewAllTasks.razor.razor</DependentUpon>
       </None>
     </ItemGroup>

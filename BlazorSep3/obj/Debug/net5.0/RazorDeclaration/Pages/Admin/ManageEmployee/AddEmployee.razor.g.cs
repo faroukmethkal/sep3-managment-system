@@ -109,13 +109,6 @@ using Task = System.Threading.Tasks.Task;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 6 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
-using System.Text;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/AddEmployee")]
     public partial class AddEmployee : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -125,7 +118,7 @@ using System.Text;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 107 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
+#line 97 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
        
 
     [CascadingParameter]
@@ -138,7 +131,7 @@ using System.Text;
     {
         try
         {
-            await _serviceUser.RegisterUser(profile);
+            await  _serviceUser.RegisterUser(profile);
             errorMessage = "";
             NavigationManager.NavigateTo("/ManageEmployee");
         }
@@ -151,22 +144,9 @@ using System.Text;
 
     protected override void OnInitialized()
     {
-        profile.Birthday = new DateTime(1980, 1, 1);
+        profile.Birthday = new DateTime(1990, 1, 1);
     }
 
-    private string splitOnCapitalLitter(string s)
-    {
-        StringBuilder builder = new StringBuilder();
-        s.First().ToString().ToUpper();
-        foreach (char c in s)
-        {
-            if (Char.IsUpper(c) && builder.Length > 0) builder.Append(' ');
-            builder.Append(c);
-        }
-        string newString = builder.ToString();
-        string newsCapitalizeFirstLetter = char.ToUpper(newString[0]) + newString.Substring(1);
-        return newsCapitalizeFirstLetter;
-    }
 
 
 #line default

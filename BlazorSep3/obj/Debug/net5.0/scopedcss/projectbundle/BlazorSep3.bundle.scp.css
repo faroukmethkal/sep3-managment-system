@@ -26,18 +26,6 @@ Content view
     background-color: #F3F4F6;
     padding: 2rem;
 }
-
-.form_parts[b-ojg9t56vmu]{
-    margin-top: 2rem;
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    border: 1px dashed black;
-    padding: 1rem;
-}
-
 .form__group[b-ojg9t56vmu]{
     display: flex;
     align-items: start;
@@ -53,32 +41,30 @@ Content view
     color: red;
 }
 .icon[b-ojg9t56vmu]{
-    height: 1rem;
-    margin-top: 0.2rem;
 }
 
 .form__input[b-ojg9t56vmu] {
-    font-size: 1.2rem;
-    padding: 1.2rem 1.2rem;
-    border-radius: 1.5px;
+    font-size: 1.5rem;
+    padding: 1.5rem 1.5rem;
+    border-radius: 2px;
     background-color: rbga(#fff, 0.5);
     border: none;
     border-bottom: 3px solid transparent;
     width: 30rem;
     display: block;
     transition: all .3s;
-    height: 1.7rem;
+    height: 2.3rem;
 }
 .form__input_select[b-ojg9t56vmu] {
-    font-size: 1.2rem;
-    border-radius: 1px;
+    font-size: 1.5rem;
+    border-radius: 2px;
     background-color: rbga(#fff, 0.5);
     border: none;
     border-bottom: 3px solid transparent;
     width: 30rem;
     display: block;
     transition: all .3s;
-    height: 1.7rem;
+    height: 2.9rem;
 
 }
 
@@ -105,20 +91,20 @@ Content view
 
 
 .form__label[b-ojg9t56vmu] {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-left: 0.2rem;
-    margin-top: 0.2rem;
+    margin-left: 2rem;
+    margin-top: .7rem;
     display: block;
     transition: all .3s;
 }
 
 
-/*.form__input:placeholder-shown + .form__label {
+.form__input:placeholder-shown + .form__label[b-ojg9t56vmu] {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem);
-}*/
+}
 
 
 .form-header[b-ojg9t56vmu] {
@@ -399,23 +385,13 @@ header[b-f5ypzovfwh]{
 .form[b-f5ypzovfwh] {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 90vh;
+    height: 91vh;
     background-color: #F3F4F6;
     padding: 2rem;
     margin-top: 0.2rem;
-}
-.form_parts[b-f5ypzovfwh]{
-    margin-top: 2rem;
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    border: 1px dashed black;
-    padding: 1rem;
 }
 .form__group[b-f5ypzovfwh]{
     display: flex;
@@ -426,7 +402,7 @@ header[b-f5ypzovfwh]{
 }
 
 .form__group:not(:last-child)[b-f5ypzovfwh] {
-    margin-bottom: 1rem;
+    margin-bottom: 0.3rem;
 }
 .error-message[b-f5ypzovfwh]{
     color: red;
@@ -440,8 +416,8 @@ header[b-f5ypzovfwh]{
 }
 
 .form__input[b-f5ypzovfwh] {
-    font-size: 1.2rem;
-    padding: 1.2rem 1.2rem;
+    font-size: 0.8rem;
+    padding: 0.8rem 0.8rem;
     border-radius: 1.5px;
     background-color: rbga(#fff, 0.5);
     border: none;
@@ -452,7 +428,7 @@ header[b-f5ypzovfwh]{
     height: 1.7rem;
 }
 .form__input_select[b-f5ypzovfwh] {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     border-radius: 1px;
     background-color: rbga(#fff, 0.5);
     border: none;
@@ -496,11 +472,11 @@ header[b-f5ypzovfwh]{
 }
 
 
-/*.form__input:placeholder-shown + .form__label {
+.form__input:placeholder-shown + .form__label[b-f5ypzovfwh] {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4rem);
-}*/
+}
 
 
 .form-header[b-f5ypzovfwh] {
@@ -542,12 +518,12 @@ header[b-f5ypzovfwh]{
 .button-spec[b-f5ypzovfwh] {
     text-transform: uppercase;
     padding: 0.4rem 0.3rem;
+    margin-left: 2rem;
     border-radius: 40px;
     transition: all, .2s;
     font-size: 0.8rem;
     font-weight: 300;
     letter-spacing: .2rem;
-    margin-top: .5rem;
 }
 
 .button-spec:hover[b-f5ypzovfwh] {
@@ -647,20 +623,6 @@ Content view
     height: 1.75rem;
     margin-right: 2rem;
     fill: currentColor;
-}
-/* _content/BlazorSep3/Pages/Admin/ManageTask/ViewAllTasks.razor.rz.scp.css */
-.content[b-wq3yo770wm] {
-    display: flex;
-    height: 91vh;
-}
-
-/******
-Content view 
-*******/
-
-.content-view[b-wq3yo770wm] {
-    background-color: #fff;
-    flex: 1;
 }
 /* _content/BlazorSep3/Pages/Index.razor.rz.scp.css */
 /*

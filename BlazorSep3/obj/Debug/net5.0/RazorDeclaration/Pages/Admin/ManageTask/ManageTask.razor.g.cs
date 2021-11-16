@@ -82,7 +82,7 @@ using BlazorSep3.Shared;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/ManageTask")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/ManageTask/{Id:int}")]
     public partial class ManageTask : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

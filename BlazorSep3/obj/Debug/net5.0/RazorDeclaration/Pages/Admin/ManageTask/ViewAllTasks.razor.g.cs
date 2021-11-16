@@ -127,9 +127,7 @@ using BlazorSep3.Data;
 
     private void ExecuteFilter()
     {
-        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower())
-                                                                || t.Description.ToLower().Contains(filterByName.ToLower()))
-                                       || filterByName == null).ToList();
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower()))|| filterByName == null).ToList();
     }
 
     private void Edit(int id)
@@ -137,10 +135,10 @@ using BlazorSep3.Data;
         NavigationManager.NavigateTo($"ManageTask/{id}");
     }
     
-    /*protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         tasks = await taskServices.getTasks();
-    }*/
+    }
 
 #line default
 #line hidden
