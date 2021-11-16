@@ -3,26 +3,18 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Task implements Serializable {
    private int id;
    private String title;
    private String description;
-   private HashMap<String, Integer> specialties;
+   private Map<String, Integer> specialties;
    private LocalDate startDate;
    private double estimatedTime;
    private LocalDate deadline;
 
-   public Task(String title, String description, HashMap<String, Integer> specialties, LocalDate startDate, double estimatedTime, LocalDate deadline) {
-      this.title = title;
-      this.description = description;
-      this.specialties = specialties;
-      this.startDate = startDate;
-      this.estimatedTime = estimatedTime;
-      this.deadline = deadline;
-   }
-
-   public Task(int id, String title, String description, HashMap<String, Integer> specialties, LocalDate startDate, double estimatedTime, LocalDate deadline) {
+   public Task(int id, String title, String description, Map<String, Integer> specialties, LocalDate startDate, double estimatedTime, LocalDate deadline) {
       this.id = id;
       this.title = title;
       this.description = description;
@@ -48,7 +40,7 @@ public class Task implements Serializable {
       this.description = description;
    }
 
-   public HashMap<String, Integer> getSpecialties() {
+   public Map<String, Integer> getSpecialties() {
       return specialties;
    }
 

@@ -29,18 +29,19 @@ public class ProfileController {
 
     }
 
-    @PreAuthorize("hasAnyRole('Role_admin')")
     @GetMapping()
+    @PreAuthorize("hasAnyRole('ROLE_admin')")
     public List<Profile> getAllProfile(
             @RequestParam @Nullable Boolean isPartTimeEmpl,
-            @RequestParam @Nullable Boolean isFullTimeEmpl){
+            @RequestParam @Nullable Boolean isFullTimeEmpl) {
 
-       return profileLogic.getAllProfiles(isPartTimeEmpl, isFullTimeEmpl);
+        return profileLogic.getAllProfiles(isPartTimeEmpl, isFullTimeEmpl);
 
     }
-    @PreAuthorize("hasAnyRole('Role_admin')")
+
     @GetMapping("/account")
-    public List<Account> getAllAccount(){
+    @PreAuthorize("hasAnyRole('ROLE_admin')")
+    public List<Account> getAllAccount() {
 
         return profileLogic.getAllAccount();
 

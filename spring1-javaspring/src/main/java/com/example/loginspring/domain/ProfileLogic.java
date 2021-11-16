@@ -5,7 +5,6 @@ import model.Account;
 import model.Profile;
 
 import javax.annotation.Nullable;
-import java.rmi.RemoteException;
 import java.util.List;
 
 public interface ProfileLogic {
