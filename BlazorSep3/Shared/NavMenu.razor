@@ -15,17 +15,18 @@
         <nav class="main-nav">
             <ul class="main-nav-list">
                 <AuthorizeView Policy="MustBeAdmin">
-                    <li>
-                        <a class="main-nav-link" href="ManageShift">Manage Shift</a>
-                    </li>
-                    <li>
-                        <a class="main-nav-link" href="ManageTask">Manage Task</a>
-                    </li>
-                    <li>
-                        <a class="main-nav-link" href="ManageEmployee">Manage Employee</a>
-                    </li>
-                </AuthorizeView>
 
+
+                </AuthorizeView>
+                <li>
+                    <a class="main-nav-link" href="ManageEmployee">Manage Employee</a>
+                </li>
+                <li>
+                    <a class="main-nav-link" href="ManageShift">Manage Shift</a>
+                </li>
+                <li>
+                    <a class="main-nav-link" href="ManageTask">Manage Task</a>
+                </li>
                 <AuthorizeView>
 
                     <Authorized>
@@ -36,7 +37,7 @@
 
                     <NotAuthorized>
                         <li>
-                            <a href="AddTask" class="main-nav-link nav-cta">Login</a>
+                            <a href="Login" class="main-nav-link nav-cta">Login</a>
                         </li>
                     </NotAuthorized>
                 </AuthorizeView>

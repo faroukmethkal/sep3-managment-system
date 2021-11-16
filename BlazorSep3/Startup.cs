@@ -1,5 +1,5 @@
 using System;
-
+using System.Text.Json;
 using Blazored.LocalStorage;
 using BlazorSep3.Authentication;
 using Microsoft.AspNetCore.Builder;
@@ -33,10 +33,12 @@ namespace BlazorSep3
             services.AddScoped<IServiceUser, ServiceUser>();
             
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            
             services.AddHttpClient<IServiceUser,ServiceUser>(client =>
             {
                 client.BaseAddress = new Uri("http://localhost:8080/");
             });
+            
             services.AddHttpClient<ITaskServices,TaskServices>(client =>
             {
                 client.BaseAddress = new Uri("http://localhost:8080/");
@@ -50,6 +52,8 @@ namespace BlazorSep3
                     a.RequireAuthenticatedUser().RequireClaim("Role", "admin");
                 });
             });
+         
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +63,7 @@ namespace BlazorSep3
             {
                 app.UseDeveloperExceptionPage();
             }
+            
             else
             {
                 app.UseExceptionHandler("/Error");

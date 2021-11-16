@@ -4,13 +4,14 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorSep3.Pages.Admin.ManageEmployee
+namespace BlazorSep3.Pages.Admin.ManageTask
 {
     #line hidden
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Components;
 #nullable restore
 #line 1 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using System.Net.Http;
@@ -82,42 +83,21 @@ using BlazorSep3.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
-using Microsoft.AspNetCore.Components;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
+#line 2 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\ViewAllTasks.razor"
 using BlazorSep3.model;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
+#line 3 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\ViewAllTasks.razor"
 using BlazorSep3.Data;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 5 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
-using Task = System.Threading.Tasks.Task;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 6 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
-using System.Text;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/AddEmployee")]
-    public partial class AddEmployee : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/ViewAllTasks")]
+    public partial class ViewAllTasks : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -125,55 +105,48 @@ using System.Text;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 107 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
+#line 64 "F:\VIA\Third Semester\SEP3\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\ViewAllTasks.razor"
        
+    private IList<Taskk> tasksToShow;
+    private IList<Taskk> tasks;
+    private string? filterByName;
 
-    [CascadingParameter]
-    public MainLayout Layout { get; set; }
-
-    private string errorMessage;
-    private Profile profile = new Profile();
-
-    public async Task PerformRegister()
+    private void FilterByName(ChangeEventArgs changeEventArgs)
     {
+        filterByName = null;
         try
         {
-            await _serviceUser.RegisterUser(profile);
-            errorMessage = "";
-            NavigationManager.NavigateTo("/ManageEmployee");
+            filterByName = changeEventArgs.Value.ToString();
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
-            errorMessage = e.Message;
         }
+        ExecuteFilter();
     }
+    
 
-    protected override void OnInitialized()
+    private void ExecuteFilter()
     {
-        profile.Birthday = new DateTime(1980, 1, 1);
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower())
+                                                                || t.Description.ToLower().Contains(filterByName.ToLower()))
+                                       || filterByName == null).ToList();
     }
 
-    private string splitOnCapitalLitter(string s)
+    private void Edit(int id)
     {
-        StringBuilder builder = new StringBuilder();
-        s.First().ToString().ToUpper();
-        foreach (char c in s)
-        {
-            if (Char.IsUpper(c) && builder.Length > 0) builder.Append(' ');
-            builder.Append(c);
-        }
-        string newString = builder.ToString();
-        string newsCapitalizeFirstLetter = char.ToUpper(newString[0]) + newString.Substring(1);
-        return newsCapitalizeFirstLetter;
+        NavigationManager.NavigateTo($"ManageTask/{id}");
     }
-
+    
+    /*protected override async Task OnInitializedAsync()
+    {
+        tasks = await taskServices.getTasks();
+    }*/
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IServiceUser _serviceUser { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _jsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ITaskServices taskServices { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }

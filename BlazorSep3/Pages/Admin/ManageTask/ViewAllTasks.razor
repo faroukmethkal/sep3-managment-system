@@ -48,9 +48,9 @@
                     <td>@item.StartDate</td>
                     <td>@item.Estimate</td>
                     <td>@item.Deadline</td>
-                    <td>@item.GetFinalNumberOfPeople()</td>
+                    @*<td>@item.GetFinalNumberOfPeople()</td>*@
                     <td>
-                        <button @onclick="@(() => Edit(item.id))">
+                        <button @onclick="@(() => Edit(item.Id))">
                             <i class="oi oi-pencil" style="color:#1b6ec2"/>
                         </button>
                     </td>
@@ -82,7 +82,9 @@
 
     private void ExecuteFilter()
     {
-        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower()))|| filterByName == null).ToList();
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower())
+                                                                || t.Description.ToLower().Contains(filterByName.ToLower()))
+                                       || filterByName == null).ToList();
     }
 
     private void Edit(int id)
@@ -90,8 +92,8 @@
         NavigationManager.NavigateTo($"ManageTask/{id}");
     }
     
-    protected override async Task OnInitializedAsync()
+    /*protected override async Task OnInitializedAsync()
     {
         tasks = await taskServices.getTasks();
-    }
+    }*/
 }
