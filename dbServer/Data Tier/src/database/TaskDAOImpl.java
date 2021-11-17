@@ -39,29 +39,28 @@ public class TaskDAOImpl implements TaskDAO
     try(Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO task (title, description, numberofteam, startdate, estimatedtime, deadline) VALUES (?,?,?,?,?,?)");
+          "INSERT INTO task (title, description, startdate, estimatedtime, deadline, status) VALUES (?,?,?,?,?,?)");
       statement.setString(1, task.getTitle());
       statement.setString(2, task.getDescription());
-      statement.setInt(3, 0);
-      // assuming numberOfTeam is teamId of the responsible team for the task (maybe better solution would be to set default 0 in th DB)
-      statement.setDate(4, java.sql.Date.valueOf(task.getStartDate()));
-      statement.setDouble(5, task.getEstimatedTime());
-      statement.setDate(4, java.sql.Date.valueOf(task.getDeadline()));
+      statement.setDate(3, java.sql.Date.valueOf(task.getStartDate()));
+      statement.setDouble(4, task.getEstimatedTime());
+      statement.setDate(5, java.sql.Date.valueOf(task.getDeadline()));
+      statement.setString(6,task.getStatus().toString());
 
       statement.executeUpdate();
+      task.setId(getLatestId(task.getTitle()));
 
       addSpecialtiesOfTask(task);
 
       //prints for test
       System.out.println(task.getTitle());
       System.out.println(task.getDescription());
-      //System.out.println(task.getNumberOfTeam);
       System.out.println(task.getStartDate());
       System.out.println(task.getEstimatedTime());
       System.out.println(task.getDeadline());
     }
     catch(SQLException s){
-      System.out.println("SQLException - Nothing was added to database");
+      System.out.println(s+" - Nothing was added to database");
     }
   }
 
@@ -70,7 +69,7 @@ public class TaskDAOImpl implements TaskDAO
     try (Connection connection = getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT taskid, title, description, numberofteam, startdate, estimatedtime, deadline FROM task WHERE taskid = ?");
+          "SELECT taskid, title, description, startdate, estimatedtime, deadline, status FROM task WHERE taskid = ?");
 
       statement.setInt(1, id);
 
@@ -81,16 +80,16 @@ public class TaskDAOImpl implements TaskDAO
         int idDB = resultSet.getInt("taskid");
         String title = resultSet.getString("title");
         String description = resultSet.getString("description");
-        int numberOfTeam = resultSet.getInt("numberofteam");
         LocalDate startDate = resultSet.getDate("startdate").toLocalDate();
         double estimatedTime = resultSet.getDouble("estimatedtime");
         LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
+        Status status = Status.valueOf(resultSet.getString("status"));
 
         if(idDB == -1) return null;
         else
         {
-          Task toReturn = new Task(id, title, description,getSpecialtiesOfTask(idDB), startDate, estimatedTime, deadline);
-          //need Map<String, Integer> GetSpecialties(int taskId)
+          Task toReturn = new Task(title, description,getSpecialtiesOfTask(idDB), startDate, estimatedTime, deadline, status);
+          toReturn.setId(idDB);
           return toReturn;
         }
       }
@@ -116,18 +115,20 @@ public class TaskDAOImpl implements TaskDAO
         int idDB = resultSet.getInt("taskid");
         String title = resultSet.getString("title");
         String description = resultSet.getString("description");
-        int numberOfTeam = resultSet.getInt("numberofteam");
         LocalDate startDate = resultSet.getDate("startdate").toLocalDate();
         double estimatedTime = resultSet.getDouble("estimatedtime");
         LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
-        Task task = new Task(idDB,title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline);
+        Status status = Status.valueOf(resultSet.getString("status"));
+        Task task = new Task(title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline,status);
+        task.setId(idDB);
         tasks.add(task);
       }
+      System.out.println(tasks);
       return tasks;
     }
     catch (SQLException s)
     {
-      System.out.println("SQLException - returned null");
+      System.out.println(s+" - returned null");
       return null;
     }
   }
@@ -155,7 +156,7 @@ public class TaskDAOImpl implements TaskDAO
       return specialties;
     }
     catch(SQLException s){
-      System.out.println(s);
+      System.out.println(s+" - getSpecialtiesOfTask method");
     }
     return null;
   }
@@ -165,7 +166,7 @@ public class TaskDAOImpl implements TaskDAO
     try(Connection connection = getConnection())
     {
         PreparedStatement statement = connection.prepareStatement(
-            "UPDATE task SET numberofteam = ? where taskid = ?");
+            "INSERT INTO team (teamid, taskid) VALUES (?,?)");
 
         statement.setInt(1, teamId);
         statement.setInt(2, taskId);
@@ -186,7 +187,7 @@ public class TaskDAOImpl implements TaskDAO
       PreparedStatement statement = connection.prepareStatement(
           "SELECT taskid FROM task_speciality WHERE speciality = ?");
 
-      statement.setString(2,specialty.toString()); //maybe index 1
+      statement.setString(1,specialty.toString());
 
       ResultSet resultSet = statement.executeQuery();
       List<Task> tasks = new ArrayList<>();
@@ -196,11 +197,29 @@ public class TaskDAOImpl implements TaskDAO
         int idDB = resultSet.getInt("taskid");
         tasks.add(getTaskById(idDB));
       }
+      System.out.println(tasks);
       return tasks;
     }
     catch(SQLException s){
-      System.out.println(s);
+      System.out.println(s+" - returned null");
       return null;
+    }
+  }
+
+  @Override public void setStatusOfTask(int taskId, Status status)
+  {
+    try(Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "UPDATE task SET status = ? WHERE taskid = ?");
+
+      statement.setString(1, status.toString());
+      statement.setInt(2, taskId);
+
+      statement.executeUpdate();
+    }
+    catch(SQLException s){
+      System.out.println("SQLException - Nothing was changed to database");
     }
   }
 
@@ -223,7 +242,34 @@ public class TaskDAOImpl implements TaskDAO
       //prints for test
     }
     catch(SQLException s){
-      System.out.println("SQLException - Nothing was added to database");
+      System.out.println(s+" - Nothing was added to database");
     }
+  }
+
+  private int getLatestId(String title)
+  {
+    {
+      try (Connection connection = getConnection())
+      {
+        PreparedStatement statement = connection.prepareStatement("select taskid,title from task where title = ? order by taskid desc limit 1");
+        statement.setString(1, title);
+
+
+        ResultSet resultSet = statement.executeQuery();
+
+
+        if (resultSet.next())
+        {
+          int id = resultSet.getInt("taskid");
+          return id;
+        }
+
+      }
+      catch (SQLException s)
+      {
+        System.out.println(s+"(get id method)");
+      }
+    }
+    return -1;
   }
 }

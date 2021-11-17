@@ -1,6 +1,7 @@
 package database;
 
 import model.Specialties;
+import model.Status;
 import model.Task;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface TaskDAO
   Map<String,Integer> getSpecialtiesOfTask(int taskId);
   void assignTeamToTask(int teamId, int taskId);
   List<Task> getTasksWhereSpecialtiesIs(Specialties specialty);
+  void setStatusOfTask(int taskId, Status status);
 }

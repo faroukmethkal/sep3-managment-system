@@ -16,7 +16,7 @@ public class Task implements Serializable {
   private LocalDate deadline;
   private Status status;
 
-  public Task(int id, String title, String description, Map<String, Integer> specialties, LocalDate startDate, double estimatedTime, LocalDate deadline, Status status) {
+  public Task(String title, String description, Map<String, Integer> specialties, LocalDate startDate, double estimatedTime, LocalDate deadline, Status status) {
     this.id = id;
     this.title = title;
     this.description = description;

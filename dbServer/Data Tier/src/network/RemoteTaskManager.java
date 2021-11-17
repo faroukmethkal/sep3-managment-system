@@ -5,16 +5,30 @@ import database.TaskDAOImpl;
 import model.Specialties;
 import model.Task;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.util.List;
 
 public class RemoteTaskManager implements RemoteTask
 {
-  TaskDAO taskDB = TaskDAOImpl.getInstance();
+  private TaskDAO taskDB;
 
-  public RemoteTaskManager() throws SQLException
+
+  public RemoteTaskManager()
+      throws SQLException, MalformedURLException, RemoteException
   {
+    startServer();
+    taskDB = TaskDAOImpl.getInstance();
+  }
+
+  private void startServer() throws RemoteException, MalformedURLException
+  {
+    UnicastRemoteObject.exportObject(this, 0);
+    Naming.rebind("Task", this);
+    System.out.println("Server started...");
   }
 
   @Override public void createNewTask(Task task) throws RemoteException //change to addNewTask ?
