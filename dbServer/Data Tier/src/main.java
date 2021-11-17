@@ -1,5 +1,5 @@
 import network.RemoteProfile;
-import network.RemoteRemoteProfileManager;
+import network.RemoteProfileManager;
 
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
@@ -9,7 +9,7 @@ public class main
 {
   public static void main(String[] args) throws SQLException, MalformedURLException, RemoteException {
 
-    RemoteProfile server = new RemoteRemoteProfileManager();
+    RemoteProfile server = new RemoteProfileManager();
 
     //testing db
     /*Profile profile = new Profile("javaTest", "idk","lol", VIDEOGAMEDESIGNER, LocalDate.of(2000,4,15));
