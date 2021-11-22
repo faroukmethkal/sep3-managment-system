@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorSep3.Pages.Admin.ManageEmployee
+namespace BlazorSep3.Pages.Full_time
 {
     #line hidden
     using System;
@@ -82,8 +82,8 @@ using BlazorSep3.Shared;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/ViewAllProfile")]
-    public partial class ViewAllProfile : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/MyTasks")]
+    public partial class MyTasks : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)

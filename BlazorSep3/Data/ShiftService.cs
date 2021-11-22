@@ -37,7 +37,7 @@ namespace BlazorSep3.Data
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
             HttpContent content = new StringContent(serializeShift, Encoding.UTF8, "application/json"); 
 
-            var response = await client.PostAsync(client.BaseAddress + "api/shifts", content); 
+            var response = await client.PostAsync(client.BaseAddress + "api/shift", content); 
             
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }

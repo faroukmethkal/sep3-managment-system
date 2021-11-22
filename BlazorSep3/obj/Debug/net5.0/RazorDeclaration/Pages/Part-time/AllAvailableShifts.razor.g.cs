@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorSep3.Pages.Admin.ManageEmployee
+namespace BlazorSep3.Pages.Part_time
 {
     #line hidden
     using System;
@@ -82,14 +82,82 @@ using BlazorSep3.Shared;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/ViewAllProfile")]
-    public partial class ViewAllProfile : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 2 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Part-time\AllAvailableShifts.razor"
+using BlazorSep3.model;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Part-time\AllAvailableShifts.razor"
+using BlazorSep3.Data;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/AllAvailableShifts")]
+    public partial class AllAvailableShifts : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 97 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Part-time\AllAvailableShifts.razor"
+       
+    private IList<Shift> shiftsToShow;
+    private IList<Shift> shifts;
+    private string? filterByName;
+
+    private DateTime? date { get; set; }
+    private DateTime? startTime { get; set; }
+    private DateTime? endTime { get; set; }
+
+
+    private async Task Filter()
+    {
+        shifts = await shiftService.getShifts(date, startTime, endTime);
+        shiftsToShow = shifts;
+    }
+
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        shifts = shifts.Where(t => filterByName != null && (t.Name.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
+
+    private void TakeShift(int id)
+    {
+        NavigationManager.NavigateTo($"/TakeShift{id}");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+    //
+    }
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _jsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IShiftService shiftService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

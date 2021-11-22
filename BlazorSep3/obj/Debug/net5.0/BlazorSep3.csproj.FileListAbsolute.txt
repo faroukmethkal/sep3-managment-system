@@ -497,3 +497,27 @@ C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\s
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Part-time\MyShifts.razor.g.cs
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Part-time\MyShifts.razor.g.cs
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Part-time\MyShifts.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Full-time\AllAvailableTasks.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Full-time\MyTasks.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Full-time\TakeTask.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Full-time\TaskEmployeeNavSide.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Part-time\AllAvailableShifts.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Part-time\MyShifts.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Part-time\ShiftEmployeeNavSide.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Part-time\TakeShift.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Full-time\AllAvailableTasks.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Full-time\MyTasks.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Full-time\TakeTask.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Full-time\TaskEmployeeNavSide.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Part-time\AllAvailableShifts.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Part-time\MyShifts.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Part-time\ShiftEmployeeNavSide.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Part-time\TakeShift.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Full-time\AllAvailableTasks.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Full-time\MyTasks.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Full-time\TakeTask.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Full-time\TaskEmployeeNavSide.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Part-time\AllAvailableShifts.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Part-time\MyShifts.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Part-time\ShiftEmployeeNavSide.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Part-time\TakeShift.razor.rz.scp.css

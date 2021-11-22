@@ -21,7 +21,7 @@ Content view
     height: 6rem;
     padding: 2rem 1rem;
     border-bottom: 3px solid #E5E7EB;
-    margin: 1rem 0rem;
+    margin: 1rem 1rem 0rem 1rem;
 }
 
 .form__group_search{
@@ -179,6 +179,13 @@ search content
 .search_result{
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin: 0 1rem;
+    overflow: auto;
+    height: 76vh;
 }
+/*.header{
+    position: sticky;
+    top: 0;
+}*/
+
 

@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorSep3.Pages.Admin.ManageEmployee
+namespace BlazorSep3.Pages.Full_time
 {
     #line hidden
     using System;
@@ -82,14 +82,82 @@ using BlazorSep3.Shared;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/ViewAllProfile")]
-    public partial class ViewAllProfile : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 2 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Full-time\AllAvailableTasks.razor"
+using BlazorSep3.model;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Full-time\AllAvailableTasks.razor"
+using BlazorSep3.Data;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/AllAvailableTasks")]
+    public partial class AllAvailableTasks : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 112 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Full-time\AllAvailableTasks.razor"
+       
+    private IList<Taskk> tasksToShow;
+    private IList<Taskk> tasks;
+    private string? filterByName;
+
+    private DateTime? startTime { get; set; }
+    private DateTime? deadline { get; set; }
+    private bool? isImportant { get; set; }
+    private Status? status { get; set; }
+
+    private async Task Filter()
+    {
+        tasks = await taskServices.GetTasks(startTime, deadline, isImportant,status);
+        tasksToShow = tasks;
+    }
+    
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
+
+    private void TakeTask(int id)
+    {
+        NavigationManager.NavigateTo($"/TakeTask{id}");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(isImportant);
+    }
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _jsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ITaskServices taskServices { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

@@ -107,8 +107,24 @@
                         </div>
                     </div>
 
-                </div>
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-pencil"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Status</label>
 
+                            <select name="specialties" class="form__input_select" @bind="task.Status">
+                                @foreach (var status in Enum.GetValues(typeof(Status)))
+                                {
+                                    <option value="@status">@status</option>
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+                
             </div>
             <div class="form__group">
                 <button class="button-white" type="submit" @onclick="AddTaskk">Add Task</button>

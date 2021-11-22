@@ -1,15 +1,13 @@
 ﻿@page "/AddShift"
 @using Microsoft.AspNetCore.Components
 @using BlazorSep3.model
-@using System.Text
 @using BlazorSep3.Data
-@using System.ComponentModel.DataAnnotations
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IShiftService shiftService;
-<header></header>
+
 <div class="content">
-    <TaskNavSide/>
+    <ShiftNavSide/>
     <main class="content-view">
         <div class="form">
             <div class="form-header">
