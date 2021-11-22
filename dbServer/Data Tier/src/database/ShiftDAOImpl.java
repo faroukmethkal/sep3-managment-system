@@ -83,7 +83,8 @@ public class ShiftDAOImpl implements ShiftDAO
         String description = resultSet.getString("description");
         int numberOfEmployees = resultSet.getInt("numberofemployees");
         LocalDate date = resultSet.getDate("date").toLocalDate();
-        Shift shift = new Shift(idDB, name, date, startTime, endTime, description, numberOfEmployees);
+        Shift shift = new Shift(name, date, startTime, endTime, description, numberOfEmployees);
+        shift.setId(idDB);
         shifts.add(shift);
       }
       System.out.println(shifts);
