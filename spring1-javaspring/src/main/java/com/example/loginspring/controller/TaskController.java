@@ -2,8 +2,10 @@ package com.example.loginspring.controller;
 
 import com.example.loginspring.domain.TaskLogic;
 import model.Specialties;
+import model.Status;
 import model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Nullable;
@@ -27,12 +29,15 @@ public class TaskController {
         taskLogic.createNewTask(task);
     }
 
-    @GetMapping("api/tasks")
+
     @PreAuthorize("hasAnyRole('ROLE_admin')")
-    public List<Task> getAllTask(@RequestParam @Nullable LocalDate startDate,
-                                @RequestParam @Nullable LocalDate deadline,
-                                @RequestParam @Nullable Boolean isImportant){
-       return taskLogic.getAllTask(startDate, deadline, isImportant);
+   @GetMapping("api/tasks")
+    public List<Task> getAllTask(@RequestParam("startTime") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalDate startTime,
+                                 @RequestParam("deadLine") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalDate deadLine,
+                                 @RequestParam("isImportant") @Nullable Boolean isImportant,
+                                 @RequestParam("status") @Nullable Status status){
+
+       return taskLogic.getAllTask(startTime, deadLine, isImportant,status);
     }
 
     @GetMapping("api/employee/tasks")

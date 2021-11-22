@@ -2,10 +2,10 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Task implements Serializable {
+
    private int id;
    private String title;
    private String description;
@@ -13,15 +13,38 @@ public class Task implements Serializable {
    private LocalDate startDate;
    private double estimatedTime;
    private LocalDate deadline;
+   private Status status;
 
-   public Task(int id, String title, String description, Map<String, Integer> specialties, LocalDate startDate, double estimatedTime, LocalDate deadline) {
-      this.id = id;
+   public Task(String title, String description, Map<String, Integer> specialties, LocalDate startDate, double estimatedTime, LocalDate deadline, Status status) {
       this.title = title;
       this.description = description;
       this.specialties = specialties;
       this.startDate = startDate;
       this.estimatedTime = estimatedTime;
       this.deadline = deadline;
+      this.status = status;
+   }
+
+   public void setSpecialties(Map<String, Integer> specialties) {
+      this.specialties = specialties;
+   }
+
+   public Status getStatus() {
+      return status;
+   }
+
+   public void setStatus(Status status) {
+      this.status = status;
+   }
+
+   public int getId()
+   {
+      return id;
+   }
+
+   public void setId(int id)
+   {
+      this.id = id;
    }
 
    public String getTitle() {
@@ -42,10 +65,6 @@ public class Task implements Serializable {
 
    public Map<String, Integer> getSpecialties() {
       return specialties;
-   }
-
-   public void setSpecialties(HashMap<String, Integer> specialties) {
-      this.specialties = specialties;
    }
 
    public LocalDate getStartDate() {

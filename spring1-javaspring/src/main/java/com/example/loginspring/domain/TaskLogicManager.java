@@ -1,6 +1,7 @@
 package com.example.loginspring.domain;
 
 import model.Specialties;
+import model.Status;
 import model.Task;
 import network.RemoteTask;
 import network.RemoteTaskManager;
@@ -42,8 +43,9 @@ public class TaskLogicManager implements TaskLogic {
         return null;
     }
 
+
     @Override
-    public List<Task> getAllTask(@Nullable LocalDate startDate, @Nullable LocalDate deadline, @Nullable Boolean isImportant) {
+    public List<Task> getAllTask(@Nullable LocalDate startDate, @Nullable LocalDate deadline, @Nullable Boolean isImportant, @Nullable Status status) {
         List<Task> newTask = new ArrayList<>();
         List<Task> allTask = new ArrayList<>();
 
@@ -53,31 +55,48 @@ public class TaskLogicManager implements TaskLogic {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (startDate != null && deadline != null && isImportant != null) {
+        if (startDate != null && deadline != null && status != null) {
             for (Task task : allTask) {
-                if (task.getDeadline().isBefore(deadline) && task.getStartDate().isAfter(startDate) && task.getEstimatedTime() >= 50) {
+                if (task.getDeadline().isBefore(deadline) && task.getStartDate().isAfter(startDate) && task.getStatus().equals(status)) {
                     newTask.add(task);
                 }
-                return newTask;
             }
+            return newTask;
         }
         if (startDate != null && deadline != null) {
             for (Task task : allTask) {
                 if (task.getDeadline().isBefore(deadline) && task.getStartDate().isAfter(startDate)) {
                     newTask.add(task);
                 }
-                return newTask;
             }
+            return newTask;
+        }
+        if (status != null) {
+            for (Task task : allTask) {
+                if (task.getStatus().equals(status)) {
+                    newTask.add(task);
+                }
+            }
+            return newTask;
         }
         if (isImportant != null) {
-            for (Task task : allTask) {
-                if (task.getEstimatedTime() >= 50) {
-                    newTask.add(task);
+            if (isImportant) {
+                for (Task task : allTask) {
+                    if (isTaskImportant(task)) {
+                        newTask.add(task);
+                    }
                 }
                 return newTask;
             }
-
         }
+
         return allTask;
     }
+
+    private boolean isTaskImportant(Task task){
+        int diffBetweenTwoDate = LocalDate.now().compareTo(task.getDeadline());
+        if (diffBetweenTwoDate >=0 && diffBetweenTwoDate <= 2 )return true;
+        else return false;
+    }
+
 }

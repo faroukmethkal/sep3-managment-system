@@ -83,15 +83,6 @@ public class ProfileLogicManager implements ProfileLogic {
         return allProfiles;
     }
 
-  /**
-   * TODO add hired at to profile
-   * private boolean isHiredThisMonth(LocalDate date) {
-        if (date.getYear() == LocalDate.now().getYear() && date.getMonthValue() == LocalDate.now().getMonthValue()) {
-            return true;
-        }
-        return false;
-    }**/
-
 
     private String generateUsername(Profile profile) {
         StringBuilder username = new StringBuilder();
