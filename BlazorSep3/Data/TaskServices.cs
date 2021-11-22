@@ -45,13 +45,15 @@ namespace BlazorSep3.Data
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
 
-        public async Task<IList<Taskk>> getTasks()
+        public async Task<IList<Taskk>> getTasks(DateTime? startTime, DateTime? deadLine, bool?isImportant, Status? status)
         {
             List<Taskk> result = new List<Taskk>();
             
             Account currentAccount = await GetCurrentAccount();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
-            HttpResponseMessage response = await client.GetAsync(client.BaseAddress + "api/tasks"); 
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                $"api/tasks?startTime={startTime}&deadLine={deadLine}&isImportant={isImportant}&status={status}"); 
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Error, not response");
