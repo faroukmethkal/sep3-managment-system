@@ -107,13 +107,14 @@
                         </div>
                     </div>
 
-                    <div class="form__group">
-                        <button class="button-white" type="submit" @onclick="AddTaskk">Add Task</button>
-                    </div>
                 </div>
 
             </div>
+            <div class="form__group">
+                <button class="button-white" type="submit" @onclick="AddTaskk">Add Task</button>
+            </div>
         </div>
+
     </main>
 </div>
 
@@ -157,9 +158,8 @@
 
     protected override void OnInitialized()
     {
-        
-        task.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month,DateTime.Now.Day);
-        task.Deadline = new DateTime(DateTime.Now.Year, DateTime.Now.Month,DateTime.Now.Day + 7);
+        task.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        task.Deadline = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7);
         task.Estimate = 1;
     }
 

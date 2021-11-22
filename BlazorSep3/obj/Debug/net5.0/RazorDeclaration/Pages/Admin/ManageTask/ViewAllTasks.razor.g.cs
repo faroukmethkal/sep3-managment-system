@@ -105,11 +105,23 @@ using BlazorSep3.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 64 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\ViewAllTasks.razor"
+#line 114 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\ViewAllTasks.razor"
        
     private IList<Taskk> tasksToShow;
     private IList<Taskk> tasks;
     private string? filterByName;
+
+    private DateTime? startTime { get; set; }
+    private DateTime? deadline { get; set; }
+    private bool? isImportant { get; set; }
+    private Status? status { get; set; }
+
+    private async Task Filter()
+    {
+        tasks = await taskServices.getTasks(startTime, deadline, isImportant,status);
+        tasksToShow = tasks;
+    }
+    
 
     private void FilterByName(ChangeEventArgs changeEventArgs)
     {
@@ -123,22 +135,22 @@ using BlazorSep3.Data;
         }
         ExecuteFilter();
     }
-    
 
     private void ExecuteFilter()
     {
-        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower()))|| filterByName == null).ToList();
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
 
     private void Edit(int id)
     {
         NavigationManager.NavigateTo($"/ManageTask");
     }
-    
+
     protected override async Task OnInitializedAsync()
     {
-        tasks = await taskServices.getTasks();
+        Console.WriteLine(isImportant);
     }
+
 
 #line default
 #line hidden
