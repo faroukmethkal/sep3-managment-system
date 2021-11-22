@@ -4,6 +4,8 @@
 @using BlazorSep3.Data
 @using Task = System.Threading.Tasks.Task
 @using System.Text
+@using BlazorSep3.Shared
+@using Microsoft.AspNetCore.Components.Authorization
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IServiceUser _serviceUser;
@@ -87,8 +89,8 @@
                         <div>
                             <label class="form__label">Role</label>
                             <select name="role" class="form__input_select" rows="1" @bind="profile.Role">
-                                <option value="FullTimeEmployee">Full-Time Employee</option>
-                                <option value="PartTimeEmployee">Part-time Employee</option>
+                                <option value="@Role.fullTimeEmployee">Full-Time Employee</option>
+                                <option value="@Role.partTimeEmployee">Part-time Employee</option>
                             </select>
 
                         </div>

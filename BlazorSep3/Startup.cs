@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorSep3.Data;
+using BlazorSep3.model;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace BlazorSep3
@@ -47,7 +48,15 @@ namespace BlazorSep3
             {
                 options.AddPolicy("MustBeAdmin", a =>
                 {
-                    a.RequireAuthenticatedUser().RequireClaim("Role", "admin");
+                    a.RequireAuthenticatedUser().RequireClaim("Role", Role.admin.ToString());
+                });
+                options.AddPolicy("MustBePartTimeEmp", a =>
+                {
+                    a.RequireAuthenticatedUser().RequireClaim("Role", Role.partTimeEmployee.ToString());
+                });
+                options.AddPolicy("MustBePartTimeEmp", a =>
+                {
+                    a.RequireAuthenticatedUser().RequireClaim("Role", Role.fullTimeEmployee.ToString());
                 });
             });
         }
