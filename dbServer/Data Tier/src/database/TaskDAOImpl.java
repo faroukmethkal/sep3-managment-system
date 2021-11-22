@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
 
 public class TaskDAOImpl implements TaskDAO
 {
+
   private static TaskDAOImpl instance;
 
   private TaskDAOImpl() throws SQLException
@@ -22,7 +24,7 @@ public class TaskDAOImpl implements TaskDAO
   {
     if (instance == null)
     {
-      instance = new TaskDAOImpl();
+      return instance = new TaskDAOImpl();
     }
     return instance;
   }
@@ -30,7 +32,7 @@ public class TaskDAOImpl implements TaskDAO
   private Connection getConnection() throws SQLException
   {
     return DriverManager.getConnection(
-        "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep",
+        "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep", //change schema after db is done
         "bzjrfgwn", "ZPXdZD4hJLi7bjSr5foQeqn2ithW6iQV");
   }
 
@@ -220,6 +222,59 @@ public class TaskDAOImpl implements TaskDAO
     }
     catch(SQLException s){
       System.out.println("SQLException - Nothing was changed to database");
+    }
+  }
+
+  @Override public List<Task> getTasksWhereStatusIs(Status status)
+  {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT taskid FROM task WHERE status = ?");
+
+      statement.setString(1,status.toString());
+
+      ResultSet resultSet = statement.executeQuery();
+      List<Task> tasks = new ArrayList<>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("taskid");
+        tasks.add(getTaskById(idDB));
+      }
+      System.out.println(tasks);
+      return tasks;
+    }
+    catch(SQLException s){
+      System.out.println(s+" - returned null");
+      return null;
+    }
+  }
+
+  @Override public List<Task> getTasksBetweenDates(LocalDate startDate, LocalDate deadline)
+  {
+    try (Connection connection = getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * from task WHERE startdate >= ? and deadline <= ?");
+
+      statement.setDate(1, java.sql.Date.valueOf(startDate));
+      statement.setDate(2, java.sql.Date.valueOf(deadline));
+
+      ResultSet resultSet = statement.executeQuery();
+      List<Task> tasks = new ArrayList<>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("taskid");
+        tasks.add(getTaskById(idDB));
+      }
+      System.out.println(tasks);
+      return tasks;
+    }
+    catch(SQLException s){
+      System.out.println(s+" - returned null");
+      return null;
     }
   }
 

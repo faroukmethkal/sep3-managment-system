@@ -14,6 +14,7 @@ import java.util.List;
 
 public class AccountDAOImpl implements AccountDAO
 {
+
   private static AccountDAOImpl instance;
 
   private AccountDAOImpl() throws SQLException
@@ -25,7 +26,7 @@ public class AccountDAOImpl implements AccountDAO
   {
     if (instance == null)
     {
-      instance = new AccountDAOImpl();
+      return instance = new AccountDAOImpl();
     }
     return instance;
   }
@@ -37,7 +38,6 @@ public class AccountDAOImpl implements AccountDAO
         "bzjrfgwn", "ZPXdZD4hJLi7bjSr5foQeqn2ithW6iQV");
   }
 
-
   @Override public Account getAccountByUsername(String username)
   {
     try (Connection connection = getConnection())
@@ -45,7 +45,7 @@ public class AccountDAOImpl implements AccountDAO
       PreparedStatement statement = connection.prepareStatement(
           "SELECT username,password,role FROM Account WHERE username = ?");
 
-      statement.setString(1, username); //change according to db
+      statement.setString(1, username);
 
       ResultSet resultSet = statement.executeQuery();
 

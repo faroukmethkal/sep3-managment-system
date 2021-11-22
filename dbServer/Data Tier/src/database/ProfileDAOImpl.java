@@ -14,6 +14,7 @@ import java.util.List;
 
 public class ProfileDAOImpl implements ProfileDAO
 {
+
   private static ProfileDAOImpl instance;
 
   private ProfileDAOImpl() throws SQLException
@@ -25,7 +26,7 @@ public class ProfileDAOImpl implements ProfileDAO
   {
     if (instance == null)
     {
-      instance = new ProfileDAOImpl();
+      return instance = new ProfileDAOImpl();
     }
     return instance;
   }
@@ -33,12 +34,13 @@ public class ProfileDAOImpl implements ProfileDAO
   private Connection getConnection() throws SQLException
   {
     return DriverManager.getConnection(
-        "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep",
+        "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep", //change schema after db is done
         "bzjrfgwn", "ZPXdZD4hJLi7bjSr5foQeqn2ithW6iQV");
   }
 
   @Override public void AddProfile(Profile profile)
   {
+
       try(Connection connection = getConnection())
       {
         PreparedStatement statement = connection.prepareStatement(
