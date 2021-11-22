@@ -26,6 +26,13 @@ using Microsoft.AspNetCore.Authorization;
 #line hidden
 #nullable disable
 #nullable restore
+#line 3 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 4 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -68,6 +75,13 @@ using BlazorSep3;
 #line hidden
 #nullable disable
 #nullable restore
+#line 10 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
+using BlazorSep3.Shared;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
 using Microsoft.AspNetCore.Components;
 
@@ -102,20 +116,6 @@ using System.Text;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 7 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
-using BlazorSep3.Shared;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 8 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
-using Microsoft.AspNetCore.Components.Authorization;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/AddEmployee")]
     public partial class AddEmployee : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -125,7 +125,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 109 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
+#line 107 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageEmployee\AddEmployee.razor"
        
 
     [CascadingParameter]

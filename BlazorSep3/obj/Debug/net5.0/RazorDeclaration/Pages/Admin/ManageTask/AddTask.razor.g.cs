@@ -119,7 +119,7 @@ using System.Text;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 121 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
+#line 120 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
        
 
     [CascadingParameter]
@@ -160,8 +160,9 @@ using System.Text;
 
     protected override void OnInitialized()
     {
-        task.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-        task.Deadline = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7);
+        
+        task.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month,DateTime.Now.Day);
+        task.Deadline = new DateTime(DateTime.Now.Year, DateTime.Now.Month,DateTime.Now.Day + 7);
         task.Estimate = 1;
     }
 

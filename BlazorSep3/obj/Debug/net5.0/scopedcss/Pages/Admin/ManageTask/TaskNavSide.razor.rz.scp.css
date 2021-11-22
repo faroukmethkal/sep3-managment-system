@@ -20,12 +20,19 @@
     left: 0;
     height: 100%;
     width: 3px;
+    background-color: #eb2f64;
+    transform: scaleY(0);
+    transition: transform .2s,
+    width .4s cubic-bezier(1, 0, 0, 1) .2s,
+    background-color .1s;
 }
 
 .nav-item:first-of-type[b-nn8520mob5] {
     padding-top: 3.5rem;
 }
 
+.nav-item[b-nn8520mob5] {
+}
 
 .nav-item:last-of-type[b-nn8520mob5] {
     padding-bottom: 1rem;

@@ -17,12 +17,6 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Watch": {
-      "commandName": "Executable",
-      "executablePath": "dotnet.exe",
-      "workingDirectory": "$(ProjectDir)",
-      "commandLineArgs": "watch run"
-    },
     "BlazorSep3": {
       "commandName": "Project",
       "dotnetRunMessages": "true",

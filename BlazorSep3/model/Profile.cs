@@ -21,7 +21,7 @@ namespace BlazorSep3.model
         public DateTime Birthday { get; set; }
         [Required]
         [JsonProperty("role")]
-        public Role Role { get; set; }
+        public String Role { get; set; }
 
         public override string ToString()
         {
