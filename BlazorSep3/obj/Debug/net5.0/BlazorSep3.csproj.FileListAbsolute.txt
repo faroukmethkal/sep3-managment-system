@@ -484,3 +484,4 @@ F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\ref\BlazorSep3.dll
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\BlazorSep3.pdb
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\BlazorSep3.genruntimeconfig.cache
+C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\ViewAllTasks.razor.rz.scp.css
