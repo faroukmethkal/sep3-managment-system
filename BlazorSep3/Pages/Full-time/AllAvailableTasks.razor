@@ -1,4 +1,4 @@
-﻿@page "/ViewAllTasks"
+﻿@page "/AllAvailableTasks"
 @using BlazorSep3.model
 @using BlazorSep3.Data
 @inject NavigationManager NavigationManager
@@ -80,7 +80,6 @@
                     <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Description</th>
                         <th>Start Date</th>
                         <th>Estimate</th>
                         <th>Deadline</th>
@@ -92,14 +91,13 @@
                     {
                         <tr>
                             <td>@item.Title</td>
-                            <td>@item.Description</td>
                             <td>@item.StartDate</td>
                             <td>@item.Estimate</td>
                             <td>@item.Deadline</td>
                             <td>@item.GetFinalNumberOfPeople()</td>
                             <td>
-                                <button @onclick="@(() => Edit(item.id))">
-                                    <i class="oi oi-pencil" style="color:#1b6ec2"/>
+                                <button @onclick="@(() => TakeTask(item.id))">
+                                    <i class="oi oi-arrow-thick-right" style="color:green"/>
                                 </button>
                             </td>
                         </tr>
@@ -146,9 +144,9 @@
         tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
 
-    private void Edit(int id)
+    private void TakeTask(int id)
     {
-        NavigationManager.NavigateTo($"/ManageTask");
+        NavigationManager.NavigateTo($"/TakeTask{id}");
     }
 
     protected override async Task OnInitializedAsync()

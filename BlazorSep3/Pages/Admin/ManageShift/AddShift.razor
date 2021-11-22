@@ -1,11 +1,128 @@
 ﻿@page "/AddShift"
+@using Microsoft.AspNetCore.Components
+@using BlazorSep3.model
+@using System.Text
+@using BlazorSep3.Data
+@using System.ComponentModel.DataAnnotations
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IShiftService shiftService;
+<header></header>
 <div class="content">
-    <ShiftNavSide/>
+    <TaskNavSide/>
     <main class="content-view">
-        <h1>Add shift</h1>
+        <div class="form">
+            <div class="form-header">
+                <h2>
+                    Add new shift
+                </h2>
+            </div>
+            <div>
+                <span class="error-message">@errorMessage</span>
+            </div>
+
+            <div class="form_parts">
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-pencil"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Name</label>
+                            <input type="text" class="form__input" placeholder="Title" @bind="@shift.Name">
+                        </div>
+
+                    </div>
+
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-briefcase"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Description</label>
+                            <input type="text" class="form__input" placeholder="Description" @bind="shift.Description">
+                        </div>
+                    </div>
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-calendar"/>
+                    </div>
+                    <div>
+                        <label class="form__label">Date</label>
+                        <input type="date" class="form__input" placeholder="Date" @bind="shift.Date"
+                               min=@DateTime.Today>
+                    </div>
+                </div>
+                
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-clock"/>
+                    </div>
+                    <div>
+                        <label class="form__label">Start Time</label>
+                        <input type="time" class="form__input" placeholder="StartTime" @bind="shift.StartTime"
+                               min=@DateTime.Today.TimeOfDay>
+                    </div>
+                </div>
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-clock"/>
+                    </div>
+                    <div>
+                        <label class="form__label">End Time</label>
+                        <input type="time" class="form__input" placeholder="EndTime" @bind="shift.EndTime"
+                               min=@shift.StartTime.AddHours(1)>
+                    </div>
+                </div>
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-clock"/>
+                    </div>
+                    <div>
+                        <label class="form__label">Number of Part-timers</label>
+                        <input type="int" class="form__input" placeholder="EndTime" @bind="shift.NumberOfEmployee"
+                               min="1">
+                    </div>
+                </div>
+            </div>
+            <div class="form__group">
+                <button class="button-white" type="submit" @onclick="AddNewShift">Add Shift</button>
+            </div>
+        </div>
+
     </main>
 </div>
 
 @code {
+
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+
+    private string errorMessage;
+    private Shift shift = new Shift();
+    
+    private async Task AddNewShift()
+    {
+        try
+        {
+            Console.WriteLine(shift);
+            await shiftService.AddShift(shift);
+            errorMessage = "";
+            NavigationManager.NavigateTo("/ManageShift");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            errorMessage = e.Message;
+        }
+    }
+    
+
+    protected override void OnInitialized()
+    {
+        shift.Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        shift.StartTime = new DateTime().AddHours(DateTime.Now.Hour).AddMinutes(DateTime.Now.Minute);
+        shift.EndTime = new DateTime().AddHours(DateTime.Now.Hour+1).AddMinutes(DateTime.Now.Minute);
+        shift.NumberOfEmployee = 1;
+    }
 
 }

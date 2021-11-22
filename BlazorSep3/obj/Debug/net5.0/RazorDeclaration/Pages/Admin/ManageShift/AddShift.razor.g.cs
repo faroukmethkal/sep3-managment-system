@@ -11,7 +11,6 @@ namespace BlazorSep3.Pages.Admin.ManageShift
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Components;
 #nullable restore
 #line 1 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
 using System.Net.Http;
@@ -82,6 +81,41 @@ using BlazorSep3.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageShift\AddShift.razor"
+using Microsoft.AspNetCore.Components;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageShift\AddShift.razor"
+using BlazorSep3.model;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageShift\AddShift.razor"
+using System.Text;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageShift\AddShift.razor"
+using BlazorSep3.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageShift\AddShift.razor"
+using System.ComponentModel.DataAnnotations;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/AddShift")]
     public partial class AddShift : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -90,6 +124,48 @@ using BlazorSep3.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 95 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageShift\AddShift.razor"
+       
+
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+
+    private string errorMessage;
+    private Shift shift = new Shift();
+    
+    private async Task AddNewShift()
+    {
+        try
+        {
+            Console.WriteLine(shift);
+            await shiftService.AddShift(shift);
+            errorMessage = "";
+            NavigationManager.NavigateTo("/ManageShift");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            errorMessage = e.Message;
+        }
+    }
+    
+
+    protected override void OnInitialized()
+    {
+        shift.Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        shift.StartTime = new DateTime().AddHours(DateTime.Now.Hour).AddMinutes(DateTime.Now.Minute);
+        shift.EndTime = new DateTime().AddHours(DateTime.Now.Hour+1).AddMinutes(DateTime.Now.Minute);
+        shift.NumberOfEmployee = 1;
+    }
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IShiftService shiftService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

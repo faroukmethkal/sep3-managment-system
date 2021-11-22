@@ -118,7 +118,7 @@ using BlazorSep3.Data;
 
     private async Task Filter()
     {
-        tasks = await taskServices.getTasks(startTime, deadline, isImportant,status);
+        tasks = await taskServices.GetTasks(startTime, deadline, isImportant,status);
         tasksToShow = tasks;
     }
     

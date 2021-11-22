@@ -115,7 +115,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Shared\NavMenu.razor"
+#line 62 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Shared\NavMenu.razor"
  
     public async Task PerformLogout()
     {
