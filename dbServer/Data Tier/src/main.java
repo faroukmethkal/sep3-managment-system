@@ -3,12 +3,10 @@ import database.TaskDAOImpl;
 import model.Specialties;
 import model.Status;
 import model.Task;
-import network.RemoteProfile;
-import network.RemoteProfileManager;
-import network.RemoteTask;
-import network.RemoteTaskManager;
+import network.*;
 
 import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -17,10 +15,11 @@ import java.util.Map;
 
 public class main
 {
-  public static void main(String[] args) throws SQLException, MalformedURLException, RemoteException {
+  public static void main(String[] args) throws SQLException, MalformedURLException, RemoteException, NotBoundException {
 
     RemoteProfile server = new RemoteProfileManager();
     RemoteTask server2 = new RemoteTaskManager();
+    RemoteShift server3 = new RemoteShiftManager();
 
     //testing db
     /*Profile profile = new Profile("javaTest", "idk","lol", fullstackEngineer, LocalDate.of(2000,4,15));

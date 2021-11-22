@@ -3,6 +3,7 @@ package network;
 import database.TaskDAO;
 import database.TaskDAOImpl;
 import model.Specialties;
+import model.Status;
 import model.Task;
 
 import java.net.MalformedURLException;
@@ -10,6 +11,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class RemoteTaskManager implements RemoteTask
@@ -45,5 +47,15 @@ public class RemoteTaskManager implements RemoteTask
   @Override public List<Task> getAllTask() throws RemoteException //change to getAllTasks ?
   {
     return taskDB.getAllTasks();
+  }
+
+  @Override
+  public List<Task> getAllTaskBetween(LocalDate start, LocalDate deadline) throws RemoteException {
+    return null;
+  }
+
+  @Override
+  public List<Task> getAllTaskWithStatus(Status status) throws RemoteException {
+    return null;
   }
 }
