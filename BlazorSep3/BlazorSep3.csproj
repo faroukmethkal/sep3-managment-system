@@ -13,15 +13,38 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Remove="Pages\Welcome.razor" />
-      <Content Update="Pages\ManageEmployee\AddEmployee.razor.css">
+        <Content Remove="Pages\Welcome.razor" />
+        <Content Update="Pages\ManageEmployee\AddEmployee.razor.css">
         <DependentUpon>AddEmployee.razor</DependentUpon>
-      </Content>
+        </Content>
+        <Content Update="Pages\Part-time\TakeShift.razor.css">
+            <DependentUpon>TakeShift.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\ManageEmployee\ShiftEmployeeNavSide.razor.css">
+        <DependentUpon>ShiftEmployeeNavSide.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Part-time\AllAvailableShifts.razor.css">
+        <DependentUpon>AllAvailableShifts.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Part-time\MyShifts.razor.css">
+            <DependentUpon>MyShifts.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Full-time\MyTasks.razor.css" >
+            <DependentUpon>MyTasks.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Full-time\TakeTask.razor.css" >
+            <DependentUpon>TakeTask.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Full-time\TaskEmployeeNavSide.razor.css" >
+            <DependentUpon>TaskEmployeeNavSide.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Full-time\AllAvailableTasks.razor.css" >
+            <DependentUpon>AllAvailableTasks.razor</DependentUpon>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Pages\Admin" />
-      <Folder Include="Pages\Part-time" />
     </ItemGroup>
 
 <!--    <ItemGroup>

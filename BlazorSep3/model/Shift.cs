@@ -6,7 +6,7 @@ namespace BlazorSep3.model
     public class Shift
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
         [JsonProperty("name")] 
         public string Name { get; set; }
         [JsonProperty("date")] 
@@ -19,5 +19,10 @@ namespace BlazorSep3.model
         public string Description { get; set; }
         [JsonProperty("numberOfEmployees")] 
         public int NumberOfEmployee { get; set; }
+
+        public override string ToString()
+        {
+            return $"@{Id}: name {Name} date: {Date} start time: {StartTime} end time: {EndTime} description: {Description} n.of employ: {NumberOfEmployee} ";
+        }
     }
 }

@@ -10,50 +10,46 @@ using Newtonsoft.Json;
 
 namespace BlazorSep3.Data
 {
-     public class TaskServices : ITaskServices
+    public class ShiftService:IShiftService
     {
         private HttpClient client;
         private readonly IJSRuntime jsonRuntime;
 
-        public TaskServices(HttpClient client, IJSRuntime jsonRuntime)
+        public ShiftService(HttpClient client, IJSRuntime jsonRuntime)
         {
             this.client = client;
             this.jsonRuntime = jsonRuntime;
         }
-        
         private async Task<Account> GetCurrentAccount()
         {
             string userAsJson = await jsonRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
             Account account = JsonConvert.DeserializeObject<Account>(userAsJson);
             return account;
         }
-
-
-        public async Task AddTask(Taskk task)
+        public async Task AddShift(Shift shift)
         {
-            if (string.IsNullOrEmpty(task.Title)) throw new Exception("Enter tittle");
-            if (string.IsNullOrEmpty(task.Description)) throw new Exception("Enter description");
+            if (string.IsNullOrEmpty(shift.Name)) throw new Exception("Enter tittle");
+            if (string.IsNullOrEmpty(shift.Description)) throw new Exception("Enter description");
 
-            string serializedTask = JsonConvert.SerializeObject(task);
-            Console.WriteLine(serializedTask);
+            string serializeShift = JsonConvert.SerializeObject(shift);
+            Console.WriteLine(serializeShift);
             Account currentAccount = await GetCurrentAccount();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
-            HttpContent content = new StringContent(serializedTask, Encoding.UTF8, "application/json"); 
+            HttpContent content = new StringContent(serializeShift, Encoding.UTF8, "application/json"); 
 
-            var response = await client.PostAsync(client.BaseAddress + "api/tasks", content); 
+            var response = await client.PostAsync(client.BaseAddress + "api/shifts", content); 
             
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
-
-        public async Task<IList<Taskk>> GetTasks(DateTime? startTime, DateTime? deadLine, bool?isImportant, Status? status)
+        public async Task<IList<Shift>> getShifts(DateTime? date, DateTime? startTime, DateTime? endTime)
         {
-            List<Taskk> result = new List<Taskk>();
+            List<Shift> result = new List<Shift>();
             
             Account currentAccount = await GetCurrentAccount();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
             HttpResponseMessage response = 
                 await client.GetAsync(client.BaseAddress + 
-                $"api/tasks?startTime={startTime}&deadLine={deadLine}&isImportant={isImportant}&status={status}"); 
+                                      $"api/shifts?date={date}&startTime={startTime}&endTime={endTime}"); 
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Error, not response");
@@ -61,7 +57,7 @@ namespace BlazorSep3.Data
 
             string message = await response.Content.ReadAsStringAsync();
             Console.WriteLine(message);
-            result = JsonConvert.DeserializeObject<List<Taskk>>(message);
+            result = JsonConvert.DeserializeObject<List<Shift>>(message);
             
             return result; 
         }

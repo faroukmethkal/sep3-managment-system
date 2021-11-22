@@ -1,0 +1,143 @@
+﻿@page "/AllAvailableShifts"
+@using BlazorSep3.model
+@using BlazorSep3.Data
+@inject NavigationManager NavigationManager
+@inject IShiftService shiftService;
+@inject IJSRuntime _jsRuntime;
+
+
+<div class="content">
+    <ShiftEmployeeNavSide/>
+    <main class="content-view">
+        <div class="filter_option">
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-calendar"/>
+                    <label class="form__label">Date</label>
+                </div>
+                <input type="date" class="form__input" placeholder="Date"
+                       @bind="@date" min=@DateTime.Today>
+            </div>
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-clock"/>
+                    <label class="form__label">Start Time</label>
+                </div>
+                <input type="time" class="form__input" placeholder="StartTime"
+                       @bind="@startTime" min=@DateTime.Today.TimeOfDay>
+            </div>
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-clock"/>
+                    <label class="form__label">Start Time</label>
+                </div>
+                <input type="time" class="form__input" placeholder="EndTime"
+                       @bind="@endTime" min=@DateTime.Today.TimeOfDay+1>
+            </div>
+
+            <div class="form__group">
+                <button class="button-spec" type="submit" @onclick="Filter">Filter</button>
+            </div>
+
+            <form action="#" class="form__group_search">
+                <input type="text" class="search_input" placeholder="Search shifts" @oninput="@((arg)=>FilterByName(arg))">
+                @*<button class="search_button" @onclick="">
+                    <span class="icon oi oi-magnifying-glass">Search</span>
+                </button>*@
+            </form>
+
+        </div>
+        <div class="search_result">
+
+            @if (shiftsToShow == null)
+            {
+                <p>
+                    <em>Loading...</em>
+                </p>
+            }
+            else if (!shiftsToShow.Any())
+            {
+                <p>
+                    <em>No Tasks to show. </em>
+                </p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in shiftsToShow)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Date</td>
+                            <td>@item.StartTime</td>
+                            <td>@item.EndTime</td>
+                            <td>
+                                <button @onclick="@(() => TakeShift(item.Id))">
+                                    <i class="oi-arrow-thick-right" style="color:green"/>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </main>
+</div>
+
+@code {
+    private IList<Shift> shiftsToShow;
+    private IList<Shift> shifts;
+    private string? filterByName;
+
+    private DateTime? date { get; set; }
+    private DateTime? startTime { get; set; }
+    private DateTime? endTime { get; set; }
+
+
+    private async Task Filter()
+    {
+        shifts = await shiftService.getShifts(date, startTime, endTime);
+        shiftsToShow = shifts;
+    }
+
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        shifts = shifts.Where(t => filterByName != null && (t.Name.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
+
+    private void TakeShift(int id)
+    {
+        NavigationManager.NavigateTo($"/TakeShift{id}");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+    //
+    }
+
+}
+

@@ -42,6 +42,10 @@ namespace BlazorSep3
             {
                 client.BaseAddress = new Uri("http://localhost:8080/");
             });
+            services.AddHttpClient<IShiftService,ShiftService>(client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:8080/");
+            });
             
             
             services.AddAuthorization(options =>
