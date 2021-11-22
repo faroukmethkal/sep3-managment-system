@@ -4,16 +4,16 @@ namespace BlazorSep3.model
 {
     public enum Specialities
     {
-        VIDEOGAMEDESIGNER,
-        QUALITYASSURANCEENGINEER,
-        CRMPROJECTMANAGER,
-        SOFTWAREINTEGRATIONENGINEER,
-        SECURITYENGINEER,
-        FRONTENDENGINEER,
-        FULLSTACKENGINEER,
-        GRAPHICSDEVELOPER,
-        DATASCIENTIST,
-        MOBILEDEVELOPER,
-        BACKENDENGINEER
+        videoGameDesigner,
+        qualityAssuranceEngineer,
+        crmProjectManager,
+        softwareIntegrationEngineer,
+        securityEngineer,
+        frontendEngineer,
+        fullstackEngineer,
+        graphicsDeveloper,
+        dataScientist,
+        mobileDeveloper,
+        backendEngineer
     }
 }
