@@ -7,6 +7,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 public class RemoteShiftManager implements RemoteShift{
 
@@ -23,11 +24,11 @@ public class RemoteShiftManager implements RemoteShift{
 
     @Override
     public void createShift(Shift shift) throws RemoteException {
-
+        System.out.println(shift);
     }
 
     @Override
-    public void getAllShifts() throws RemoteException {
-
+    public List<Shift> getAllShifts() throws RemoteException {
+        return null;
     }
 }

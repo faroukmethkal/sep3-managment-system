@@ -13,15 +13,7 @@ public class Shift implements Serializable {
     private String description;
     private int numberOfEmployees;
 
-    public Shift(int id, String name, LocalDate date, LocalTime startTime, LocalTime endTime, String description, int numberOfEmployees) {
-        this.id = id;
-        this.name = name;
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.description = description;
-        this.numberOfEmployees = numberOfEmployees;
-    }
+
 
     public Shift(String name, LocalDate date, LocalTime startTime, LocalTime endTime, String description, int numberOfEmployees) {
         this.name = name;
