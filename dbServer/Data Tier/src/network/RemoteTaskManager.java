@@ -30,7 +30,7 @@ public class RemoteTaskManager implements RemoteTask
   {
     UnicastRemoteObject.exportObject(this, 0);
     Naming.rebind("Task", this);
-    System.out.println("Server started...");
+    System.out.println("Task Server started...");
   }
 
   @Override public void createNewTask(Task task) throws RemoteException //change to addNewTask ?
@@ -51,11 +51,11 @@ public class RemoteTaskManager implements RemoteTask
 
   @Override
   public List<Task> getAllTaskBetween(LocalDate start, LocalDate deadline) throws RemoteException {
-    return null;
+    return taskDB.getTasksBetweenDates(start, deadline);
   }
 
   @Override
   public List<Task> getAllTaskWithStatus(Status status) throws RemoteException {
-    return null;
+    return taskDB.getTasksWhereStatusIs(status);
   }
 }

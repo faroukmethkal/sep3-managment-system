@@ -4,6 +4,8 @@ import model.Specialties;
 import model.Status;
 import model.Task;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,4 +18,6 @@ public interface TaskDAO
   void assignTeamToTask(int teamId, int taskId);
   List<Task> getTasksWhereSpecialtiesIs(Specialties specialty);
   void setStatusOfTask(int taskId, Status status);
+  List<Task> getTasksWhereStatusIs(Status status);
+  List<Task> getTasksBetweenDates(LocalDate startDate, LocalDate deadline);
 }

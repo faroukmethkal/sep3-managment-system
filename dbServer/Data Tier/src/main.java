@@ -1,8 +1,5 @@
-import database.TaskDAO;
-import database.TaskDAOImpl;
-import model.Specialties;
-import model.Status;
-import model.Task;
+import database.*;
+import model.*;
 import network.*;
 
 import java.net.MalformedURLException;
@@ -10,8 +7,12 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
+
+import static model.Role.admin;
+import static model.Specialties.fullstackEngineer;
 
 public class main
 {
@@ -22,10 +23,12 @@ public class main
     RemoteShift server3 = new RemoteShiftManager();
 
     //testing db
-    /*Profile profile = new Profile("javaTest", "idk","lol", fullstackEngineer, LocalDate.of(2000,4,15));
-    ProfileDAO pdb = ProfileDAOImpl.getInstance();
-    pdb.AddProfile(profile);
-    ProfileDAO pdb = ProfileDAOImpl.getInstance();
+    //Account acc = new Account("test","test",admin);
+    //Profile profile = new Profile("javaTest", "idk","lol", fullstackEngineer, LocalDate.of(2000,4,15));
+    //ProfileDAO pdb = ProfileDAOImpl.getInstance();
+    //AccountDAO accDB = AccountDAOImpl.getInstance();
+    //accDB.addAccount(acc);
+    /*ProfileDAO pdb = ProfileDAOImpl.getInstance();
     pdb.getAllProfiles();
     AccountDAO adb = AccountDAOImpl.getInstance();
     adb.getAllAccounts();*/
@@ -41,5 +44,13 @@ public class main
     db.getTasksWhereSpecialtiesIs(Specialties.valueOf("qualityAssuranceEngineer")); //WORKS !!!
     db.assignTeamToTask(1,5) //WORKS !!!;
     db.setStatusOfTask(4,Status.valueOf("Started")); //WORKS !!! */
+
+    //ShiftDAO shiftDB = ShiftDAOImpl.getInstance();
+    /*Shift shift = new Shift("test", LocalDate.of(2000,6,13), LocalTime.of(14,30),
+                            LocalTime.of(18,0),"description testing",1);
+    shiftDB.addShift(shift);*/
+    //shiftDB.getAllShifts();
+    //TaskDAO db = TaskDAOImpl.getInstance();
+    //db.getTasksWhereStatusIs(Status.valueOf("Created"));
   }
 }

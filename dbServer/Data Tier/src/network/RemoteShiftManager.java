@@ -1,5 +1,7 @@
 package network;
 
+import database.ShiftDAO;
+import database.ShiftDAOImpl;
 import model.Shift;
 
 import java.net.MalformedURLException;
@@ -7,12 +9,19 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.SQLException;
 import java.util.List;
 
 public class RemoteShiftManager implements RemoteShift{
 
-    public RemoteShiftManager() throws MalformedURLException, NotBoundException, RemoteException {
+    private ShiftDAO shiftDB;
+
+    public RemoteShiftManager()
+        throws MalformedURLException, NotBoundException, RemoteException,
+        SQLException
+    {
         startServer();
+        shiftDB = ShiftDAOImpl.getInstance();
     }
 
     private void startServer() throws RemoteException, MalformedURLException
@@ -24,11 +33,11 @@ public class RemoteShiftManager implements RemoteShift{
 
     @Override
     public void createShift(Shift shift) throws RemoteException {
-        System.out.println(shift);
+        shiftDB.addShift(shift);
     }
 
     @Override
     public List<Shift> getAllShifts() throws RemoteException {
-        return null;
+        return shiftDB.getAllShifts();
     }
 }
