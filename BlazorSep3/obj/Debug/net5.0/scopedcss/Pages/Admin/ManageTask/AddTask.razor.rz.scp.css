@@ -37,6 +37,7 @@ header[b-f5ypzovfwh]{
     justify-content: space-around;
     border: 1px dashed black;
     padding: 1rem;
+    margin-bottom: 1rem;
 }
 .form__group[b-f5ypzovfwh]{
     display: flex;
@@ -55,6 +56,7 @@ header[b-f5ypzovfwh]{
 .specialty-message-message[b-f5ypzovfwh]{
     color: green;
 }
+
 .icon[b-f5ypzovfwh]{
     height: 1rem;
     margin-top: 0.2rem;
@@ -64,7 +66,7 @@ header[b-f5ypzovfwh]{
     font-size: 1.2rem;
     padding: 1.2rem 1.2rem;
     border-radius: 1.5px;
-    background-color: rbga(#fff, 0.5);
+    background-color: #fff;
     border: none;
     border-bottom: 3px solid transparent;
     width: 30rem;
@@ -75,7 +77,7 @@ header[b-f5ypzovfwh]{
 .form__input_select[b-f5ypzovfwh] {
     font-size: 1.2rem;
     border-radius: 1px;
-    background-color: rbga(#fff, 0.5);
+    background-color: #fff;
     border: none;
     border-bottom: 3px solid transparent;
     width: 30rem;

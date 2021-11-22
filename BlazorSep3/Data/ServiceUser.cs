@@ -78,7 +78,7 @@ namespace BlazorSep3.Data
             if (string.IsNullOrEmpty(profile.FirstName)) throw new Exception("Enter first name");
             if (string.IsNullOrEmpty(profile.LastName)) throw new Exception("Enter last name");
             if (string.IsNullOrEmpty(profile.Specialities)) throw new Exception("Enter specialities");
-            if (string.IsNullOrEmpty(profile.Role)) throw new Exception("Enter role");
+            if (string.IsNullOrEmpty(profile.Role.ToString())) throw new Exception("Enter role");
 
             string serializedProfile = JsonConvert.SerializeObject(profile);
             Account currentAccount = await GetCurrentAccount();

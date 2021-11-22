@@ -21,16 +21,17 @@
 
     <ItemGroup>
       <Folder Include="Pages\Admin" />
+      <Folder Include="Pages\Part-time" />
     </ItemGroup>
 
-    <ItemGroup>
+<!--    <ItemGroup>
       <_ContentIncludedByDefault Remove="Pages\ManageShift\AddShift.razor" />
       <_ContentIncludedByDefault Remove="Pages\ManageShift\ManageShift.razor" />
       <_ContentIncludedByDefault Remove="Pages\ManageShift\ShiftNavSide.razor" />
       <_ContentIncludedByDefault Remove="Pages\ManageTask\AddTask.razor" />
       <_ContentIncludedByDefault Remove="Pages\ManageTask\ManageTask.razor" />
       <_ContentIncludedByDefault Remove="Pages\ManageTask\TaskNavSide.razor" />
-    </ItemGroup>
+    </ItemGroup>-->
 
     <ItemGroup>
       <None Update="Pages\Admin\ManageTask\ViewAllTasks.razor.css">
