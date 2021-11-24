@@ -15,7 +15,7 @@ import java.util.List;
 public class AccountDAOImpl implements AccountDAO
 {
 
-  private static AccountDAOImpl instance;
+/*  private static AccountDAOImpl instance;
 
   private AccountDAOImpl() throws SQLException
   {
@@ -36,11 +36,11 @@ public class AccountDAOImpl implements AccountDAO
     return DriverManager.getConnection(
         "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep", //change schema after db is done
         "bzjrfgwn", "ZPXdZD4hJLi7bjSr5foQeqn2ithW6iQV");
-  }
+  }*/
 
   @Override public Account getAccountByUsername(String username)
   {
-    try (Connection connection = getConnection())
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "SELECT username,password,role FROM Account WHERE username = ?");
@@ -71,7 +71,7 @@ public class AccountDAOImpl implements AccountDAO
 
   @Override public void addAccount(Account account)
   {
-    try(Connection connection = getConnection())
+    try(Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "INSERT INTO Account (username, password, role) VALUES (?,?,?)");
@@ -87,7 +87,7 @@ public class AccountDAOImpl implements AccountDAO
 
   @Override public List<Account> getAllAccounts()
   {
-    try (Connection connection = getConnection())
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement("select * from account");
 

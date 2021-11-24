@@ -21,7 +21,7 @@ public class RemoteShiftManager implements RemoteShift{
         SQLException
     {
         startServer();
-        shiftDB = ShiftDAOImpl.getInstance();
+        shiftDB = new ShiftDAOImpl();
     }
 
     private void startServer() throws RemoteException, MalformedURLException

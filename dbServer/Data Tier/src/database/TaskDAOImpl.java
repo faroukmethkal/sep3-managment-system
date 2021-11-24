@@ -13,7 +13,7 @@ import java.util.Date;
 public class TaskDAOImpl implements TaskDAO
 {
 
-  private static TaskDAOImpl instance;
+/*  private static TaskDAOImpl instance;
 
   private TaskDAOImpl() throws SQLException
   {
@@ -34,11 +34,11 @@ public class TaskDAOImpl implements TaskDAO
     return DriverManager.getConnection(
         "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep", //change schema after db is done
         "bzjrfgwn", "ZPXdZD4hJLi7bjSr5foQeqn2ithW6iQV");
-  }
+  }*/
 
   @Override public void addTask(Task task)
   {
-    try(Connection connection = getConnection())
+    try(Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "INSERT INTO task (title, description, startdate, estimatedtime, deadline, status) VALUES (?,?,?,?,?,?)");
@@ -68,7 +68,7 @@ public class TaskDAOImpl implements TaskDAO
 
   @Override public Task getTaskById(int id)
   {
-    try (Connection connection = getConnection())
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "SELECT taskid, title, description, startdate, estimatedtime, deadline, status FROM task WHERE taskid = ?");
@@ -104,7 +104,7 @@ public class TaskDAOImpl implements TaskDAO
 
   @Override public List<Task> getAllTasks()
   {
-    try (Connection connection = getConnection())
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement("select * from task");
 
@@ -137,7 +137,7 @@ public class TaskDAOImpl implements TaskDAO
 
   @Override public Map<String, Integer> getSpecialtiesOfTask(int taskId)
   {
-    try (Connection connection = getConnection())
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "SELECT taskid, speciality, numberofemployees FROM task_speciality WHERE taskid = ?");
@@ -165,7 +165,7 @@ public class TaskDAOImpl implements TaskDAO
 
   @Override public void assignTeamToTask(int teamId, int taskId)
   {
-    try(Connection connection = getConnection())
+    try(Connection connection = ConnectionDB.getInstance().getConnection())
     {
         PreparedStatement statement = connection.prepareStatement(
             "INSERT INTO team (teamid, taskid) VALUES (?,?)");
@@ -184,7 +184,7 @@ public class TaskDAOImpl implements TaskDAO
 
   @Override public List<Task> getTasksWhereSpecialtiesIs(Specialties specialty)
   {
-    try (Connection connection = getConnection())
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "SELECT taskid FROM task_speciality WHERE speciality = ?");
@@ -210,7 +210,7 @@ public class TaskDAOImpl implements TaskDAO
 
   @Override public void setStatusOfTask(int taskId, Status status)
   {
-    try(Connection connection = getConnection())
+    try(Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "UPDATE task SET status = ? WHERE taskid = ?");
@@ -227,7 +227,7 @@ public class TaskDAOImpl implements TaskDAO
 
   @Override public List<Task> getTasksWhereStatusIs(Status status)
   {
-    try (Connection connection = getConnection())
+    try (Connection connection =  ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "SELECT taskid FROM task WHERE status = ?");
@@ -253,7 +253,7 @@ public class TaskDAOImpl implements TaskDAO
 
   @Override public List<Task> getTasksBetweenDates(LocalDate startDate, LocalDate deadline)
   {
-    try (Connection connection = getConnection())
+    try (Connection connection =  ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "SELECT * from task WHERE startdate >= ? and deadline <= ?");
@@ -280,7 +280,7 @@ public class TaskDAOImpl implements TaskDAO
 
   private void addSpecialtiesOfTask(Task task)
   {
-    try(Connection connection = getConnection())
+    try(Connection connection =  ConnectionDB.getInstance().getConnection())
     {
       Map map = task.getSpecialties();
       for (Object key: map.keySet())
@@ -304,7 +304,7 @@ public class TaskDAOImpl implements TaskDAO
   private int getLatestId(String title)
   {
     {
-      try (Connection connection = getConnection())
+      try (Connection connection =  ConnectionDB.getInstance().getConnection())
       {
         PreparedStatement statement = connection.prepareStatement("select taskid,title from task where title = ? order by taskid desc limit 1");
         statement.setString(1, title);

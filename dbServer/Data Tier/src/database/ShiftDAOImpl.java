@@ -13,7 +13,7 @@ import java.util.List;
 public class ShiftDAOImpl implements ShiftDAO
 {
 
-  private static ShiftDAOImpl instance;
+/*  private static ShiftDAOImpl instance;
 
   private ShiftDAOImpl() throws SQLException
   {
@@ -34,11 +34,11 @@ public class ShiftDAOImpl implements ShiftDAO
     return DriverManager.getConnection(
         "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep", //change schema after db is done
         "bzjrfgwn", "ZPXdZD4hJLi7bjSr5foQeqn2ithW6iQV");
-  }
+  }*/
 
   @Override public void addShift(Shift shift)
   {
-    try(Connection connection = getConnection())
+    try(Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
           "INSERT INTO shift (name, starttime, endtime, description, numberofemployees, date) VALUES (?,?,?,?,?,?)");
@@ -66,7 +66,7 @@ public class ShiftDAOImpl implements ShiftDAO
 
   @Override public List<Shift> getAllShifts()
   {
-    try (Connection connection = getConnection())
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement("select * from shift");
 

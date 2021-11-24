@@ -23,7 +23,7 @@ public class RemoteTaskManager implements RemoteTask
       throws SQLException, MalformedURLException, RemoteException
   {
     startServer();
-    taskDB = TaskDAOImpl.getInstance();
+    taskDB = new TaskDAOImpl();
   }
 
   private void startServer() throws RemoteException, MalformedURLException

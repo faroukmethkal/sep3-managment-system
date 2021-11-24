@@ -28,8 +28,8 @@ public class RemoteProfileManager implements RemoteProfile
     {
          startRegistry();
          startServer();
-         accountDB = AccountDAOImpl.getInstance();
-         profileDB = ProfileDAOImpl.getInstance();
+         accountDB = new AccountDAOImpl();
+         profileDB = new ProfileDAOImpl();
     }
     private void startRegistry() throws RemoteException {
         try {
