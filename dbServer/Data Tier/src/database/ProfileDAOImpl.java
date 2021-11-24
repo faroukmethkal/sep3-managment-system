@@ -1,6 +1,8 @@
 package database;
 
+import model.Account;
 import model.Profile;
+import model.Role;
 import model.Specialties;
 
 import java.sql.Connection;
@@ -94,5 +96,33 @@ public class ProfileDAOImpl implements ProfileDAO
       System.out.println("SQLException - returned null");
       return null;
     }
+  }
+
+  @Override public Specialties getSpecialtyByUsername(String username)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT speciality FROM profile WHERE username = ?");
+
+      statement.setString(1, username);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      while (resultSet.next())
+      {
+        String specialty = resultSet.getString("Speciality");
+
+        if(specialty == null) return null;
+        else
+        {
+          return Specialties.valueOf(specialty);
+        }
+      }
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+    return null;
   }
 }

@@ -8,6 +8,7 @@ import database.ProfileDAO;
 import database.ProfileDAOImpl;
 import model.Account;
 import model.Profile;
+import model.Specialties;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -71,6 +72,12 @@ public class RemoteProfileManager implements RemoteProfile
     @Override public List<Account> getAllAccounts() throws RemoteException
     {
         return accountDB.getAllAccounts();
+    }
+
+    @Override public Specialties getSpecialty(String username)
+        throws RemoteException
+    {
+        return profileDB.getSpecialtyByUsername(username);
     }
 
 }
