@@ -57,7 +57,7 @@ public class TaskLogicManager implements TaskLogic {
         }
         if (startDate != null && deadline != null && status != null) {
             for (Task task : allTask) {
-                if (task.getDeadline().isBefore(deadline) && task.getStartDate().isAfter(startDate) && task.getStatus().equals(status)) {
+                if ((task.getDeadline().isBefore(deadline.plusDays(1))) && (task.getStartDate().isAfter(startDate.minusDays(1))) && task.getStatus().equals(status)) {
                     newTask.add(task);
                 }
             }
@@ -65,7 +65,23 @@ public class TaskLogicManager implements TaskLogic {
         }
         if (startDate != null && deadline != null) {
             for (Task task : allTask) {
-                if (task.getDeadline().isBefore(deadline) && task.getStartDate().isAfter(startDate)) {
+                if ((task.getDeadline().isBefore(deadline.plusDays(1))) && (task.getStartDate().isAfter(startDate.minusDays(1)))) {
+                    newTask.add(task);
+                }
+            }
+            return newTask;
+        }
+        if (startDate != null) {
+            for (Task task : allTask) {
+                if (task.getStartDate().isAfter(startDate.minusDays(1))) {
+                    newTask.add(task);
+                }
+            }
+            return newTask;
+        }
+        if (deadline != null) {
+            for (Task task : allTask) {
+                if (task.getDeadline().isBefore(deadline.plusDays(1))) {
                     newTask.add(task);
                 }
             }
