@@ -67,5 +67,28 @@ namespace BlazorSep3.Data
             
             return result; 
         }
+        
+        public async Task<IList<Taskk>> GetAllRelativeTasks(DateTime? startTime, DateTime? deadLine, bool?isImportant, Status? status)
+        {
+            
+            List<Taskk> result = new List<Taskk>();
+            Console.WriteLine(startTime + " " + deadLine);
+            
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                                      $"api/employee/tasks?username={currentAccount.username}&startTime={startTime}&deadLine={deadLine}&isImportant={isImportant}&status={status}"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+            result = JsonConvert.DeserializeObject<List<Taskk>>(message);
+            
+            return result; 
+        }
     }
 }

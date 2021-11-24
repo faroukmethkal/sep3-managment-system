@@ -98,7 +98,7 @@ using BlazorSep3.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 130 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Index.razor"
+#line 115 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Index.razor"
  
     public async Task PerformLogout()
     {
