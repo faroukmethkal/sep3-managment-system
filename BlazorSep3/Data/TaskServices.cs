@@ -49,6 +49,7 @@ namespace BlazorSep3.Data
         {
             
             List<Taskk> result = new List<Taskk>();
+            Console.WriteLine(startTime + " " + deadLine);
             
             Account currentAccount = await GetCurrentAccount();
            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);

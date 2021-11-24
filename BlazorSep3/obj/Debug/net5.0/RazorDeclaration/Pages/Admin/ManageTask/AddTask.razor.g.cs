@@ -151,17 +151,26 @@ using System.Text;
 
     private void AddToSpecialties()
     {
-        task.Specialities.Add(currentSpec, currentPeople);
-        textSpecialty = "Speciality " + splitOnCapitalLitter(currentSpec) + " for " + currentPeople +
-                        " has been added to this task";
+        if (!task.Specialities.ContainsKey(currentSpec))
+        {
+            task.Specialities.Add(currentSpec, currentPeople);
+            textSpecialty = "Speciality " + splitOnCapitalLitter(currentSpec) + " for " + currentPeople +
+                            " has been added to this task";
+        }
+        else
+        {
+            task.Specialities[currentSpec] = currentPeople;
+            textSpecialty = "Speciality " + splitOnCapitalLitter(currentSpec)+" has been updated to "+currentPeople;
+        }
+        
         currentSpec = Specialities.videoGameDesigner.ToString();
         currentPeople = 1;
     }
 
     protected override void OnInitialized()
     {
-        task.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-        task.Deadline = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7);
+        task.StartDate = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day);
+        task.Deadline = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(7);
         task.Estimate = 1;
     }
 
