@@ -1,8 +1,6 @@
 package database;
 
-import model.Shift;
-import model.Status;
-import model.Task;
+import model.*;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -95,4 +93,45 @@ public class ShiftDAOImpl implements ShiftDAO
       System.out.println(s+" - returned null");
       return null;
     }  }
+
+  @Override public void removeShift(int shiftId)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "DELETE FROM shift WHERE shiftid = ?");
+
+      statement.setInt(1, shiftId);
+
+      statement.executeUpdate();
+
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+  }
+
+  @Override public void editShift(Shift shift)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "UPDATE shift set name = ?,starttime = ?, endtime = ?, description = ?, numberofemployees = ?, date = ?"
+              + " WHERE shiftid = ?");
+      //new data
+      statement.setString(1, shift.getName());
+      statement.setTime(2, java.sql.Time.valueOf(shift.getStartTime()));
+      statement.setTime(3, java.sql.Time.valueOf(shift.getEndTime()));
+      statement.setString(4,shift.getDescription());
+      statement.setInt(5, shift.getNumberOfEmployees());
+      statement.setDate(6,java.sql.Date.valueOf(shift.getDate()));
+      //old id
+      statement.setInt(7, shift.getId());
+
+      statement.executeUpdate();
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+  }
 }

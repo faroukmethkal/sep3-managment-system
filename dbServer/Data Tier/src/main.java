@@ -11,21 +11,22 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
-import static model.Role.admin;
-import static model.Specialties.fullstackEngineer;
+import static model.Role.*;
+import static model.Specialties.*;
 
 public class main
 {
   public static void main(String[] args) throws SQLException, MalformedURLException, RemoteException, NotBoundException {
 
-    RemoteProfile server = new RemoteProfileManager();
-    RemoteTask server2 = new RemoteTaskManager();
-    RemoteShift server3 = new RemoteShiftManager();
+      RemoteProfile server = new RemoteProfileManager();
+      RemoteTask server2 = new RemoteTaskManager();
+      RemoteShift server3 = new RemoteShiftManager();
 
     //testing db
     //Account acc = new Account("test","test",admin);
     //Profile profile = new Profile("javaTest", "idk","lol", fullstackEngineer, LocalDate.of(2000,4,15));
-    //ProfileDAO pdb = ProfileDAOImpl.getInstance();
+    //ProfileDAO profileDB = new ProfileDAOImpl();
+    //profileDB.getProfilesByRole(fullTimeEmployee);
     //AccountDAO accDB = AccountDAOImpl.getInstance();
     //accDB.addAccount(acc);
     /*ProfileDAO pdb = ProfileDAOImpl.getInstance();
@@ -38,19 +39,27 @@ public class main
     Task t = new Task("test2","description test version 2",specialties,
         LocalDate.of(2021,5,13),15.5, LocalDate.of(2000,6,13), Status.valueOf("Created"));*/
 
-    //TaskDAO db = TaskDAOImpl.getInstance();
+    //TaskDAO db = new TaskDAOImpl();
     /*db.addTask(t);    //WORKS !!!
     db.getAllTasks(); //WORKS !!!
     db.getTasksWhereSpecialtiesIs(Specialties.valueOf("qualityAssuranceEngineer")); //WORKS !!!
     db.assignTeamToTask(1,5) //WORKS !!!;
     db.setStatusOfTask(4,Status.valueOf("Started")); //WORKS !!! */
 
-    //ShiftDAO shiftDB = ShiftDAOImpl.getInstance();
-    /*Shift shift = new Shift("test", LocalDate.of(2000,6,13), LocalTime.of(14,30),
+    /*ShiftDAO shiftDB = new ShiftDAOImpl();
+    Shift shift = new Shift("test", LocalDate.of(2000,6,13), LocalTime.of(14,30),
                             LocalTime.of(18,0),"description testing",1);
-    shiftDB.addShift(shift);*/
+
+    Shift shift2 = new Shift("testEdited", LocalDate.of(2000,4,15), LocalTime.of(16,15),
+        LocalTime.of(20,0),"description testing Edited",2);*/
+
+    //shift2.setId(6);
+    //shiftDB.addShift(shift);
+    //shiftDB.editShift(shift2);
+    //shiftDB.removeShift(6);
     //shiftDB.getAllShifts();
-    //TaskDAO db = TaskDAOImpl.getInstance();
+    //TaskDAO db = new TaskDAOImpl();
     //db.getTasksWhereStatusIs(Status.valueOf("Created"));
+    //db.getTasksWhereSpecialtiesIs(qualityAssuranceEngineer);
   }
 }

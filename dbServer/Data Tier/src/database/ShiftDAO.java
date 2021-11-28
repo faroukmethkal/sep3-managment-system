@@ -8,4 +8,6 @@ public interface ShiftDAO
 {
   void addShift(Shift shift);
   List<Shift> getAllShifts();
+  void removeShift(int shiftId);
+  void editShift(Shift shift);
 }

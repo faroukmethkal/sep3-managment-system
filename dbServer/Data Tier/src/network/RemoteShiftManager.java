@@ -40,4 +40,14 @@ public class RemoteShiftManager implements RemoteShift{
     public List<Shift> getAllShifts() throws RemoteException {
         return shiftDB.getAllShifts();
     }
+
+    @Override public void removeShift(int shiftId) throws RemoteException
+    {
+        shiftDB.removeShift(shiftId);
+    }
+
+    @Override public void editShift(Shift shift) throws RemoteException
+    {
+        shiftDB.editShift(shift);
+    }
 }

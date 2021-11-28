@@ -125,4 +125,39 @@ public class ProfileDAOImpl implements ProfileDAO
     }
     return null;
   }
+
+  @Override public List<Profile> getProfilesByRole(Role role)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      //first - get accounts by role
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * FROM profile JOIN account a on a.username = profile.username WHERE role = ?");
+
+      statement.setString(1,role.toString());
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Profile> profiles = new ArrayList<Profile>();
+
+      while (resultSet.next())
+      {
+        String username = resultSet.getString("username");
+        String firstname = resultSet.getString("firstname");
+        String lastname = resultSet.getString("lastname");
+        LocalDate birthday = resultSet.getDate("birthday").toLocalDate();
+        Specialties specialties = Specialties.valueOf(resultSet.getString("Speciality"));
+        Profile p = new Profile(username,firstname,lastname,specialties,birthday);
+        p.setRole(role);
+        System.out.println(p.toString());
+        profiles.add(p);
+      }
+      return profiles;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s+" - returned null");
+      return null;
+    }
+  }
 }

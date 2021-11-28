@@ -9,4 +9,7 @@ import java.util.List;
 public interface RemoteShift extends Remote {
     void createShift(Shift shift) throws RemoteException;
     List<Shift> getAllShifts() throws RemoteException;
+    void removeShift(int shiftId) throws RemoteException;
+    void editShift(Shift shift) throws RemoteException;
+    //remove, edit
 }
