@@ -11,5 +11,6 @@ public interface RemoteShift extends Remote {
     List<Shift> getAllShifts() throws RemoteException;
     void removeShift(int shiftId) throws RemoteException;
     void editShift(Shift shift) throws RemoteException;
+    Shift getShiftById(int shiftId) throws RemoteException;
     //remove, edit
 }

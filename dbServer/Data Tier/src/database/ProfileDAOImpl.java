@@ -72,7 +72,7 @@ public class ProfileDAOImpl implements ProfileDAO
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement("select * from profile");
+      PreparedStatement statement = connection.prepareStatement("SELECT * FROM profile JOIN account a on a.username = profile.username");
 
       ResultSet resultSet = statement.executeQuery();
 
@@ -85,8 +85,11 @@ public class ProfileDAOImpl implements ProfileDAO
             String lastname = resultSet.getString("lastname");
             LocalDate birthday = resultSet.getDate("birthday").toLocalDate();
             Specialties specialties = Specialties.valueOf(resultSet.getString("Speciality"));
+            Role role1 = Role.valueOf(resultSet.getString("role"));
+
             Profile p = new Profile(username,firstname,lastname,specialties,birthday);
-            System.out.println(p.toString());
+            p.setRole(role1);
+            System.out.println("from db------->>>"+p.toString());
             profiles.add(p);
           }
           return profiles;
@@ -147,11 +150,13 @@ public class ProfileDAOImpl implements ProfileDAO
         String lastname = resultSet.getString("lastname");
         LocalDate birthday = resultSet.getDate("birthday").toLocalDate();
         Specialties specialties = Specialties.valueOf(resultSet.getString("Speciality"));
+        Role role1 = Role.valueOf(resultSet.getString("role"));
         Profile p = new Profile(username,firstname,lastname,specialties,birthday);
-        p.setRole(role);
-        System.out.println(p.toString());
+        p.setRole(role1);
+        System.out.println("fromDB---->>"+ p.toString());
         profiles.add(p);
       }
+      System.out.println("############################");
       return profiles;
     }
     catch (SQLException s)
@@ -160,4 +165,5 @@ public class ProfileDAOImpl implements ProfileDAO
       return null;
     }
   }
+  
 }

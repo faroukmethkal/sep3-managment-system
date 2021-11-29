@@ -58,4 +58,9 @@ public class RemoteTaskManager implements RemoteTask
   public List<Task> getAllTaskWithStatus(Status status) throws RemoteException {
     return taskDB.getTasksWhereStatusIs(status);
   }
+
+  @Override
+  public Task getTaskById(int taskId) throws RemoteException {
+    return taskDB.getTaskById(taskId);
+  }
 }

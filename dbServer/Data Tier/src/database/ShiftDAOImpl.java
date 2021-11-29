@@ -134,4 +134,41 @@ public class ShiftDAOImpl implements ShiftDAO
       System.out.println(s);
     }
   }
-}
+
+  @Override
+  public Shift getShiftById(int shiftId) {
+      try (Connection connection = ConnectionDB.getInstance().getConnection())
+      {
+        PreparedStatement statement = connection.prepareStatement(
+                "SELECT * FROM shift WHERE shiftid = ?");
+
+        statement.setInt(1, shiftId);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next())
+        {
+          int idDB = resultSet.getInt("shiftid");
+          String name = resultSet.getString("name");
+          LocalTime startTime = resultSet.getTime("starttime").toLocalTime();
+          LocalTime endTime = resultSet.getTime("endtime").toLocalTime();
+          String description = resultSet.getString("description");
+          int numberOfEmployees = resultSet.getInt("numberofemployees");
+          LocalDate date = resultSet.getDate("date").toLocalDate();
+
+          if(idDB == -1) return null;
+          else
+          {
+            Shift shift = new Shift(name, date, startTime, endTime, description, numberOfEmployees);
+            shift.setId(idDB);
+            return shift;
+          }
+        }
+      }
+      catch(SQLException s){
+        System.out.println(s);
+      }
+      return null;
+    }
+  }
+

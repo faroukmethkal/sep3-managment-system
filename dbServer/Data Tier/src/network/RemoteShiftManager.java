@@ -50,4 +50,9 @@ public class RemoteShiftManager implements RemoteShift{
     {
         shiftDB.editShift(shift);
     }
+
+    @Override
+    public Shift getShiftById(int shiftId) throws RemoteException {
+        return shiftDB.getShiftById(shiftId);
+    }
 }
