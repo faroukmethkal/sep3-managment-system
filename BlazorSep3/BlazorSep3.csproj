@@ -41,7 +41,7 @@
         <Content Update="Pages\Full-time\AllAvailableTasks.razor.css">
             <DependentUpon>AllAvailableTasks.razor</DependentUpon>
         </Content>
-        <Content Update="Pages\Admin\ManageShift\AllShifts.razor.css" >
+        <Content Update="Pages\Admin\ManageShift\AllShifts.razor.css">
             <DependentUpon>AllShifts.razor</DependentUpon>
         </Content>
     </ItemGroup>

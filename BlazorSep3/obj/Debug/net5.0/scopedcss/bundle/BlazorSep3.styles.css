@@ -504,10 +504,10 @@ Content view
     background-color: #fff;
     border: none;
     border-bottom: 3px solid transparent;
-    width: 8rem;
+    width: 10rem;
     display: inline-block;
     transition: all .3s;
-    height: 1.2rem;
+    height: 1.4rem;
     color: #D97706;
 
 
@@ -908,6 +908,182 @@ search content
     margin-top: 2rem;
 }
 
+/* _content/BlazorSep3/Pages/Admin/ManageShift/EditShiftComponent.razor.rz.scp.css */
+.content[b-m57y67cx57] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+header[b-m57y67cx57]{
+    height: 0.2rem;
+}
+
+
+.content-view[b-m57y67cx57] {
+    background-color: #fff;
+    flex: 1;
+}
+
+
+.form[b-m57y67cx57] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 90vh;
+    background-color: #F3F4F6;
+    padding: 2rem;
+    margin-top: 0.2rem;
+}
+.form__group[b-m57y67cx57]{
+    display: flex;
+    align-items: start;
+}
+.form__group span[b-m57y67cx57]{
+    margin-right: 1rem;
+}
+
+.form__group:not(:last-child)[b-m57y67cx57] {
+    margin-bottom: 1rem;
+}
+.error-message[b-m57y67cx57]{
+    color: red;
+}
+.specialty-message-message[b-m57y67cx57]{
+    color: green;
+}
+
+.icon[b-m57y67cx57]{
+    height: 1rem;
+    margin-top: 0.2rem;
+}
+
+.form__input[b-m57y67cx57] {
+    font-size: 1.2rem;
+    padding: 1.2rem 1.2rem;
+    border-radius: 1.5px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 30rem;
+    display: block;
+    transition: all .3s;
+    height: 1.7rem;
+}
+.form__input_select[b-m57y67cx57] {
+    font-size: 1.2rem;
+    border-radius: 1px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 30rem;
+    display: block;
+    transition: all .3s;
+    height: 1.7rem;
+
+}
+
+.form__input_select:focus[b-m57y67cx57] {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #55c57a;
+}
+
+.form__input:focus[b-m57y67cx57] {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #55c57a;
+}
+
+.form__input:focus:invalid[b-m57y67cx57] {
+
+    border-bottom: 2px solid #ff7730;
+}
+
+.form__input[b-m57y67cx57]::-webkit-input-placeholder {
+    color: #999;
+}
+
+
+.form__label[b-m57y67cx57] {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-left: 0.2rem;
+    margin-top: 0.2rem;
+    display: block;
+    transition: all .3s;
+}
+
+
+/*.form__input:placeholder-shown + .form__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+}*/
+
+
+.form-header[b-m57y67cx57] {
+    justify-self: center;
+    margin-bottom: 0.5rem;
+}
+
+.form-header h2[b-m57y67cx57]{
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: .2rem;
+}
+
+
+.button-white[b-m57y67cx57] {
+    text-transform: uppercase;
+    padding: .4rem 2rem;
+    margin-left: 2rem;
+    border-radius: 100px;
+    transition: all, .2s;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: .2rem;
+}
+
+
+.button-white:hover[b-m57y67cx57] {
+    background-color:#34D399;
+    color: #fff;
+}
+
+
+.button-white[b-m57y67cx57] {
+    background-color:#059669;
+    color: #fff;
+
+}
+
+.button-spec[b-m57y67cx57] {
+    text-transform: uppercase;
+    padding: 0.4rem 0.3rem;
+    border-radius: 40px;
+    transition: all, .2s;
+    font-size: 0.8rem;
+    font-weight: 300;
+    letter-spacing: .2rem;
+    margin-top: .5rem;
+}
+
+.button-spec:hover[b-m57y67cx57] {
+    background-color:#34D399;
+    color: #fff;
+}
+
+
+.button-spec[b-m57y67cx57] {
+    background-color:#059669;
+    color: #fff;
+
+}
 /* _content/BlazorSep3/Pages/Admin/ManageShift/ManageShift.razor.rz.scp.css */
 .content[b-l90yhd42li] {
     display: flex;

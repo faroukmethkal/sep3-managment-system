@@ -95,5 +95,26 @@ namespace BlazorSep3.Data
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Taskk> GetTaskById(int id)
+        {
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                                      $"api/task?id={id}"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+            Taskk taskk= JsonConvert.DeserializeObject<Taskk>(message);
+            
+            return taskk; 
+        }
+
+     
     }
 }

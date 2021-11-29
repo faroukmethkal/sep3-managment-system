@@ -67,7 +67,41 @@ namespace BlazorSep3.Data
         {
             throw new NotImplementedException();
         }
-        
-        
+
+        public async Task<Shift> GetShiftById(int id)
+        {
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                                      $"api/shift?id={id}"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+             Shift  shift = JsonConvert.DeserializeObject<Shift>(message);
+            
+            return shift; 
+        }
+
+        public async Task EditShift(Shift shift)
+        {
+            if (string.IsNullOrEmpty(shift.Name)) throw new Exception("Enter tittle");
+            if (string.IsNullOrEmpty(shift.Description)) throw new Exception("Enter description");
+
+            string serializeShift = JsonConvert.SerializeObject(shift);
+            Console.WriteLine(serializeShift);
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpContent content = new StringContent(serializeShift, Encoding.UTF8, "application/json"); 
+
+            var response = await client.PutAsync(client.BaseAddress + "api/shift", content); 
+            
+            if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
+            
+        }
     }
 }

@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorSep3.Pages
+namespace BlazorSep3.Pages.Admin.ManageShift
 {
     #line hidden
     using System;
@@ -83,14 +83,21 @@ using BlazorSep3.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Index.razor"
-using BlazorSep3.Authentication;
+#line 2 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageShift\AllShifts.razor"
+using BlazorSep3.model;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 3 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageShift\AllShifts.razor"
+using BlazorSep3.Data;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/AllShifts")]
+    public partial class AllShifts : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,18 +105,55 @@ using BlazorSep3.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 115 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Index.razor"
- 
-    public async Task PerformLogout()
+#line 104 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageShift\AllShifts.razor"
+       
+    private IList<Shift> shiftsToShow;
+    private IList<Shift> shifts;
+    private string? filterByName;
+
+    private DateTime? date { get; set; }
+    private DateTime? startTime { get; set; }
+    private DateTime? endTime { get; set; }
+
+
+    private async Task Filter()
     {
+        shifts = await shiftService.getShifts(date, startTime, endTime);
+        shiftsToShow = shifts;
+    }
+
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
         try
         {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavigationManager.NavigateTo("/");
+            filterByName = changeEventArgs.Value.ToString();
         }
         catch (Exception e)
         {
         }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        shifts = shifts.Where(t => filterByName != null && (t.Name.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
+
+    private void Edit(int id)
+    {
+        NavigationManager.NavigateTo($"/EditShift/{id}");
+    }
+    
+    private void Remove(int id)
+    {
+        shiftService.RemoveShift(id);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+    //
     }
 
 
@@ -117,8 +161,8 @@ using BlazorSep3.Authentication;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _jsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IShiftService shiftService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     }
 }
 #pragma warning restore 1591
