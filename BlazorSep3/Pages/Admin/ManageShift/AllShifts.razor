@@ -1,4 +1,4 @@
-﻿@page "/AllAvailableShifts"
+﻿@page "/AllShifts"
 @using BlazorSep3.model
 @using BlazorSep3.Data
 @inject NavigationManager NavigationManager
@@ -70,7 +70,8 @@
                         <th>Date</th>
                         <th>Start Time</th>
                         <th>End Time</th>
-                        <th>Take Shift</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -82,8 +83,13 @@
                             <td>@item.StartTime</td>
                             <td>@item.EndTime</td>
                             <td>
-                                <button @onclick="@(() => TakeShift(item.Id))">
-                                    <i class="oi-arrow-thick-right" style="color:green"/>
+                                <button @onclick="@(() => Edit(item.Id))">
+                                    <i class="oi oi-pencil" style="color:#1b6ec2"/>
+                                </button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => Remove(item.Id))">
+                                    <i class="oi oi-delete" style="color:red"/>
                                 </button>
                             </td>
                         </tr>
@@ -130,9 +136,14 @@
         shifts = shifts.Where(t => filterByName != null && (t.Name.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
 
-    private void TakeShift(int id)
+    private void Edit(int id)
     {
-        NavigationManager.NavigateTo($"/TakeShift{id}");
+        NavigationManager.NavigateTo($"/ManageShift{id}");
+    }
+    
+    private void Remove(int id)
+    {
+        shiftService.RemoveShift(id);
     }
 
     protected override async Task OnInitializedAsync()

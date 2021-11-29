@@ -29,17 +29,20 @@
         <Content Update="Pages\Part-time\MyShifts.razor.css">
             <DependentUpon>MyShifts.razor</DependentUpon>
         </Content>
-        <Content Update="Pages\Full-time\MyTasks.razor.css" >
+        <Content Update="Pages\Full-time\MyTasks.razor.css">
             <DependentUpon>MyTasks.razor</DependentUpon>
         </Content>
-        <Content Update="Pages\Full-time\TakeTask.razor.css" >
+        <Content Update="Pages\Full-time\TakeTask.razor.css">
             <DependentUpon>TakeTask.razor</DependentUpon>
         </Content>
-        <Content Update="Pages\Full-time\TaskEmployeeNavSide.razor.css" >
+        <Content Update="Pages\Full-time\TaskEmployeeNavSide.razor.css">
             <DependentUpon>TaskEmployeeNavSide.razor</DependentUpon>
         </Content>
-        <Content Update="Pages\Full-time\AllAvailableTasks.razor.css" >
+        <Content Update="Pages\Full-time\AllAvailableTasks.razor.css">
             <DependentUpon>AllAvailableTasks.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Admin\ManageShift\AllShifts.razor.css" >
+            <DependentUpon>AllShifts.razor</DependentUpon>
         </Content>
     </ItemGroup>
 

@@ -1,12 +1,122 @@
 ﻿@page "/ViewAllProfile"
+@using BlazorSep3.model
+@using BlazorSep3.Data
+@inject NavigationManager NavigationManager
+@inject IServiceUser serviceUser;
+@inject IJSRuntime _jsRuntime;
 <div class="content">
-    <EmployeeSideNav/>
-
+    <EmployeeSideNav />
     <main class="content-view">
-        <h1>Add you code here to view all profile</h1>
+        <div class="filter_option">
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-briefcase"/>
+                    <label class="form__label">Specialty</label>
+                </div>
+                <div>
+                    <select name="specialties" class="form__input_select" @bind="specialty">
+                        @foreach (var specialty in Enum.GetValues(typeof(Specialities)))
+                        {
+                            <option value="@specialty">@specialty</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form__group">
+                <button class="button-spec" type="submit" @onclick="Filter">Filter</button>
+            </div>
+
+            <form action="#" class="form__group_search">
+                <input type="text" class="search_input" placeholder="Search name" @oninput="@((arg)=>FilterByName(arg))">
+                @*<button class="search_button" @onclick="">
+                    <span class="icon oi oi-magnifying-glass">Search</span>
+                </button>*@
+            </form>
+
+        </div>
+        <div class="search_result">
+
+            @if (profilesToShow == null)
+            {
+                <p>
+                    <em>Loading...</em>
+                </p>
+            }
+            else if (!profilesToShow.Any())
+            {
+                <p>
+                    <em>No Tasks to show. </em>
+                </p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Specialty</th>
+                        <th>Birthday</th>
+                        <th>Role</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in profilesToShow)
+                    {
+                        <tr>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Specialities</td>
+                            <td>@item.Birthday</td>
+                            <td>@item.Role</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+        </div>
     </main>
 </div>
 
 @code {
+    private IList<Profile> profilesToShow;
+    private IList<Profile> profiles;
+    private string? filterByName;
+
+    private Specialities? specialty { get; set; }
+
+    private async Task Filter()
+    {
+        profiles = await serviceUser.GetAllProfiles(specialty);
+        profilesToShow = profiles;
+    }
+
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        profilesToShow = profiles.Where(t => filterByName != null && (t.FirstName.ToLower().Contains(filterByName.ToLower()) || t.LastName.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
     
+
+    /*protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(isImportant);
+    }*/
+
+
+
 }

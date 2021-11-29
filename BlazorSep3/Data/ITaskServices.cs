@@ -12,5 +12,7 @@ namespace BlazorSep3.Data
 
         Task<IList<Taskk>> GetAllRelativeTasks(DateTime? startTime, DateTime? deadLine, bool? isImportant,
             Status? status);
+
+        Task RemoveTask(int id);
     }
 }

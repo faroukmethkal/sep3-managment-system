@@ -90,5 +90,10 @@ namespace BlazorSep3.Data
             
             return result; 
         }
+
+        public async Task RemoveTask(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

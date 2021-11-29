@@ -41,6 +41,8 @@ namespace BlazorSep3.Data
             
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
+        
+
         public async Task<IList<Shift>> getShifts(DateTime? date, DateTime? startTime, DateTime? endTime)
         {
             List<Shift> result = new List<Shift>();
@@ -60,6 +62,10 @@ namespace BlazorSep3.Data
             result = JsonConvert.DeserializeObject<List<Shift>>(message);
             
             return result; 
+        }
+        public Task RemoveShift(int id)
+        {
+            throw new NotImplementedException();
         }
         
         

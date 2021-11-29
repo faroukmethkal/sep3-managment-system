@@ -8,5 +8,7 @@ namespace BlazorSep3.Data
     {
         Task<Account> ValidateUser(string username, string password);
         Task RegisterUser(Profile profile);
+        Task<IList<Profile>> GetAllProfiles(Specialities? specialities);
+        Task<Account> GetAccountByUsername(string username);
     }
 }

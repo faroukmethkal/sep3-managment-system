@@ -11,3 +11,106 @@ Content view
     background-color: #fff;
     flex: 1;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 88vh;
+    background-color: #F3F4F6;
+    padding: 2rem;
+}
+
+.form_parts{
+    margin-top: 2rem;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border: 1px dashed black;
+    padding: 1rem;
+}
+
+.form__group{
+    display: flex;
+    align-items: start;
+}
+.form__group span{
+    margin-right: 1rem;
+}
+
+.form__group:not(:last-child) {
+    margin-bottom: 1rem;
+}
+.error-message{
+    color: red;
+}
+.icon{
+    height: 1rem;
+    margin-top: 0.2rem;
+}
+
+.form__account {
+    font-size: 1rem;
+    font-weight: 900;
+    margin-left: 0.2rem;
+    margin-top: 0.2rem;
+    display: inline;
+    transition: all .3s;
+}
+
+.form__label {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-left: 0.2rem;
+    margin-top: 0.2rem;
+    display: inline;
+    transition: all .3s;
+}
+
+
+/*.form__input:placeholder-shown + .form__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+}*/
+
+
+.form-header {
+    justify-self: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h2{
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: .2rem;
+}
+
+
+.search_button {
+    text-transform: uppercase;
+    padding: .4rem 2rem;
+    margin-left: 2rem;
+    border-radius: 100px;
+    transition: all, .2s;
+    font-size: 1.0rem;
+    font-weight: 400;
+    letter-spacing: .2rem;
+}
+
+
+.search_button:hover {
+    transition: all, .2s;
+    background-color:#E5E7EB;
+    color: #333;
+}
+
+
+.search_input:focus {
+    outline: none;
+}
+

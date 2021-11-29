@@ -88,5 +88,50 @@ namespace BlazorSep3.Data
             var response = await client.PostAsync(client.BaseAddress + "api/profile", content);
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
+
+        public async Task<IList<Profile>> GetAllProfiles(Specialities? specialities)
+        {
+            List<Profile> result = new List<Profile>();
+            
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                                      $"api/profile?specialty={specialities}"); //dont know the url...
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+            result = JsonConvert.DeserializeObject<List<Profile>>(message);
+            
+            return result; 
+        }
+
+        public async Task<Account> GetAccountByUsername(string username)
+        {
+            Account result = new Account();
+            
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                                      $"api/profile/account?username={username}"); //dont know the url.... 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+            string message = await response.Content.ReadAsStringAsync();
+            if (message==null)
+            {
+                throw new Exception("No account with this username");
+            }
+            Console.WriteLine(message);
+            result = JsonConvert.DeserializeObject<Account>(message);
+            
+            return result; 
+        }
     }
 }

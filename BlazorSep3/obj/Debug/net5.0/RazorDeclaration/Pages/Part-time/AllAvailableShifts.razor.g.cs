@@ -105,7 +105,7 @@ using BlazorSep3.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 97 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Part-time\AllAvailableShifts.razor"
+#line 98 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Part-time\AllAvailableShifts.razor"
        
     private IList<Shift> shiftsToShow;
     private IList<Shift> shifts;
