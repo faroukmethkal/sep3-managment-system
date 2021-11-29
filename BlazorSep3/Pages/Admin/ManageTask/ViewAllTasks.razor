@@ -5,7 +5,6 @@
 @inject ITaskServices taskServices;
 @inject IJSRuntime _jsRuntime;
 
-
 <div class="content">
     <TaskNavSide/>
     <main class="content-view">
@@ -53,7 +52,7 @@
             </div>
 
             <form action="#" class="form__group_search">
-                <input type="text" class="search_input" placeholder="Search tasks" @oninput="@((arg)=>FilterByName(arg))">
+                <input type="text" class="search_input" placeholder="Search tasks" @oninput="@((arg) => FilterByName(arg))">
                 @*<button class="search_button" @onclick="">
                     <span class="icon oi oi-magnifying-glass">Search</span>
                 </button>*@
@@ -76,15 +75,17 @@
             }
             else
             {
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Start Date</th>
-                        <th>Estimate</th>
-                        <th>Deadline</th>
-                        <th>Number of employees</th>
+                <table class="table table-hover">
+                    <thead style="position: sticky;top:0" class="thead-dark">
+                    <tr >
+                        <th  >Title</th>
+                        <th  >Description</th>
+                        <th  >Start Date</th>
+                        <th >Estimate</th>
+                        <th  >Deadline</th>
+                        <th  >Status</th>
+                        <th >Number of employees</th>
+                        <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -93,10 +94,12 @@
                         <tr>
                             <td>@item.Title</td>
                             <td>@item.Description</td>
-                            <td>@item.StartDate</td>
+                            <td>@item.StartDate.ToString("dd MMMM yyyy")</td>
                             <td>@item.Estimate</td>
-                            <td>@item.Deadline</td>
+                            <td>@item.Deadline.ToString("dd MMMM yyyy")</td>
+                            <td>@item.Status</td>
                             <td>@item.GetFinalNumberOfPeople()</td>
+                            
                             <td>
                                 <button @onclick="@(() => Edit(item.id))">
                                     <i class="oi oi-pencil" style="color:#1b6ec2"/>
@@ -104,6 +107,7 @@
                             </td>
                         </tr>
                     }
+
                     </tbody>
                 </table>
             }
@@ -123,10 +127,10 @@
 
     private async Task Filter()
     {
-        tasks = await taskServices.GetTasks(startTime, deadline, isImportant,status);
+        tasks = await taskServices.GetTasks(startTime, deadline, isImportant, status);
         tasksToShow = tasks;
     }
-    
+
 
     private void FilterByName(ChangeEventArgs changeEventArgs)
     {

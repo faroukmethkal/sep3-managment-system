@@ -19,13 +19,15 @@ namespace BlazorSep3.model
         [JsonProperty("specialties")]
         public Dictionary<string, int> Specialities { get; set; } = new Dictionary<string, int>();
 
-        [Required] [JsonProperty("startDate")] public DateTime StartDate { get; set; }
+        [Required] [JsonProperty("startDate")] 
+        public DateTime StartDate { get; set; }
 
         [Required]
         [JsonProperty("estimatedTime")]
         public double Estimate { get; set; }
 
-        [Required] [JsonProperty("deadline")] public DateTime Deadline { get; set; }
+        [Required] [JsonProperty("deadline")] 
+        public DateTime Deadline { get; set; }
 
         [Required] [JsonProperty("status")] public Status Status { get; set; } = Status.Created;
 
