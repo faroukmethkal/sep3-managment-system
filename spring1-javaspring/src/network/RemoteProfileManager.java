@@ -1,6 +1,8 @@
 package network;
 import model.Account;
 import model.Profile;
+import model.Role;
+import model.Specialties;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -19,7 +21,7 @@ public class RemoteProfileManager implements RemoteProfile {
     }
 
     @Override
-    public Account login(String username) throws RemoteException {
+    public Account login(String username)  {
 
         try {
             return server.login(username);
@@ -40,14 +42,43 @@ public class RemoteProfileManager implements RemoteProfile {
     }
 
     @Override
-    public List<Profile> getAllProfiles() throws RemoteException {
-        return server.getAllProfiles();
+    public List<Profile> getAllProfiles()  {
+
+        try {
+            return server.getAllProfiles();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     @Override
-    public List<Account> getAllAccounts() throws RemoteException {
+    public List<Profile> getAllProfileByRole(Role role) {
+        try {
+            return server.getAllProfileByRole(role) ;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Account> getAllAccounts(){
         try {
             return server.getAllAccounts();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public Specialties getSpecialty(String username){
+        try {
+            return server.getSpecialty(username);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

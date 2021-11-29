@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 @Service
-public class ShiftLogicManager implements ShiftLogic{
+public class ShiftLogicManager implements ShiftLogic {
     private RemoteShiftManager server;
 
     public ShiftLogicManager() throws MalformedURLException, NotBoundException, RemoteException {
@@ -19,21 +19,32 @@ public class ShiftLogicManager implements ShiftLogic{
 
     @Override
     public void createShift(Shift shift) {
-        try {
-            server.createShift(shift);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        server.createShift(shift);
     }
 
     @Override
     public List<Shift> getAllShifts() {
+        return server.getAllShifts();
+
+    }
+
+    @Override
+    public void removeShift(int shiftId) {
+        server.removeShift(shiftId);
+    }
+
+    @Override
+    public void editShift(Shift shift) {
+        server.editShift(shift);
+    }
+
+    @Override
+    public Shift getShiftById(int shiftId) {
         try {
-            return server.getAllShifts();
+            return server.getShiftById(shiftId);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }

@@ -12,7 +12,6 @@ import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,73 +45,63 @@ public class TaskLogicManager implements TaskLogic {
 
     @Override
     public List<Task> getAllTask(@Nullable LocalDate startDate, @Nullable LocalDate deadline, @Nullable Boolean isImportant, @Nullable Status status) {
-        List<Task> newTask = new ArrayList<>();
-        List<Task> allTask = new ArrayList<>();
 
-        try {
-            allTask = server.getAllTask();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (startDate != null && deadline != null && status != null) {
-            for (Task task : allTask) {
-                if ((task.getDeadline().isBefore(deadline.plusDays(1))) && (task.getStartDate().isAfter(startDate.minusDays(1))) && task.getStatus().equals(status)) {
-                    newTask.add(task);
-                }
-            }
-            return newTask;
-        }
         if (startDate != null && deadline != null) {
-            for (Task task : allTask) {
-                if ((task.getDeadline().isBefore(deadline.plusDays(1))) && (task.getStartDate().isAfter(startDate.minusDays(1)))) {
-                    newTask.add(task);
-                }
+            try {
+                return server.getAllTaskBetween(startDate,deadline);
+            } catch (RemoteException e) {
+                e.printStackTrace();
             }
-            return newTask;
         }
+
         if (startDate != null) {
-            for (Task task : allTask) {
-                if (task.getStartDate().isAfter(startDate.minusDays(1))) {
-                    newTask.add(task);
-                }
+            try {
+                return server.getAllTaskBetween(startDate, LocalDate.now().plusMonths(3));
+            } catch (RemoteException e) {
+                e.printStackTrace();
             }
-            return newTask;
         }
         if (deadline != null) {
-            for (Task task : allTask) {
-                if (task.getDeadline().isBefore(deadline.plusDays(1))) {
-                    newTask.add(task);
-                }
+            try {
+                return server.getAllTaskBetween(LocalDate.now().minusMonths(3),deadline);
+            } catch (RemoteException e) {
+                e.printStackTrace();
             }
-            return newTask;
         }
         if (status != null) {
-            for (Task task : allTask) {
-                if (task.getStatus().equals(status)) {
-                    newTask.add(task);
-                }
+            try {
+                return server.getAllTaskWithStatus(status);
+            } catch (RemoteException e) {
+                e.printStackTrace();
             }
-            return newTask;
         }
         if (isImportant != null) {
-            if (isImportant) {
-                for (Task task : allTask) {
-                    if (isTaskImportant(task)) {
-                        newTask.add(task);
-                    }
-                }
-                return newTask;
+
+            try {
+                return server.getAllTaskBetween(LocalDate.now().minusMonths(3),LocalDate.now().plusDays(2));
+            } catch (RemoteException e) {
+                e.printStackTrace();
             }
         }
+        try {
+            return server.getAllTask();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
-        return allTask;
+        return null;
     }
 
-    private boolean isTaskImportant(Task task){
-        int diffBetweenTwoDate = LocalDate.now().compareTo(task.getDeadline());
-        if (diffBetweenTwoDate >=0 && diffBetweenTwoDate <= 2 )return true;
-        else return false;
+    @Override
+    public Task getTaskById(int taskId) {
+        try {
+            return server.getTaskById(taskId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
+
 
 }

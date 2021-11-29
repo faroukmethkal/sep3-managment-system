@@ -31,6 +31,24 @@ public class ShiftController {
         return shiftLogic.getAllShifts();
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_admin')")
+    @GetMapping("api/shift")
+    public Shift getShift(@RequestParam("id") int id){
+        return shiftLogic.getShiftById(id);
+    }
+
+    @DeleteMapping("api/shift")
+    @PreAuthorize("hasAnyRole('ROLE_admin')")
+    public void removeShift(@RequestParam("id") int id){
+        shiftLogic.removeShift(id);
+    }
+
+    @PutMapping("api/shift")
+    @PreAuthorize("hasAnyRole('ROLE_admin')")
+    public void editShift(@RequestBody Shift shift){
+        shiftLogic.editShift(shift);
+    }
+
 
 
 }

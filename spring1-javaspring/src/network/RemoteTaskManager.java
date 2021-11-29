@@ -19,27 +19,68 @@ public class RemoteTaskManager implements RemoteTask{
     }
 
     @Override
-    public void createNewTask(Task task) throws RemoteException {
-        remoteTask.createNewTask(task);
+    public void createNewTask(Task task) {
+        try {
+            remoteTask.createNewTask(task);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public List<Task> getTaskWhereSpecialtiesIs(Specialties s) throws RemoteException {
-       return remoteTask.getTaskWhereSpecialtiesIs(s);
-    }
 
     @Override
-    public List<Task> getAllTask() throws RemoteException {
-       return remoteTask.getAllTask();
+    public List<Task> getTaskWhereSpecialtiesIs(Specialties s)  {
+        try {
+            return remoteTask.getTaskWhereSpecialtiesIs(s);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
+
     @Override
-    public List<Task> getAllTaskBetween(LocalDate start, LocalDate deadline) throws RemoteException {
+    public List<Task> getAllTask()  {
+        try {
+            return remoteTask.getAllTask();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
     @Override
-    public List<Task> getAllTaskWithStatus(Status status) throws RemoteException {
+    public List<Task> getAllTaskBetween(LocalDate start, LocalDate deadline){
+        try {
+            return remoteTask.getAllTaskBetween(start,deadline);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Task> getAllTaskWithStatus(Status status){
+        try {
+            return remoteTask.getAllTaskWithStatus(status);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public Task getTaskById(int taskId) {
+        try {
+            return remoteTask.getTaskById(taskId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 

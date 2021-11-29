@@ -16,12 +16,47 @@ public class RemoteShiftManager implements RemoteShift{
     }
 
     @Override
-    public void createShift(Shift shift) throws RemoteException {
-        remoteShift.createShift(shift);
+    public void createShift(Shift shift) {
+        try {
+            remoteShift.createShift(shift);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public List<Shift> getAllShifts() throws RemoteException {
-        return remoteShift.getAllShifts();
+    public void editShift(Shift shift)  {
+        try {
+            remoteShift.editShift(shift);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Shift getShiftById(int shiftId) throws RemoteException {
+        return remoteShift.getShiftById(shiftId);
+    }
+
+
+    @Override
+    public List<Shift> getAllShifts(){
+        try {
+            return remoteShift.getAllShifts();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public void removeShift(int shiftId) {
+        try {
+            remoteShift.removeShift(shiftId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
     }
 }

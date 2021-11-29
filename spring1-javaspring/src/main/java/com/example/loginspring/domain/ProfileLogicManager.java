@@ -3,6 +3,7 @@ package com.example.loginspring.domain;
 import model.Account;
 import model.Profile;
 import model.Role;
+import model.Specialties;
 import network.RemoteProfileManager;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import java.rmi.RemoteException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Locale;
 
 
 @Service
@@ -47,41 +48,26 @@ public class ProfileLogicManager implements ProfileLogic {
 
 
     @Override
-    public List<Account> getAllAccount() {
-        try {
+    public List<Account> getAllAccounts() {
             return server.getAllAccounts();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     @Override
-    public List<Profile> getAllProfiles(@Nullable Boolean partTimeEmpl,
-                                       @Nullable Boolean fullTimeEmpl) {
-        List<Profile> allProfiles = new ArrayList<>();
-        List<Profile> newList = new ArrayList<>();
+    public List<Profile> getAllProfiles(@Nullable Role role) {
 
-        try {
-            allProfiles = server.getAllProfiles();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(role != null){
+            return server.getAllProfileByRole(role);
+        }else{
+            return server.getAllProfiles();
         }
 
-        if (partTimeEmpl != null) {
-            for (Profile profile: allProfiles) {
-                if (profile.getRole().equals(Role.partTimeEmployee))  newList.add(profile);
-            }
-            return newList;
-        }else if(fullTimeEmpl != null){
-            for (Profile profile: allProfiles){
-                if (profile.getRole().equals(Role.fullTimeEmployee));
-            }
-        }
-
-        return allProfiles;
     }
+
+    @Override
+    public Specialties getSpecialty(String username) {
+        return server.getSpecialty(username);
+    }
+
 
 
     private String generateUsername(Profile profile) {
@@ -111,9 +97,9 @@ public class ProfileLogicManager implements ProfileLogic {
         }
 
         //if username is not unique
-        for (Account account:getAllAccount()){
-            if (account.getUsername().equals(username)){
-                username.append(generateRandomPassword().substring(0,1));
+        for (Account account:getAllAccounts()){
+            if (account.getUsername().equals(username.toString())){
+                username.append(generateRandomPassword().charAt(0));
             }
         }
         return username.toString();
