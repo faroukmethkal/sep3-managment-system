@@ -4,6 +4,7 @@ import model.Shift;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface RemoteShift extends Remote {
@@ -12,5 +13,6 @@ public interface RemoteShift extends Remote {
     void removeShift(int shiftId) throws RemoteException;
     void editShift(Shift shift) throws RemoteException;
     Shift getShiftById(int shiftId) throws RemoteException;
+    List<Shift> getAllAvailableShift(LocalDate date) throws RemoteException;
     //remove, edit
 }

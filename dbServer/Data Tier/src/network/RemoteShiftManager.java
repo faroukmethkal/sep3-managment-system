@@ -10,6 +10,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class RemoteShiftManager implements RemoteShift{
@@ -55,4 +56,11 @@ public class RemoteShiftManager implements RemoteShift{
     public Shift getShiftById(int shiftId) throws RemoteException {
         return shiftDB.getShiftById(shiftId);
     }
+
+    @Override
+    public List<Shift> getAllAvailableShift(LocalDate date) throws RemoteException {
+        return null;
+    }
+
+
 }
