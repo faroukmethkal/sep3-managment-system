@@ -280,6 +280,9 @@ public class TaskDAOImpl implements TaskDAO
 
   @Override public void removeTask(int taskId)
   {
+    removeSpecialtiesFromTask(taskId);
+    removeTaskFromTeam(taskId);
+
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
@@ -367,5 +370,39 @@ public class TaskDAOImpl implements TaskDAO
       }
     }
     return -1;
+  }
+
+  private void removeSpecialtiesFromTask(int taskId)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "DELETE FROM task_speciality WHERE taskid = ?");
+
+      statement.setInt(1, taskId);
+
+      statement.executeUpdate();
+
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+  }
+
+  private void removeTaskFromTeam(int taskId)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "DELETE FROM team WHERE taskid = ?");
+
+      statement.setInt(1, taskId);
+
+      statement.executeUpdate();
+
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
   }
 }
