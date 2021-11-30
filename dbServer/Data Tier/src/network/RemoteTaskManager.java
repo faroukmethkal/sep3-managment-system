@@ -63,4 +63,14 @@ public class RemoteTaskManager implements RemoteTask
   public Task getTaskById(int taskId) throws RemoteException {
     return taskDB.getTaskById(taskId);
   }
+
+  @Override
+  public void editTask(Task task) throws RemoteException {
+
+  }
+
+  @Override
+  public void removeTask(int id) throws RemoteException {
+
+  }
 }

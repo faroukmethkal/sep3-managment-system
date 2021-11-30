@@ -18,4 +18,6 @@ public interface RemoteTask extends Remote {
   List<Task> getAllTaskBetween(LocalDate start, LocalDate deadline)throws RemoteException;
   List<Task> getAllTaskWithStatus(Status status)throws RemoteException;
   Task getTaskById(int taskId) throws RemoteException;
+  void editTask(Task task) throws RemoteException;
+  void removeTask(int id) throws RemoteException;
 }
