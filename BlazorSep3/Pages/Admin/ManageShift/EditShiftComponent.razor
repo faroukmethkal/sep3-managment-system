@@ -1,0 +1,127 @@
+﻿@page "/EditShift/{id:int}"
+@using Microsoft.AspNetCore.Components
+@using BlazorSep3.model
+@using BlazorSep3.Data
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IShiftService shiftService;
+
+<div class="content">
+    <ShiftNavSide/>
+    <main class="content-view">
+        <div class="form">
+            <div class="form-header">
+                <h2>
+                    Edit Shift
+                </h2>
+            </div>
+            <div>
+                <span class="error-message">@errorMessage</span>
+            </div>
+
+            <div class="form_parts">
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-pencil"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Name</label>
+                            <input type="text" class="form__input" placeholder="Title" @bind="@shift.Name">
+                        </div>
+
+                    </div>
+
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-briefcase"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Description</label>
+                            <input type="text" class="form__input" placeholder="Description" @bind="shift.Description">
+                        </div>
+                    </div>
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-calendar"/>
+                    </div>
+                    <div>
+                        <label class="form__label">Date</label>
+                        <input type="date" class="form__input" placeholder="Date" @bind="shift.Date"
+                               min=@DateTime.Today>
+                    </div>
+                </div>
+                
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-clock"/>
+                    </div>
+                    <div>
+                        <label class="form__label">Start Time</label>
+                        <input type="time" class="form__input" placeholder="StartTime" @bind="shift.StartTime"
+                               min=@DateTime.Today.TimeOfDay>
+                    </div>
+                </div>
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-clock"/>
+                    </div>
+                    <div>
+                        <label class="form__label">End Time</label>
+                        <input type="time" class="form__input" placeholder="EndTime" @bind="shift.EndTime"
+                               min=@shift.StartTime.AddHours(1)>
+                    </div>
+                </div>
+                <div class="form__group">
+                    <div class="icon">
+                        <span class="oi oi-clock"/>
+                    </div>
+                    <div>
+                        <label class="form__label">Number of Part-timers</label>
+                        <input type="int" class="form__input" placeholder="EndTime" @bind="shift.NumberOfEmployee"
+                               min="1">
+                    </div>
+                </div>
+            </div>
+            <div class="form__group">
+                <button class="button-white" type="submit" @onclick="EditShift">Edit Shift</button>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+    
+    [Parameter]
+    public int Id { get; set; }
+    private Shift shift = new Shift();
+
+    private string errorMessage;
+    
+    private async Task EditShift()
+    {
+        try
+        {
+            await shiftService.EditShift(shift);
+            errorMessage = "";
+            NavigationManager.NavigateTo("/ManageShift");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            errorMessage = e.Message;
+        }
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        shift = await shiftService.GetShiftById(Id);
+        Console.WriteLine("from edit form "+shift);
+        
+    }
+  
+
+}

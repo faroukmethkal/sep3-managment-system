@@ -4,14 +4,13 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorSep3.Pages
+namespace BlazorSep3.Pages.Admin.ManageShift
 {
     #line hidden
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Components;
 #nullable restore
 #line 1 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using System.Net.Http;
@@ -83,14 +82,28 @@ using BlazorSep3.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Index.razor"
-using BlazorSep3.Authentication;
+#line 2 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageShift\EditShiftComponent.razor"
+using Microsoft.AspNetCore.Components;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 3 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageShift\EditShiftComponent.razor"
+using BlazorSep3.model;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageShift\EditShiftComponent.razor"
+using BlazorSep3.Data;
+
+#line default
+#line hidden
+#nullable disable
+    [Microsoft.AspNetCore.Components.RouteAttribute("/EditShift/{id:int}")]
+    public partial class EditShiftComponent : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -98,27 +111,48 @@ using BlazorSep3.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 115 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Index.razor"
- 
-    public async Task PerformLogout()
+#line 93 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageShift\EditShiftComponent.razor"
+       
+
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+    
+    [Parameter]
+    public int Id { get; set; }
+    private Shift shift = new Shift();
+
+    private string errorMessage;
+    
+    private async Task EditShift()
     {
         try
         {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
-            NavigationManager.NavigateTo("/");
+            await shiftService.EditShift(shift);
+            errorMessage = "";
+            NavigationManager.NavigateTo("/ManageShift");
         }
         catch (Exception e)
         {
+            Console.WriteLine(e.Message);
+            errorMessage = e.Message;
         }
     }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        shift = await shiftService.GetShiftById(Id);
+        Console.WriteLine("from edit form "+shift);
+        
+    }
+  
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _jsRuntime { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IShiftService shiftService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

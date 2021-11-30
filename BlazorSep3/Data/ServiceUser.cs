@@ -89,7 +89,7 @@ namespace BlazorSep3.Data
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
 
-        public async Task<IList<Profile>> GetAllProfiles(Specialities? specialities)
+        public async Task<IList<Profile>> GetAllProfiles(Role? role)
         {
             List<Profile> result = new List<Profile>();
             
@@ -97,7 +97,7 @@ namespace BlazorSep3.Data
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
             HttpResponseMessage response = 
                 await client.GetAsync(client.BaseAddress + 
-                                      $"api/profile?specialty={specialities}"); //dont know the url...
+                                      $"api/profile?role={role}"); //dont know the url...
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Error, not response");
@@ -118,7 +118,7 @@ namespace BlazorSep3.Data
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
             HttpResponseMessage response = 
                 await client.GetAsync(client.BaseAddress + 
-                                      $"api/profile/account?username={username}"); //dont know the url.... 
+                                      $"api/profile/account?username={username}"); 
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Error, not response");

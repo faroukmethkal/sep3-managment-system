@@ -536,3 +536,9 @@ C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\s
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageShift\AllShifts.razor.g.cs
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageShift\AllShifts.razor.g.cs
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageShift\AllShifts.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageShift\AllShifts.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageShift\AllShifts.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageShift\AllShifts.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageShift\EditShiftComponent.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageShift\EditShiftComponent.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageShift\EditShiftComponent.razor.rz.scp.css

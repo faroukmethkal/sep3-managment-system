@@ -6,12 +6,17 @@ namespace BlazorSep3.model
 {
     public class Profile
     {
+        
         [Required]
         [JsonProperty("firstName")]
         public string FirstName { get; set; }
         [Required]
         [JsonProperty("lastName")]
         public string LastName { get; set; }
+        
+        [JsonProperty("username")] 
+        public string Username { get; set; }
+        
         [Required]
         [JsonProperty("specialties")]
         public string Specialities { get; set; }

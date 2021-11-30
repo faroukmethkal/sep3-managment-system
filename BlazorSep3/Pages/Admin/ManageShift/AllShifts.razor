@@ -7,8 +7,8 @@
 
 
 <div class="content">
-    <ShiftEmployeeNavSide/>
-    <main class="content-view">
+        <ShiftNavSide/>
+        <main class="content-view">
         <div class="filter_option">
             <div class="form__group">
                 <div class="form__group-title">
@@ -138,7 +138,7 @@
 
     private void Edit(int id)
     {
-        NavigationManager.NavigateTo($"/ManageShift{id}");
+        NavigationManager.NavigateTo($"/EditShift/{id}");
     }
     
     private void Remove(int id)

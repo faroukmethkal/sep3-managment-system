@@ -14,10 +14,10 @@
                     <label class="form__label">Specialty</label>
                 </div>
                 <div>
-                    <select name="specialties" class="form__input_select" @bind="specialty">
-                        @foreach (var specialty in Enum.GetValues(typeof(Specialities)))
+                    <select name="specialties" class="form__input_select" @bind="role">
+                        @foreach (var role in Enum.GetValues(typeof(Role)))
                         {
-                            <option value="@specialty">@specialty</option>
+                            <option value="@role">@role</option>
                         }
                     </select>
                 </div>
@@ -29,9 +29,6 @@
 
             <form action="#" class="form__group_search">
                 <input type="text" class="search_input" placeholder="Search name" @oninput="@((arg)=>FilterByName(arg))">
-                @*<button class="search_button" @onclick="">
-                    <span class="icon oi oi-magnifying-glass">Search</span>
-                </button>*@
             </form>
 
         </div>
@@ -46,7 +43,7 @@
             else if (!profilesToShow.Any())
             {
                 <p>
-                    <em>No Tasks to show. </em>
+                    <em>No Profile to show. </em>
                 </p>
             }
             else
@@ -54,6 +51,7 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th>Username</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Specialty</th>
@@ -65,6 +63,7 @@
                     @foreach (var item in profilesToShow)
                     {
                         <tr>
+                            <td>@item.Username</td>
                             <td>@item.FirstName</td>
                             <td>@item.LastName</td>
                             <td>@item.Specialities</td>
@@ -84,11 +83,11 @@
     private IList<Profile> profiles;
     private string? filterByName;
 
-    private Specialities? specialty { get; set; }
+    private Role? role { get; set; }
 
     private async Task Filter()
     {
-        profiles = await serviceUser.GetAllProfiles(specialty);
+        profiles = await serviceUser.GetAllProfiles(role);
         profilesToShow = profiles;
     }
 

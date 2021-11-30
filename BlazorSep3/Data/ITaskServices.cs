@@ -14,5 +14,6 @@ namespace BlazorSep3.Data
             Status? status);
 
         Task RemoveTask(int id);
+        Task<Taskk> GetTaskById(int id);
     }
 }
