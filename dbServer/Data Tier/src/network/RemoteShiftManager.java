@@ -60,7 +60,7 @@ public class RemoteShiftManager implements RemoteShift{
 
     @Override
     public List<Shift> getAllAvailableShift(LocalDate date) throws RemoteException {
-        return null;
+        return shiftDB.getAvailableShifts(date);
     }
 
     @Override public List<Shift> getAllShiftsStartAtDate(LocalDate date)
