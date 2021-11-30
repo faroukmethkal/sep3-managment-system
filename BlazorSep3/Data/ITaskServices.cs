@@ -15,5 +15,7 @@ namespace BlazorSep3.Data
 
         Task RemoveTask(int id);
         Task<Taskk> GetTaskById(int id);
+        Task EditTask(Taskk task);
+
     }
 }

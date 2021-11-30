@@ -63,9 +63,14 @@ namespace BlazorSep3.Data
             
             return result; 
         }
-        public Task RemoveShift(int id)
+        public async Task RemoveShift(int id)
         {
-            throw new NotImplementedException();
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+
+            var response = await client.DeleteAsync(client.BaseAddress + $"api/shift?id={id}"); 
+            
+            if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
 
         public async Task<Shift> GetShiftById(int id)

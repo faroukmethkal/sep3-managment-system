@@ -93,7 +93,12 @@ namespace BlazorSep3.Data
 
         public async Task RemoveTask(int id)
         {
-            throw new NotImplementedException();
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+
+            var response = await client.DeleteAsync(client.BaseAddress + $"api/task?id={id}"); 
+            
+            if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
 
         public async Task<Taskk> GetTaskById(int id)
@@ -115,6 +120,17 @@ namespace BlazorSep3.Data
             return taskk; 
         }
 
-     
+        public async Task EditTask(Taskk task)
+        {
+            string serializeTask = JsonConvert.SerializeObject(task);
+            Console.WriteLine(serializeTask);
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpContent content = new StringContent(serializeTask, Encoding.UTF8, "application/json"); 
+
+            var response = await client.PutAsync(client.BaseAddress + "api/task", content); 
+            
+            if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
+        }
     }
 }

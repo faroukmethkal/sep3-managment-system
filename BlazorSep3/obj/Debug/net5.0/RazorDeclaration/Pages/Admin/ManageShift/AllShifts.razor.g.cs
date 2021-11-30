@@ -143,7 +143,7 @@ using BlazorSep3.Data;
 
     private void Edit(int id)
     {
-        NavigationManager.NavigateTo($"/ManageShift{id}");
+        NavigationManager.NavigateTo($"/EditShift/{id}");
     }
     
     private void Remove(int id)

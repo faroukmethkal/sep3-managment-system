@@ -1,0 +1,210 @@
+﻿@page "/EditTask/{id:int}"
+@using Microsoft.AspNetCore.Components
+@using BlazorSep3.model
+@using BlazorSep3.Data
+@using System.ComponentModel.DataAnnotations
+@using System.Text
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ITaskServices taskServices;
+
+<div class="content">
+    <ShiftNavSide/>
+    <main class="content-view">
+        <div class="form">
+            <div class="form-header">
+                <h2>
+                    Edit Task @Id
+                </h2>
+            </div>
+            <div>
+                <span class="error-message">@errorMessage</span>
+            </div>
+            
+            <div class="form_parts">
+                <div class="form_part1">
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-pencil"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Title</label>
+                            <input type="text" class="form__input" placeholder="Title" @bind="@task.Title">
+                        </div>
+            
+                    </div>
+            
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-briefcase"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Description</label>
+                            <input type="text" class="form__input" placeholder="Description" @bind="task.Description">
+                        </div>
+                    </div>
+            
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-person"/>
+                        </div>
+                        <div>
+                            <div>
+                                <label class="form__label">Speciality</label>
+                                <select name="specialties" class="form__input_select" @bind="currentSpec">
+                                    @foreach (var speciality in Enum.GetValues(typeof(Specialities)))
+                                    {
+                                        <option value="@speciality">@splitOnCapitalLitter(speciality.ToString())</option>
+                                    }
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form__label">Number of people</label>
+                                <input type="number" class="form__input" placeholder="NumberOfPeople" @bind="currentPeople">
+                            </div>
+                            <div>
+                                <span class="specialty-message">@textSpecialty</span>
+                            </div>
+                            <div class="form__group">
+                                <button class="button-spec" type="submit" @onclick="AddToSpecialties">Add Speciality</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <div class="form_part2">
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-calendar"/>
+                        </div>
+                        <div>
+                            <label class="form__label">StartDate</label>
+                            <input type="date" class="form__input" placeholder="StartDate" @bind="task.StartDate"
+                                   min=@DateTime.Today>
+                        </div>
+                    </div>
+            
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-calculator"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Estimate</label>
+                            <input type="number" class="form__input" placeholder="Estimate" @bind="task.Estimate"
+                                   min="1">
+                        </div>
+                    </div>
+            
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-calendar"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Deadline</label>
+                            <input type="date" class="form__input" placeholder="Deadline" @bind="task.Deadline"
+                                   min=@DateTime.Today.AddDays(1)>
+                        </div>
+                    </div>
+            
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-pencil"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Status</label>
+            
+                            <select name="specialties" class="form__input_select" @bind="task.Status">
+                                @foreach (var status in Enum.GetValues(typeof(Status)))
+                                {
+                                    <option value="@status">@status</option>
+                                }
+                            </select>
+                        </div>
+            
+                    </div>
+                </div>
+                            
+            </div>
+            <div class="form__group">
+                <button class="button-white" type="submit" @onclick="EditTask">Edit Task</button>
+            </div>
+        </div>
+            
+    </main>
+</div>
+
+
+@code {
+
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+    
+    [Parameter]
+    public int Id { get; set; }
+    private Taskk task;
+    private string currentSpec = Specialities.videoGameDesigner.ToString();
+
+    [Range(1, int.MaxValue)] 
+    private int currentPeople = 1;
+
+    private string textSpecialty;
+
+    private string errorMessage;
+
+    private void AddToSpecialties()
+    {
+        if (!task.Specialities.ContainsKey(currentSpec))
+        {
+            task.Specialities.Add(currentSpec, currentPeople);
+            textSpecialty = "Speciality " + splitOnCapitalLitter(currentSpec) + " for " + currentPeople +
+                            " has been added to this task";
+        }
+        else
+        {
+            task.Specialities[currentSpec] = currentPeople;
+            textSpecialty = "Speciality " + splitOnCapitalLitter(currentSpec) + " has been updated to " + currentPeople;
+        }
+
+        currentSpec = Specialities.videoGameDesigner.ToString();
+        currentPeople = 1;
+    }
+
+    private string splitOnCapitalLitter(string s)
+    {
+        StringBuilder builder = new StringBuilder();
+        s.First().ToString().ToUpper();
+        foreach (char c in s)
+        {
+            if (Char.IsUpper(c) && builder.Length > 0) builder.Append(' ');
+            builder.Append(c);
+        }
+        string newString = builder.ToString();
+        string newsCapitalizeFirstLetter = char.ToUpper(newString[0]) + newString.Substring(1);
+        return newsCapitalizeFirstLetter;
+    }
+    
+    private async Task EditTask()
+    {
+        try
+        {
+            await taskServices.EditTask(task);
+            errorMessage = "";
+            NavigationManager.NavigateTo("/ViewAllTasks");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            errorMessage = e.Message;
+        }
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        task = await taskServices.GetTaskById(Id);
+        Console.WriteLine("from edit form "+task);
+
+    }
+  
+
+}

@@ -791,24 +791,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Farouk\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\terez\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\VIA\\Third Semester\\SEP3\\Backup\\sep3-managment-system-blazor-server\\BlazorSep3\\BlazorSep3.csproj",
+      "projectUniqueName": "C:\\Users\\terez\\RiderProjects\\sep3-managment-system\\BlazorSep3\\BlazorSep3.csproj",
       "projectName": "BlazorSep3",
-      "projectPath": "F:\\VIA\\Third Semester\\SEP3\\Backup\\sep3-managment-system-blazor-server\\BlazorSep3\\BlazorSep3.csproj",
-      "packagesPath": "C:\\Users\\Farouk\\.nuget\\packages\\",
-      "outputPath": "F:\\VIA\\Third Semester\\SEP3\\Backup\\sep3-managment-system-blazor-server\\BlazorSep3\\obj\\",
+      "projectPath": "C:\\Users\\terez\\RiderProjects\\sep3-managment-system\\BlazorSep3\\BlazorSep3.csproj",
+      "packagesPath": "C:\\Users\\terez\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\terez\\RiderProjects\\sep3-managment-system\\BlazorSep3\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Farouk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\terez\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -873,7 +868,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
