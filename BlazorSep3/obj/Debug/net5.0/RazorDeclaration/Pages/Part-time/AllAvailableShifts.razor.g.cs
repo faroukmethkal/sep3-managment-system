@@ -141,9 +141,10 @@ using BlazorSep3.Data;
         shifts = shifts.Where(t => filterByName != null && (t.Name.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
 
-    private void TakeShift(int id)
+    private async void TakeShift(int id)
     {
-        NavigationManager.NavigateTo($"/TakeShift{id}");
+        await shiftService.TakeShift(id);
+        NavigationManager.NavigateTo($"/MyShifts");
     }
 
     protected override async Task OnInitializedAsync()

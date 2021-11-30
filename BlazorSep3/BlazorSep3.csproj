@@ -41,7 +41,9 @@
         <Content Update="Pages\Admin\ManageShift\AllShifts.razor.css">
             <DependentUpon>AllShifts.razor</DependentUpon>
         </Content>
-        <Content Include="Pages\Admin\ManageTask\EditTaskComponent.razor.css" />
+        <Content Update="Pages\Admin\ManageTask\EditTaskComponent.razor.css" >
+            <DependentUpon>EditTaskComponent.razor</DependentUpon>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>

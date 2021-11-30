@@ -143,12 +143,16 @@ using BlazorSep3.Data;
 
     private void Edit(int id)
     {
-        NavigationManager.NavigateTo($"/ManageTask{id}");
+        NavigationManager.NavigateTo($"/EditTask{id}");
     }
     
-    private void Remove(int id)
+    private async void Remove(int id)
     {
-        taskServices.RemoveTask(id);
+        bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to remove this task?"); // Confirm
+        if (confirmed)
+        {
+            await taskServices.RemoveTask(id);
+        }
     }
 
     protected override async Task OnInitializedAsync()

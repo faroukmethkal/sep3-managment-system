@@ -146,9 +146,13 @@ using BlazorSep3.Data;
         NavigationManager.NavigateTo($"/EditShift/{id}");
     }
     
-    private void Remove(int id)
+    private async void Remove(int id)
     {
-        shiftService.RemoveShift(id);
+        bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to remove this shift?"); // Confirm
+        if (confirmed)
+        {
+            await shiftService.RemoveShift(id);
+        }
     }
 
     protected override async Task OnInitializedAsync()

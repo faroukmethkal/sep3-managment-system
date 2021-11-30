@@ -163,7 +163,11 @@
     
     private async void Remove(int id)
     {
-        await taskServices.RemoveTask(id);
+        bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to remove this task?"); // Confirm
+        if (confirmed)
+        {
+            await taskServices.RemoveTask(id);
+        }
     }
 
     protected override async Task OnInitializedAsync()
