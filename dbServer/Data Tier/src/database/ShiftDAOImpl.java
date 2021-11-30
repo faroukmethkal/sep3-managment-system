@@ -92,7 +92,8 @@ public class ShiftDAOImpl implements ShiftDAO
     {
       System.out.println(s+" - returned null");
       return null;
-    }  }
+    }
+  }
 
   @Override public void removeShift(int shiftId)
   {
@@ -170,5 +171,146 @@ public class ShiftDAOImpl implements ShiftDAO
       }
       return null;
     }
+
+  @Override public List<Shift> getAvailableShifts(LocalDate date)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * from shift where date >= ? and "
+              + "(SELECT count(username) from assigned_employees group by assigned_employees.shiftid) < numberofemployees");
+
+      statement.setDate(1, java.sql.Date.valueOf(date));
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Shift> shifts = new ArrayList<Shift>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("shiftid");
+        String name = resultSet.getString("name");
+        LocalTime startTime = resultSet.getTime("starttime").toLocalTime();
+        LocalTime endTime = resultSet.getTime("endtime").toLocalTime();
+        String description = resultSet.getString("description");
+        int numberOfEmployees = resultSet.getInt("numberofemployees");
+        LocalDate date1 = resultSet.getDate("date").toLocalDate();
+        Shift shift = new Shift(name, date1, startTime, endTime, description, numberOfEmployees);
+        shift.setId(idDB);
+        shifts.add(shift);
+      }
+      System.out.println(shifts);
+      return shifts;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s+" - returned null");
+      return null;
+    }
   }
+
+  @Override public List<Shift> getShiftsStartingAtDate(LocalDate date) //exact date or date+later ?
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("select * from shift WHERE date = ?");
+
+      statement.setDate(1, java.sql.Date.valueOf(date));
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Shift> shifts = new ArrayList<Shift>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("shiftid");
+        String name = resultSet.getString("name");
+        LocalTime startTime = resultSet.getTime("starttime").toLocalTime();
+        LocalTime endTime = resultSet.getTime("endtime").toLocalTime();
+        String description = resultSet.getString("description");
+        int numberOfEmployees = resultSet.getInt("numberofemployees");
+        LocalDate date1 = resultSet.getDate("date").toLocalDate();
+        Shift shift = new Shift(name, date1, startTime, endTime, description, numberOfEmployees);
+        shift.setId(idDB);
+        shifts.add(shift);
+      }
+      System.out.println(shifts);
+      return shifts;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s + " - returned null");
+      return null;
+    }
+  }
+
+  @Override public List<Shift> getShiftsStartingAtTime(LocalTime time) //exact time or time+later ?
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("select * from shift WHERE starttime = ?");
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Shift> shifts = new ArrayList<Shift>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("shiftid");
+        String name = resultSet.getString("name");
+        LocalTime startTime = resultSet.getTime("starttime").toLocalTime();
+        LocalTime endTime = resultSet.getTime("endtime").toLocalTime();
+        String description = resultSet.getString("description");
+        int numberOfEmployees = resultSet.getInt("numberofemployees");
+        LocalDate date = resultSet.getDate("date").toLocalDate();
+        Shift shift = new Shift(name, date, startTime, endTime, description, numberOfEmployees);
+        shift.setId(idDB);
+        shifts.add(shift);
+      }
+      System.out.println(shifts);
+      return shifts;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s+" - returned null");
+      return null;
+    }
+  }
+
+  @Override public List<Shift> getShiftsBetweenTime(LocalTime startTime, LocalTime endTime)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT * from shift where starttime >= ? and endtime <= ?");
+
+      statement.setTime(1, java.sql.Time.valueOf(startTime));
+      statement.setTime(1, java.sql.Time.valueOf(endTime));
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Shift> shifts = new ArrayList<Shift>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("shiftid");
+        String name = resultSet.getString("name");
+        LocalTime startTime1 = resultSet.getTime("starttime").toLocalTime();
+        LocalTime endTime1 = resultSet.getTime("endtime").toLocalTime();
+        String description = resultSet.getString("description");
+        int numberOfEmployees = resultSet.getInt("numberofemployees");
+        LocalDate date = resultSet.getDate("date").toLocalDate();
+        Shift shift = new Shift(name, date, startTime1, endTime1, description, numberOfEmployees);
+        shift.setId(idDB);
+        shifts.add(shift);
+      }
+      System.out.println(shifts);
+      return shifts;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s + " - returned null");
+      return null;
+    }
+  }
+}
 

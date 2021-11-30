@@ -12,4 +12,5 @@ public interface ProfileDAO
   List<Profile> getAllProfiles();
   Specialties getSpecialtyByUsername(String username);
   List<Profile> getProfilesByRole(Role role);
+  List<Profile> getProfilesBySpecialty(Specialties specialty);
 }

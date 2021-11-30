@@ -278,6 +278,47 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
+  @Override public void removeTask(int taskId)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "DELETE FROM task WHERE taskid = ?");
+
+      statement.setInt(1, taskId);
+
+      statement.executeUpdate();
+
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+  }
+
+  @Override public void editTask(Task task)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "UPDATE task set title = ?,description = ?, startdate = ?, estimatedtime = ?, deadline = ?, status = ?"
+              + " WHERE taskid = ?");
+      //new data
+      statement.setString(1, task.getTitle());
+      statement.setString(2, task.getDescription());
+      statement.setDate(3, java.sql.Date.valueOf(task.getStartDate()));
+      statement.setDouble(4, task.getEstimatedTime());
+      statement.setDate(5, java.sql.Date.valueOf(task.getDeadline()));
+      statement.setString(6, task.getStatus().toString());
+      //old id
+      statement.setInt(7, task.getId());
+
+      statement.executeUpdate();
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+  }
+
   private void addSpecialtiesOfTask(Task task)
   {
     try(Connection connection =  ConnectionDB.getInstance().getConnection())

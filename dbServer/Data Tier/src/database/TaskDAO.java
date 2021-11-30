@@ -14,10 +14,11 @@ public interface TaskDAO
   Task getTaskById(int id);
   List<Task> getAllTasks();
   Map<String,Integer> getSpecialtiesOfTask(int taskId);
+  void assignTeamToTask(int teamId, int taskId);
   List<Task> getTasksWhereSpecialtiesIs(Specialties specialty);
+  void setStatusOfTask(int taskId, Status status);
   List<Task> getTasksWhereStatusIs(Status status);
   List<Task> getTasksBetweenDates(LocalDate startDate, LocalDate deadline);
-
-  void assignTeamToTask(int teamId, int taskId);
-  void setStatusOfTask(int taskId, Status status);
+  void removeTask(int taskId);
+  void editTask(Task task);
 }

@@ -66,11 +66,11 @@ public class RemoteTaskManager implements RemoteTask
 
   @Override
   public void editTask(Task task) throws RemoteException {
-
+    taskDB.editTask(task);
   }
 
   @Override
   public void removeTask(int id) throws RemoteException {
-
+    taskDB.removeTask(id);
   }
 }

@@ -86,4 +86,10 @@ public class RemoteProfileManager implements RemoteProfile
         return profileDB.getProfilesByRole(role);
     }
 
+    @Override public List<Profile> getProfilesBySpecialty(Specialties specialty)
+        throws RemoteException
+    {
+        return profileDB.getProfilesBySpecialty(specialty);
+    }
+
 }

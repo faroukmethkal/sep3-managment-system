@@ -11,6 +11,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class RemoteShiftManager implements RemoteShift{
@@ -62,5 +63,22 @@ public class RemoteShiftManager implements RemoteShift{
         return null;
     }
 
+    @Override public List<Shift> getAllShiftsStartAtDate(LocalDate date)
+        throws RemoteException
+    {
+        return shiftDB.getShiftsStartingAtDate(date);
+    }
+
+    @Override public List<Shift> getAllShiftsStartAndEndAtTime(
+        LocalTime startTime, LocalTime endTime) throws RemoteException
+    {
+        return shiftDB.getShiftsBetweenTime(startTime, endTime);
+    }
+
+    @Override public List<Shift> getAllShiftsStartAtTime(LocalTime startTime)
+        throws RemoteException
+    {
+        return shiftDB.getShiftsStartingAtTime(startTime);
+    }
 
 }

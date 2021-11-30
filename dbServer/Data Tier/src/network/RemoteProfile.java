@@ -16,4 +16,5 @@ public interface RemoteProfile extends Remote {
   List<Account> getAllAccounts() throws RemoteException;
   Specialties getSpecialty(String username) throws RemoteException;
   List<Profile> getAllProfileByRole(Role role) throws RemoteException;
+  List<Profile> getProfilesBySpecialty(Specialties specialty) throws RemoteException;
 }
