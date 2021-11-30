@@ -108,5 +108,10 @@ namespace BlazorSep3.Data
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
             
         }
+
+        public Task TakeShift(int id)
+        {
+                throw new NotImplementedException();
+        }
     }
 }

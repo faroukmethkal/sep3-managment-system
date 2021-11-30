@@ -17,9 +17,6 @@
         <Content Update="Pages\ManageEmployee\AddEmployee.razor.css">
         <DependentUpon>AddEmployee.razor</DependentUpon>
         </Content>
-        <Content Update="Pages\Part-time\TakeShift.razor.css">
-            <DependentUpon>TakeShift.razor</DependentUpon>
-        </Content>
         <Content Update="Pages\ManageEmployee\ShiftEmployeeNavSide.razor.css">
         <DependentUpon>ShiftEmployeeNavSide.razor</DependentUpon>
         </Content>

@@ -141,9 +141,9 @@
         NavigationManager.NavigateTo($"/EditShift/{id}");
     }
     
-    private void Remove(int id)
+    private async void Remove(int id)
     {
-        shiftService.RemoveShift(id);
+        await shiftService.RemoveShift(id);
     }
 
     protected override async Task OnInitializedAsync()

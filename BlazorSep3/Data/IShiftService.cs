@@ -12,5 +12,6 @@ namespace BlazorSep3.Data
         Task RemoveShift(int id);
         Task<Shift> GetShiftById(int id);
         Task EditShift(Shift shift);
+        Task TakeShift(int id);
     }
 }

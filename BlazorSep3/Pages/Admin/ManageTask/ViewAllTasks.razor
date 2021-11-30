@@ -161,9 +161,9 @@
         NavigationManager.NavigateTo($"/EditTask{id}");
     }
     
-    private void Remove(int id)
+    private async void Remove(int id)
     {
-        taskServices.RemoveTask(id);
+        await taskServices.RemoveTask(id);
     }
 
     protected override async Task OnInitializedAsync()
