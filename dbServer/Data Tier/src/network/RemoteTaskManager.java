@@ -73,4 +73,26 @@ public class RemoteTaskManager implements RemoteTask
   public void removeTask(int id) throws RemoteException {
     taskDB.removeTask(id);
   }
+
+  @Override public int getTeamIdByTask(int taskId) throws RemoteException
+  {
+    return taskDB.getTeamIdByTask(taskId);
+  }
+
+  @Override public void assignEmployeeToTeam(String username, int teamId)
+      throws RemoteException
+  {
+    taskDB.assignEmployeeToTeam(username, teamId);
+  }
+
+  @Override public List<Task> getMyTasks(String username) throws RemoteException
+  {
+    return taskDB.getTasksOfEmployee(username);
+  }
+
+  @Override public List<Task> getMyTasksWhereStatusIs(String username, Status status)
+      throws RemoteException
+  {
+    return taskDB.getTasksOfEmployeeWithStatus(username, status);
+  }
 }

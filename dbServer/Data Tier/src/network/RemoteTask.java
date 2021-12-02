@@ -20,4 +20,8 @@ public interface RemoteTask extends Remote {
   Task getTaskById(int taskId) throws RemoteException;
   void editTask(Task task) throws RemoteException;
   void removeTask(int id) throws RemoteException;
+  int getTeamIdByTask(int taskId) throws RemoteException;
+  void assignEmployeeToTeam(String username, int teamId) throws RemoteException;
+  List<Task> getMyTasks(String username) throws RemoteException;
+  List<Task> getMyTasksWhereStatusIs(String username, Status status) throws RemoteException;
 }

@@ -53,6 +53,7 @@ public class TaskDAOImpl implements TaskDAO
       task.setId(getLatestId(task.getTitle()));
 
       addSpecialtiesOfTask(task);
+      addTeam(task.getId());
 
       //prints for test
       System.out.println(task.getTitle());
@@ -163,7 +164,7 @@ public class TaskDAOImpl implements TaskDAO
     return null;
   }
 
-  @Override public void assignTeamToTask(int teamId, int taskId)
+  /*@Override public void assignTeamToTask(int teamId, int taskId)
   {
     try(Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -180,7 +181,7 @@ public class TaskDAOImpl implements TaskDAO
     catch(SQLException s){
       System.out.println("SQLException - Nothing was changed to database");
     }
-  }
+  }*/
 
   @Override public List<Task> getTasksWhereSpecialtiesIs(Specialties specialty)
   {
@@ -322,6 +323,142 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
+  @Override public int getTeamIdByTask(int taskId)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT teamid FROM team WHERE taskid = ?");
+
+      statement.setInt(1, taskId);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      while (resultSet.next())
+      {
+        int teamId = resultSet.getInt("teamid");
+        return teamId;
+      }
+
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+    return -1;
+  }
+
+  @Override public void assignEmployeeToTeam(String username, int teamId)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "INSERT INTO team_mates (username, teamid) VALUES (?,?)");
+
+      statement.setString(1,username);
+      statement.setInt(2, teamId);
+
+      statement.executeUpdate();
+
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+  }
+
+  @Override public List<Task> getTasksOfEmployee(String username)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * from team join team_mates tm on team.teamid = tm.teamid join task t on t.taskid = team.taskid"
+          + " WHERE username = ?");
+
+      statement.setString(1,username);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Task> tasks = new ArrayList<Task>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("taskid");
+        String title = resultSet.getString("title");
+        String description = resultSet.getString("description");
+        LocalDate startDate = resultSet.getDate("startdate").toLocalDate();
+        double estimatedTime = resultSet.getDouble("estimatedtime");
+        LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
+        Status status = Status.valueOf(resultSet.getString("status"));
+        Task task = new Task(title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline,status);
+        task.setId(idDB);
+        tasks.add(task);
+      }
+      System.out.println(tasks);
+      return tasks;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s+" - returned null");
+      return null;
+    }
+  }
+
+  @Override public List<Task> getTasksOfEmployeeWithStatus(String username, Status status)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * from team join team_mates tm on team.teamid = tm.teamid join task t on t.taskid = team.taskid"
+              + " WHERE username = ? and t.status = ?");
+
+      statement.setString(1,username);
+      statement.setString(2,status.toString());
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Task> tasks = new ArrayList<Task>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("taskid");
+        String title = resultSet.getString("title");
+        String description = resultSet.getString("description");
+        LocalDate startDate = resultSet.getDate("startdate").toLocalDate();
+        double estimatedTime = resultSet.getDouble("estimatedtime");
+        LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
+        Status status1 = Status.valueOf(resultSet.getString("status"));
+        Task task = new Task(title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline,status1);
+        task.setId(idDB);
+        tasks.add(task);
+      }
+      System.out.println(tasks);
+      return tasks;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s+" - returned null");
+      return null;
+    }
+  }
+
+  @Override public void assignEmployeeToTask(String username, int taskId)
+  {
+    int teamId = getTeamIdByTask(taskId);
+    try(Connection connection =  ConnectionDB.getInstance().getConnection())
+    {
+        PreparedStatement statement = connection.prepareStatement(
+            "INSERT INTO team_mates (username, teamid) VALUES (?,?)");
+
+        statement.setString(1, username);
+        statement.setInt(2, teamId);
+
+        statement.executeUpdate();
+      //prints for test
+    }
+    catch(SQLException s){
+      System.out.println(s+" - Nothing was added to database");
+    }
+  }
+
   private void addSpecialtiesOfTask(Task task)
   {
     try(Connection connection =  ConnectionDB.getInstance().getConnection())
@@ -395,6 +532,23 @@ public class TaskDAOImpl implements TaskDAO
     {
       PreparedStatement statement = connection.prepareStatement(
           "DELETE FROM team WHERE taskid = ?");
+
+      statement.setInt(1, taskId);
+
+      statement.executeUpdate();
+
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+  }
+
+  private void addTeam(int taskId)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "INSERT INTO team (taskid) VALUES (?)");
 
       statement.setInt(1, taskId);
 

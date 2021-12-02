@@ -172,7 +172,7 @@ public class ShiftDAOImpl implements ShiftDAO
       return null;
     }
 
-  @Override public List<Shift> getAvailableShifts(LocalDate date)
+  @Override public List<Shift> getAvailableShifts(LocalDate date) //needs fix
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
