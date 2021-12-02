@@ -84,6 +84,7 @@
                         <th>Estimate</th>
                         <th>Deadline</th>
                         <th>Number of employees</th>
+                        <th>Take task</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -144,9 +145,14 @@
         tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
 
-    private void TakeTask(int id)
+    private async Task TakeTask(int id)
     {
-        NavigationManager.NavigateTo($"/TakeTask{id}");
+        bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to be assigned to this task?"); // Confirm
+        if (confirmed)
+        {
+            await taskServices.TakeTask(id);
+            NavigationManager.NavigateTo($"/MyTasks");
+        }
     }
 
     /*protected override async Task OnInitializedAsync()

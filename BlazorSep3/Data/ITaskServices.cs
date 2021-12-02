@@ -17,5 +17,8 @@ namespace BlazorSep3.Data
         Task<Taskk> GetTaskById(int id);
         Task EditTask(Taskk task);
 
+        Task TakeTask(int id);
+        Task<IList<Taskk>> GetAllMyTasks(Status? status);
+
     }
 }

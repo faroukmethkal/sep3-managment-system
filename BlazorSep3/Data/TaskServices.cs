@@ -132,5 +132,41 @@ namespace BlazorSep3.Data
             
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
+        
+        public async Task TakeTask(int id)
+        {
+            string serializeId = JsonConvert.SerializeObject(id);
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpContent content = new StringContent(serializeId, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = 
+                await client.PutAsync(client.BaseAddress + 
+                                      $"api/employee/task?username={currentAccount.username}&Id={id}", content); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+        }
+
+        public async Task<IList<Taskk>> GetAllMyTasks(Status? status)
+        {
+            List<Taskk> result = new List<Taskk>();
+            
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                                      $"api/employee/tasks?username={currentAccount.username}&status={status}"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+            result = JsonConvert.DeserializeObject<List<Taskk>>(message);
+            
+            return result; 
+        }
     }
 }
