@@ -1,5 +1,6 @@
 package network;
 
+import model.Profile;
 import model.Specialties;
 import model.Status;
 import model.Task;
@@ -32,5 +33,7 @@ public interface RemoteTask extends Remote {
   Map<String,Integer> getSpecialtiesOfTask(int taskId) throws RemoteException;
   void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties) throws RemoteException;
   void removeSpecialtyFromTask(int taskId, Specialties specialty) throws RemoteException;
+
+  List<Profile> getAllTeamMemberForTask(int taskId);
 
 }

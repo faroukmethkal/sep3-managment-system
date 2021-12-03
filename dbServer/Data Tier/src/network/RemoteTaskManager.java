@@ -2,6 +2,7 @@ package network;
 
 import database.TaskDAO;
 import database.TaskDAOImpl;
+import model.Profile;
 import model.Specialties;
 import model.Status;
 import model.Task;
@@ -110,6 +111,11 @@ public class RemoteTaskManager implements RemoteTask
   @Override
   public void removeSpecialtyFromTask(int taskId,  Specialties specialty) throws RemoteException {
 
+  }
+
+  @Override
+  public List<Profile> getAllTeamMemberForTask(int taskId) {
+    return null;
   }
 
 
