@@ -28,12 +28,19 @@ public interface RemoteTask extends Remote {
   List<Task> getMyTasksWhereStatusIs(String username, Status status) throws RemoteException;
 
   /**
-   TODO
+   TODO edit task's especialties
    */
   Map<String,Integer> getSpecialtiesOfTask(int taskId) throws RemoteException;
   void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties) throws RemoteException;
   void removeSpecialtyFromTask(int taskId, Specialties specialty) throws RemoteException;
 
-  List<Profile> getAllTeamMemberForTask(int taskId);
+  List<Profile> getAllTeamMemberForTask(int taskId) throws RemoteException;
+
+  /**
+   * these two method required to validate if user can be assigned to task or not
+   * the validation done in logic tier
+   * */
+  int numberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties s) throws RemoteException;
+  int numberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties s) throws RemoteException;
 
 }

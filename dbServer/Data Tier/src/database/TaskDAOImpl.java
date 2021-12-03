@@ -188,9 +188,11 @@ public class TaskDAOImpl implements TaskDAO
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT taskid FROM task_speciality WHERE speciality = ?");
+          "SELECT taskid, status FROM task_speciality WHERE speciality = ? AND status = ?");
 
       statement.setString(1,specialty.toString());
+      statement.setString(2,Status.Created.toString());
+
 
       ResultSet resultSet = statement.executeQuery();
       List<Task> tasks = new ArrayList<>();
@@ -457,6 +459,16 @@ public class TaskDAOImpl implements TaskDAO
     catch(SQLException s){
       System.out.println(s+" - Nothing was added to database");
     }
+  }
+
+  @Override
+  public int numberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties s) {
+    return 0;
+  }
+
+  @Override
+  public int numberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties s) {
+    return 0;
   }
 
   private void addSpecialtiesOfTask(Task task)

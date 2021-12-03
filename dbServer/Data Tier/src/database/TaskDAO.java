@@ -28,4 +28,7 @@ public interface TaskDAO
   List<Task> getTasksOfEmployeeWithStatus(String username, Status status);
   //idk if needed
   void assignEmployeeToTask(String username, int taskId);
+
+  int numberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties s);
+  int numberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties s);
 }

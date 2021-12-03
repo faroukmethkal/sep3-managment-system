@@ -114,8 +114,18 @@ public class RemoteTaskManager implements RemoteTask
   }
 
   @Override
-  public List<Profile> getAllTeamMemberForTask(int taskId) {
+  public List<Profile> getAllTeamMemberForTask(int taskId) throws RemoteException {
     return null;
+  }
+
+  @Override
+  public int numberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties s) throws RemoteException {
+    return 0;
+  }
+
+  @Override
+  public int numberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties s) throws RemoteException {
+    return 0;
   }
 
 
