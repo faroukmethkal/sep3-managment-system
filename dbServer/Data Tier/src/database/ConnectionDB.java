@@ -28,4 +28,5 @@ public class ConnectionDB {
                 "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep", //change schema after db is done
                 "bzjrfgwn", "ZPXdZD4hJLi7bjSr5foQeqn2ithW6iQV");
     }
+
 }

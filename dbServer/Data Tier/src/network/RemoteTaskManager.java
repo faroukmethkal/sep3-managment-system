@@ -13,6 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class RemoteTaskManager implements RemoteTask
 {
@@ -95,4 +96,21 @@ public class RemoteTaskManager implements RemoteTask
   {
     return taskDB.getTasksOfEmployeeWithStatus(username, status);
   }
+
+  @Override
+  public Map<String, Integer> getSpecialtiesOfTask(int taskId) throws RemoteException {
+    return null;
+  }
+
+  @Override
+  public void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties) throws RemoteException {
+
+  }
+
+  @Override
+  public void removeSpecialtyFromTask(int taskId,  Specialties specialty) throws RemoteException {
+
+  }
+
+
 }

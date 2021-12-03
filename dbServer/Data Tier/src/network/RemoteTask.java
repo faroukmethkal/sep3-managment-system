@@ -10,6 +10,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public interface RemoteTask extends Remote {
   void createNewTask(Task task) throws RemoteException;
@@ -24,4 +25,12 @@ public interface RemoteTask extends Remote {
   void assignEmployeeToTeam(String username, int teamId) throws RemoteException;
   List<Task> getMyTasks(String username) throws RemoteException;
   List<Task> getMyTasksWhereStatusIs(String username, Status status) throws RemoteException;
+
+  /**
+   TODO
+   */
+  Map<String,Integer> getSpecialtiesOfTask(int taskId) throws RemoteException;
+  void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties) throws RemoteException;
+  void removeSpecialtyFromTask(int taskId, Specialties specialty) throws RemoteException;
+
 }
