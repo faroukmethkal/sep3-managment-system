@@ -109,9 +109,53 @@ namespace BlazorSep3.Data
             
         }
 
-        public Task TakeShift(int id)
+        public async Task TakeShift(int id)
         {
-                throw new NotImplementedException();
+            string serializeId = JsonConvert.SerializeObject(id);
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpContent content = new StringContent(serializeId, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = 
+                await client.PutAsync(client.BaseAddress + 
+                                      $"api/parttime/shift?username={currentAccount.username}&Id={id}", content); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+        }
+
+        public async Task UnassignFromShift(int id)
+        {
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.DeleteAsync(client.BaseAddress + 
+                                      $"api/parttime/shift?username={currentAccount.username}&Id={id}"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+        }
+
+        public async Task<IList<Shift>> GetMyShifts(DateTime? date)
+        {
+            List<Shift> result = new List<Shift>();
+            
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                                      $"api/parttime/shifts?username={currentAccount.username}&date={date}"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+            result = JsonConvert.DeserializeObject<List<Shift>>(message);
+            
+            return result; 
         }
     }
 }
