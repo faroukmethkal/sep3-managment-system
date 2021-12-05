@@ -1,5 +1,6 @@
 package database;
 
+import model.Profile;
 import model.Specialties;
 import model.Status;
 import model.Task;
@@ -16,19 +17,25 @@ public interface TaskDAO
   Map<String,Integer> getSpecialtiesOfTask(int taskId);
   //void assignTeamToTask(int teamId, int taskId);
   List<Task> getTasksWhereSpecialtiesIs(Specialties specialty);
-  void setStatusOfTask(int taskId, Status status);
+  void setStatusOfTask(int taskId, Status status); //use this for manager to approve/reject task
   List<Task> getTasksWhereStatusIs(Status status);
   List<Task> getTasksBetweenDates(LocalDate startDate, LocalDate deadline);
+  List<Task> getFinishedTasks();
   void removeTask(int taskId);
   void editTask(Task task);
-  //to implement
+  void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties);
+  void removeSpecialtyFromTask(int taskId, Specialties specialty);
   int getTeamIdByTask(int taskId);
   void assignEmployeeToTeam(String username, int teamId);
   List<Task> getTasksOfEmployee(String username);
   List<Task> getTasksOfEmployeeWithStatus(String username, Status status);
   //idk if needed
-  void assignEmployeeToTask(String username, int taskId);
+  void assignEmployeeToTask(String username, int taskId );
 
-  int numberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties s);
-  int numberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties s);
+  List<Profile> getAllTeamMembersOfTask(int taskId); //use this for manager to view team members
+  void removeEmployeeFromTask(int taskId, String username);
+
+  //validation methods
+  int getNumberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties s);
+  int getNumberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties s);
 }

@@ -19,6 +19,7 @@ public interface RemoteTask extends Remote {
   List<Task> getAllTask()throws RemoteException;
   List<Task> getAllTaskBetween(LocalDate start, LocalDate deadline)throws RemoteException;
   List<Task> getAllTaskWithStatus(Status status)throws RemoteException;
+  List<Task> getFinishedTasks() throws RemoteException;
   Task getTaskById(int taskId) throws RemoteException;
   void editTask(Task task) throws RemoteException;
   void removeTask(int id) throws RemoteException;
@@ -26,12 +27,16 @@ public interface RemoteTask extends Remote {
   void assignEmployeeToTeam(String username, int teamId) throws RemoteException;
   List<Task> getMyTasks(String username) throws RemoteException;
   List<Task> getMyTasksWhereStatusIs(String username, Status status) throws RemoteException;
+  void setStatusOfTask(int taskId, Status status) throws RemoteException;
+  void removeEmployeeFromTask(int taskId, String username) throws RemoteException;
 
   /**
    TODO edit task's especialties
    */
   Map<String,Integer> getSpecialtiesOfTask(int taskId) throws RemoteException;
+  // maybe don't need editSpecialtiesOfTask() in remote because I edit specialties while calling method editTask()
   void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties) throws RemoteException;
+  //idk why we would ever just delete specialties from task
   void removeSpecialtyFromTask(int taskId, Specialties specialty) throws RemoteException;
 
   List<Profile> getAllTeamMemberForTask(int taskId) throws RemoteException;

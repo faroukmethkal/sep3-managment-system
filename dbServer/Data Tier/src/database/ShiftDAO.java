@@ -18,5 +18,7 @@ public interface ShiftDAO
   List<Shift> getShiftsStartingAtTime(LocalTime time);
   List<Shift> getShiftsBetweenTime (LocalTime startTime, LocalTime endTime);
   //employee
-  List<Shift> getAvailableShifts(LocalDate date); //needs fix
+  List<Shift> getAvailableShifts(LocalDate date);
+  void assignEmployeeToShift(int shiftId, String username);
+  void removeEmployeeFromShift(int shiftId, String username);
 }

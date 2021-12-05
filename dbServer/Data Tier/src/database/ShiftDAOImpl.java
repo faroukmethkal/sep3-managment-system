@@ -172,7 +172,7 @@ public class ShiftDAOImpl implements ShiftDAO
       return null;
     }
 
-  @Override public List<Shift> getAvailableShifts(LocalDate date) //needs fix
+  @Override public List<Shift> getAvailableShifts(LocalDate date)
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -206,6 +206,40 @@ public class ShiftDAOImpl implements ShiftDAO
     {
       System.out.println(s+" - returned null");
       return null;
+    }
+  }
+
+  @Override public void assignEmployeeToShift(int shiftId, String username)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "INSERT INTO assigned_employees (shiftid, username) VALUES (?,?)");
+
+      statement.setInt(1, shiftId);
+      statement.setString(2, username);
+
+      statement.executeUpdate();
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+  }
+
+  @Override public void removeEmployeeFromShift(int shiftId, String username)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "DELETE FROM assigned_employees where shiftid = ? and username = ?");
+
+      statement.setInt(1, shiftId);
+      statement.setString(2, username);
+
+      statement.executeUpdate();
+    }
+    catch(SQLException s){
+      System.out.println(s);
     }
   }
 

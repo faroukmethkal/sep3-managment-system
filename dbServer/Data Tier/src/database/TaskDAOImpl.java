@@ -224,7 +224,7 @@ public class TaskDAOImpl implements TaskDAO
       statement.executeUpdate();
     }
     catch(SQLException s){
-      System.out.println("SQLException - Nothing was changed to database");
+      System.out.println(s+" - Nothing was changed to database");
     }
   }
 
@@ -281,6 +281,40 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
+  @Override public List<Task> getFinishedTasks()
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT * FROM task WHERE status = ?");
+      statement.setString(1,Status.Finished.toString());
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Task> tasks = new ArrayList<Task>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("taskid");
+        String title = resultSet.getString("title");
+        String description = resultSet.getString("description");
+        LocalDate startDate = resultSet.getDate("startdate").toLocalDate();
+        double estimatedTime = resultSet.getDouble("estimatedtime");
+        LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
+        Status status = Status.valueOf(resultSet.getString("status"));
+        Task task = new Task(title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline,status);
+        task.setId(idDB);
+        tasks.add(task);
+      }
+      System.out.println(tasks);
+      return tasks;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s+" - returned null");
+      return null;
+    }
+  }
+
   @Override public void removeTask(int taskId)
   {
     removeSpecialtiesFromTask(taskId);
@@ -301,7 +335,7 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
-  @Override public void editTask(Task task)
+  @Override public void editTask(Task task) //also change specialties
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -317,6 +351,51 @@ public class TaskDAOImpl implements TaskDAO
       statement.setString(6, task.getStatus().toString());
       //old id
       statement.setInt(7, task.getId());
+
+      statement.executeUpdate();
+
+      editSpecialtiesOfTask(task.getId(),task.getSpecialties());
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+  }
+
+  @Override public void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties)
+  {
+    //maybe just use these 2 methods to delete all specialties from task and then add new ones
+    //
+    //removeSpecialtiesFromTask(taskId);
+    //addSpecialtiesOfTask(getTaskById(taskId));
+    //--------------------------------------------- or update statement method
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      for (Object key : specialties.keySet())
+      {
+        PreparedStatement statement = connection.prepareStatement(
+            "UPDATE task_speciality SET speciality = ?, numberofemployees = ? where taskid = ?");
+
+        statement.setString(1, key.toString());
+        statement.setInt(2,(int)specialties.get(key));
+        statement.setInt(3, taskId);
+
+        statement.executeUpdate();
+      }
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+  }
+
+  @Override public void removeSpecialtyFromTask(int taskId, Specialties specialty)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "DELETE from task_speciality where taskid = ? and speciality = ?");
+
+      statement.setInt(1, taskId);
+      statement.setString(2, specialty.toString());
 
       statement.executeUpdate();
     }
@@ -461,14 +540,114 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
-  @Override
-  public int numberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties s) {
-    return 0;
+  @Override public List<Profile> getAllTeamMembersOfTask(int taskId)
+  {
+    int teamId = getTeamIdByTask(taskId);
+
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT * from team_mates "
+          + "join profile p on p.username = team_mates.username "
+          + "join account a on a.username = p.username "
+          + "WHERE teamid = ?");
+      statement.setInt(1, teamId);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Profile> profiles = new ArrayList<Profile>();
+
+      while (resultSet.next())
+      {
+        String username = resultSet.getString("username"); //if not working change to "p.username"
+        String firstname = resultSet.getString("firstname");
+        String lastname = resultSet.getString("lastname");
+        LocalDate birthday = resultSet.getDate("birthday").toLocalDate();
+        Specialties specialties = Specialties.valueOf(resultSet.getString("Speciality"));
+        Role role1 = Role.valueOf(resultSet.getString("role"));
+
+        Profile p = new Profile(username,firstname,lastname,specialties,birthday);
+        p.setRole(role1);
+        System.out.println("from db------->>>"+p.toString());
+        profiles.add(p);
+      }
+      return profiles;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s+ " - returned null");
+      return null;
+    }
+  }
+
+  @Override public void removeEmployeeFromTask(int taskId, String username)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "DELETE FROM team_mates WHERE teamid = ? and username = ?");
+
+      statement.setInt(1, getTeamIdByTask(taskId));
+      statement.setString(2, username);
+
+      statement.executeUpdate();
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
   }
 
   @Override
-  public int numberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties s) {
-    return 0;
+  public int getNumberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties specialty)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT count(profile.username) from profile "
+          + "join team_mates tm on profile.username = tm.username join team t on t.teamid = tm.teamid "
+          + "where taskid = ? and profile.speciality = ?");
+
+      statement.setInt(1, taskId);
+      statement.setString(2, specialty.toString());
+
+      ResultSet resultSet = statement.executeQuery();
+
+      while (resultSet.next())
+      {
+        int numberOfEmployees = resultSet.getInt("count");
+        return numberOfEmployees;
+      }
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s);
+    }
+    return -1;
+  }
+
+  @Override
+  public int getNumberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties specialty)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT numberofemployees from task_speciality join task t on t.taskid = task_speciality.taskid"
+          + " where t.taskid = ? and speciality = ?");
+
+      statement.setInt(1, taskId);
+      statement.setString(2, specialty.toString());
+
+      ResultSet resultSet = statement.executeQuery();
+
+      while (resultSet.next())
+      {
+        int numberOfEmployees = resultSet.getInt("numberofemployees");
+        return numberOfEmployees;
+      }
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s);
+    }
+    return -1;
   }
 
   private void addSpecialtiesOfTask(Task task)

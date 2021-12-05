@@ -61,6 +61,11 @@ public class RemoteTaskManager implements RemoteTask
     return taskDB.getTasksWhereStatusIs(status);
   }
 
+  @Override public List<Task> getFinishedTasks() throws RemoteException
+  {
+    return taskDB.getFinishedTasks();
+  }
+
   @Override
   public Task getTaskById(int taskId) throws RemoteException {
     return taskDB.getTaskById(taskId);
@@ -98,34 +103,46 @@ public class RemoteTaskManager implements RemoteTask
     return taskDB.getTasksOfEmployeeWithStatus(username, status);
   }
 
+  @Override public void setStatusOfTask(int taskId, Status status)
+      throws RemoteException
+  {
+    taskDB.setStatusOfTask(taskId, status);
+  }
+
+  @Override public void removeEmployeeFromTask(int taskId, String username)
+      throws RemoteException
+  {
+    taskDB.removeEmployeeFromTask(taskId, username);
+  }
+
   @Override
   public Map<String, Integer> getSpecialtiesOfTask(int taskId) throws RemoteException {
-    return null;
+    return taskDB.getSpecialtiesOfTask(taskId);
   }
 
   @Override
   public void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties) throws RemoteException {
-
+    taskDB.editSpecialtiesOfTask(taskId, specialties);
   }
 
   @Override
   public void removeSpecialtyFromTask(int taskId,  Specialties specialty) throws RemoteException {
-
+    taskDB.removeSpecialtyFromTask(taskId, specialty);
   }
 
   @Override
   public List<Profile> getAllTeamMemberForTask(int taskId) throws RemoteException {
-    return null;
+    return taskDB.getAllTeamMembersOfTask(taskId);
   }
 
   @Override
   public int numberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties s) throws RemoteException {
-    return 0;
+    return taskDB.getNumberOfEmpAssignedToTaskWithSpecialties(taskId, s);
   }
 
   @Override
   public int numberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties s) throws RemoteException {
-    return 0;
+    return taskDB.getNumberOfEmpWithSpecialtiesAreRequiredForTask(taskId, s);
   }
 
 
