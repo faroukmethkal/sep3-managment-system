@@ -82,6 +82,20 @@ using BlazorSep3.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Full-time\MyTasks.razor"
+using BlazorSep3.model;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Full-time\MyTasks.razor"
+using BlazorSep3.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/MyTasks")]
     public partial class MyTasks : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -90,6 +104,51 @@ using BlazorSep3.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 82 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Full-time\MyTasks.razor"
+       
+    private IList<Taskk> tasksToShow;
+    private IList<Taskk> tasks;
+    private string? filterByName;
+    
+    private Status? status { get; set; }
+
+    private async Task Filter()
+    {
+        tasks = await taskServices.GetAllMyTasks(status);
+        tasksToShow = tasks;
+    }
+
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
+    /*protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(isImportant);
+    }*/
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _jsRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ITaskServices taskServices { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

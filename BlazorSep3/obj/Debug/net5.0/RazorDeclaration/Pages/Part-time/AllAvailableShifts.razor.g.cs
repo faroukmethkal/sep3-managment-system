@@ -118,7 +118,7 @@ using BlazorSep3.Data;
 
     private async Task Filter()
     {
-        shifts = await shiftService.getShifts(date, startTime, endTime);
+        shifts = await shiftService.GetShifts(date, startTime, endTime);
         shiftsToShow = shifts;
     }
 
@@ -141,7 +141,7 @@ using BlazorSep3.Data;
         shifts = shifts.Where(t => filterByName != null && (t.Name.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
 
-    private async void TakeShift(int id)
+    private async Task TakeShift(int id)
     {
         await shiftService.TakeShift(id);
         NavigationManager.NavigateTo($"/MyShifts");

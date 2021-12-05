@@ -117,7 +117,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 #nullable restore
 #line 62 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Shared\NavMenu.razor"
  
-    public async Task PerformLogout()
+    private async Task PerformLogout()
     {
         try
         {

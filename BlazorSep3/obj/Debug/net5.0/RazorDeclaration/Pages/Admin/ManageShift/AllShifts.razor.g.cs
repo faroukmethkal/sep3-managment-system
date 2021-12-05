@@ -118,7 +118,7 @@ using BlazorSep3.Data;
 
     private async Task Filter()
     {
-        shifts = await shiftService.getShifts(date, startTime, endTime);
+        shifts = await shiftService.GetShifts(date, startTime, endTime);
         shiftsToShow = shifts;
     }
 
@@ -146,7 +146,7 @@ using BlazorSep3.Data;
         NavigationManager.NavigateTo($"/EditShift/{id}");
     }
     
-    private async void Remove(int id)
+    private async Task Remove(int id)
     {
         bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to remove this shift?"); // Confirm
         if (confirmed)

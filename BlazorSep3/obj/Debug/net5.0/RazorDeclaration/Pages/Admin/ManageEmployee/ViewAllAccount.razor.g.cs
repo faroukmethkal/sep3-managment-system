@@ -115,7 +115,7 @@ using BlazorSep3.Data;
     private string errorMessage;
     private string? searchUsername;
 
-    public async Task SearchByUsername()
+    private async Task SearchByUsername()
     {
         try
         {

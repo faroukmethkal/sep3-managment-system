@@ -43,7 +43,7 @@ namespace BlazorSep3.Data
         }
         
 
-        public async Task<IList<Shift>> getShifts(DateTime? date, DateTime? startTime, DateTime? endTime)
+        public async Task<IList<Shift>> GetShifts(DateTime? date, DateTime? startTime, DateTime? endTime)
         {
             List<Shift> result = new List<Shift>();
             

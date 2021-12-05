@@ -105,7 +105,7 @@ using BlazorSep3.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 112 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Full-time\AllAvailableTasks.razor"
+#line 113 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Full-time\AllAvailableTasks.razor"
        
     private IList<Taskk> tasksToShow;
     private IList<Taskk> tasks;
@@ -141,9 +141,14 @@ using BlazorSep3.Data;
         tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
 
-    private void TakeTask(int id)
+    private async Task TakeTask(int id)
     {
-        NavigationManager.NavigateTo($"/TakeTask{id}");
+        bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to be assigned to this task?"); // Confirm
+        if (confirmed)
+        {
+            await taskServices.TakeTask(id);
+            NavigationManager.NavigateTo($"/MyTasks");
+        }
     }
 
     /*protected override async Task OnInitializedAsync()

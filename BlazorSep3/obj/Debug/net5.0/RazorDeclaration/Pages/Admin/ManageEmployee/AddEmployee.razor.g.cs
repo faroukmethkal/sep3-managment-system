@@ -134,7 +134,7 @@ using Microsoft.AspNetCore.Components.Authorization;
     private string errorMessage;
     private Profile profile = new Profile();
 
-    public async Task PerformRegister()
+    private async Task PerformRegister()
     {
         try
         {
@@ -154,7 +154,7 @@ using Microsoft.AspNetCore.Components.Authorization;
         profile.Birthday = new DateTime(1980, 1, 1);
     }
 
-    private string splitOnCapitalLitter(string s)
+    private string splitOnCapitalLetter(string s)
     {
         StringBuilder builder = new StringBuilder();
         s.First().ToString().ToUpper();

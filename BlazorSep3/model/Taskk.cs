@@ -9,7 +9,8 @@ namespace BlazorSep3.model
     public class Taskk
     {
         public int id { get; set; }
-        [Required] [JsonProperty("title")] public string Title { get; set; }
+        [Required] [JsonProperty("title")] 
+        public string Title { get; set; }
 
         [Required]
         [JsonProperty("description")]

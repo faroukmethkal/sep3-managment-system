@@ -146,7 +146,7 @@ using BlazorSep3.Data;
         NavigationManager.NavigateTo($"/EditTask{id}");
     }
     
-    private async void Remove(int id)
+    private async Task Remove(int id)
     {
         bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to remove this task?"); // Confirm
         if (confirmed)

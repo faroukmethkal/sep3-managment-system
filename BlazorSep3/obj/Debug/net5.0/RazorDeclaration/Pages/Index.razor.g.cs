@@ -100,7 +100,7 @@ using BlazorSep3.Authentication;
 #nullable restore
 #line 115 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Index.razor"
  
-    public async Task PerformLogout()
+    private async Task PerformLogout()
     {
         try
         {

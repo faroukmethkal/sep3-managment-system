@@ -133,7 +133,7 @@ using Microsoft.AspNetCore.Components.Authorization;
     private string password;
     private string errorMessage;
 
-    public async Task PerformLogin()
+    private async Task PerformLogin()
     {
         try
         {

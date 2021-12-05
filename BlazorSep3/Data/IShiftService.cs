@@ -7,7 +7,7 @@ namespace BlazorSep3.Data
 {
     public interface IShiftService
     {
-        Task<IList<Shift>> getShifts(DateTime? date, DateTime? startTime, DateTime? endTime);
+        Task<IList<Shift>> GetShifts(DateTime? date, DateTime? startTime, DateTime? endTime);
         Task AddShift(Shift shift);
         Task RemoveShift(int id);
         Task<Shift> GetShiftById(int id);

@@ -154,13 +154,13 @@ using System.Text;
         if (!task.Specialities.ContainsKey(currentSpec))
         {
             task.Specialities.Add(currentSpec, currentPeople);
-            textSpecialty = "Speciality " + splitOnCapitalLitter(currentSpec) + " for " + currentPeople +
+            textSpecialty = "Speciality " + splitOnCapitalLetter(currentSpec) + " for " + currentPeople +
                             " has been added to this task";
         }
         else
         {
             task.Specialities[currentSpec] = currentPeople;
-            textSpecialty = "Speciality " + splitOnCapitalLitter(currentSpec)+" has been updated to "+currentPeople;
+            textSpecialty = "Speciality " + splitOnCapitalLetter(currentSpec)+" has been updated to "+currentPeople;
         }
         
         currentSpec = Specialities.videoGameDesigner.ToString();
@@ -174,7 +174,7 @@ using System.Text;
         task.Estimate = 1;
     }
 
-    private string splitOnCapitalLitter(string s)
+    private string splitOnCapitalLetter(string s)
     {
         StringBuilder builder = new StringBuilder();
         s.First().ToString().ToUpper();
