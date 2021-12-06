@@ -1,7 +1,6 @@
 package com.example.loginspring.controller;
 
 import com.example.loginspring.domain.TaskLogic;
-import model.Specialties;
 import model.Status;
 import model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +13,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping()
-public class TaskController {
+public class TaskAdminController {
     private TaskLogic taskLogic;
 
     @Autowired
-    public TaskController(TaskLogic taskLogic) {
+    public TaskAdminController(TaskLogic taskLogic) {
         this.taskLogic = taskLogic;
     }
 
@@ -44,9 +43,19 @@ public class TaskController {
         return taskLogic.getTaskById(id);
     }
 
-    @GetMapping("api/employee/tasks")
-    @PreAuthorize("hasRole('ROLE_fullTimeEmployee')")
-    public List<Task> getTaskWhereSpecialtiesIs(@RequestParam Specialties s){
-        return taskLogic.getTaskWhereSpecialtiesIs(s);
+    @PreAuthorize("hasAnyRole('ROLE_admin')")
+    @DeleteMapping("api/task")
+    public void removeTask(@RequestParam("id")int id){
+        System.out.println("Controller remove task with id--->>"+id);
+        taskLogic.removeTask(id);
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_admin')")
+    @PutMapping("api/task")
+    public void editTask(@RequestBody Task task){
+        System.out.println("task to edit contoller ->>>>>>>>"+task.toString());
+        taskLogic.editTask(task);
+    }
+
+
 }

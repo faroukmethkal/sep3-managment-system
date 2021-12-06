@@ -1,16 +1,31 @@
 package com.example.loginspring.domain;
 
+import model.Profile;
 import model.Shift;
+import model.Specialties;
 
+import javax.annotation.Nullable;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 public interface ShiftLogic {
 
     void createShift(Shift shift);
-    List<Shift> getAllShifts();
+    List<Shift> getAllShifts(@Nullable LocalDate date, @Nullable LocalTime startTime, @Nullable LocalTime endTime);
     void removeShift(int shiftId);
     void editShift(Shift shift);
     Shift getShiftById(int shiftId);
+
+    /**
+     * part-time employee
+     * **/
+    List<Shift> getAllAvailableShift(LocalDate date, LocalTime startTime, LocalTime endTime);
+    void assignEmployeeToShift(int shiftId, String username);
+    void removeEmployeeFromShift(int shiftId, String username);
+
+
 
 }

@@ -2,19 +2,24 @@ package com.example.loginspring.controller;
 
 import com.example.loginspring.domain.ShiftLogic;
 import model.Shift;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Nullable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
 @RequestMapping
-public class ShiftController {
+public class ShiftAdminController {
     private ShiftLogic shiftLogic;
 
     @Autowired
-    public ShiftController(ShiftLogic shiftLogic) {
+    public ShiftAdminController(ShiftLogic shiftLogic) {
         System.out.println(shiftLogic);
         this.shiftLogic = shiftLogic;
     }
@@ -27,8 +32,10 @@ public class ShiftController {
 
     @PreAuthorize("hasAnyRole('ROLE_admin')")
     @GetMapping("api/shifts")
-    public List<Shift> getAllShift(){
-        return shiftLogic.getAllShifts();
+    public List<Shift> getAllShift(@RequestParam("date") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalDate date,
+                                   @RequestParam("startTime") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalTime startTime,
+                                   @RequestParam("endTime") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalTime endTime){
+        return shiftLogic.getAllShifts(date,startTime,endTime);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_admin')")

@@ -6,6 +6,8 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class RemoteShiftManager implements RemoteShift{
@@ -50,6 +52,7 @@ public class RemoteShiftManager implements RemoteShift{
         return null;
     }
 
+
     @Override
     public void removeShift(int shiftId) {
         try {
@@ -58,5 +61,65 @@ public class RemoteShiftManager implements RemoteShift{
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<Shift> getAllShiftsStartAtDate(LocalDate date){
+        try {
+            return remoteShift.getAllShiftsStartAtDate(date);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Shift> getAllShiftsStartAndEndAtTime(LocalTime startTime, LocalTime endTime){
+        try {
+            return remoteShift.getAllShiftsStartAndEndAtTime(startTime, endTime);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Shift> getAllShiftsStartAtTime(LocalTime startTime){
+        try {
+            return remoteShift.getAllShiftsStartAtTime(startTime);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Shift> getAllAvailableShift(LocalDate date){
+        try {
+            return remoteShift.getAllAvailableShift(date);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public void assignEmployeeToShift(int shiftId, String username)  {
+        try {
+            remoteShift.assignEmployeeToShift(shiftId, username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void removeEmployeeFromShift(int shiftId, String username) {
+        try {
+            remoteShift.removeEmployeeFromShift(shiftId, username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }
