@@ -34,6 +34,7 @@
       "BlazorSep3/1.0.0": {
         "dependencies": {
           "Blazored.LocalStorage": "4.1.5",
+          "Blazored.Modal": "6.0.1",
           "BracketShow.BlazorNavigationManagerExtensions": "1.1.0",
           "Microsoft.AspNetCore.Components": "5.0.11",
           "Newtonsoft.Json": "13.0.1",
@@ -335,6 +336,23 @@
           "lib/net5.0/Blazored.LocalStorage.dll": {}
         }
       },
+      "Blazored.Modal/6.0.1": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "5.0.11",
+          "Microsoft.AspNetCore.Components.Web": "5.0.5",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
+          "Microsoft.JSInterop.WebAssembly": "3.2.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/Blazored.Modal.dll": {}
+        }
+      },
       "BracketShow.BlazorNavigationManagerExtensions/1.1.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Components": "5.0.11",
@@ -464,6 +482,20 @@
         },
         "compile": {
           "lib/net5.0/Microsoft.JSInterop.dll": {}
+        }
+      },
+      "Microsoft.JSInterop.WebAssembly/3.2.1": {
+        "dependencies": {
+          "Microsoft.JSInterop": "5.0.5"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll": {
+            "assemblyVersion": "3.2.1.0",
+            "fileVersion": "3.200.120.31714"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/Microsoft.JSInterop.WebAssembly.dll": {}
         }
       },
       "Microsoft.Net.Http.Headers/2.2.0": {
@@ -2219,6 +2251,13 @@
       "path": "blazored.localstorage/4.1.5",
       "hashPath": "blazored.localstorage.4.1.5.nupkg.sha512"
     },
+    "Blazored.Modal/6.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-a7FwVYU2nDL6MBvtBnkp8GSLTEdZU4eKcN8ZcfhQNh4tFwGRKsIvz9jN+6eIEGV1PdI2rbzHkif/igyOcfC8Zg==",
+      "path": "blazored.modal/6.0.1",
+      "hashPath": "blazored.modal.6.0.1.nupkg.sha512"
+    },
     "BracketShow.BlazorNavigationManagerExtensions/1.1.0": {
       "type": "package",
       "serviceable": true,
@@ -2323,6 +2362,13 @@
       "sha512": "sha512-Ik1tdMAIb7i9vlv5pvF+aMVnoOXWUfRFMpiyHSMg+0spbcBqqq1vBVMuyqjh7PZlqWPyFqYrfToEonGh2ztT0w==",
       "path": "microsoft.jsinterop/5.0.5",
       "hashPath": "microsoft.jsinterop.5.0.5.nupkg.sha512"
+    },
+    "Microsoft.JSInterop.WebAssembly/3.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wYKx4YeBTnv1bzKZtdsWH0O9OmmYm7zq56QkKCUdl1hDg4Gn0lmCDfYBC0r1k5/Wh64IveuWwpkyTWjqCmp4pg==",
+      "path": "microsoft.jsinterop.webassembly/3.2.1",
+      "hashPath": "microsoft.jsinterop.webassembly.3.2.1.nupkg.sha512"
     },
     "Microsoft.Net.Http.Headers/2.2.0": {
       "type": "package",

@@ -78,13 +78,13 @@
                 <table class="table table-hover">
                     <thead style="position: sticky;top:0" class="thead-dark">
                     <tr >
-                        <th  >Title</th>
-                        <th  >Description</th>
-                        <th  >Start Date</th>
+                        <th >Title</th>
+                        <th >Description</th>
+                        <th >Start Date</th>
                         <th >Estimate</th>
-                        <th  >Deadline</th>
-                        <th  >Status</th>
-                        <th >Number of employees</th>
+                        <th >Deadline</th>
+                        <th >Status</th>
+                        <th >Specialities</th>
                         <th>Edit</th>
                         <th>Remove</th>
                     </tr>
@@ -99,8 +99,10 @@
                             <td>@item.Estimate</td>
                             <td>@item.Deadline.ToString("dd MMMM yyyy")</td>
                             <td>@item.Status</td>
-                            <td>@item.GetFinalNumberOfPeople()</td>
-                            
+                            <td>
+                                <button @onclick="@(() => ShowEditSpecialities(item))" class="btn btn-primary">View</button>
+                            </td>
+
                             <td>
                                 <button @onclick="@(() => Edit(item.id))">
                                     <i class="oi oi-pencil" style="color:#1b6ec2"/>
@@ -122,6 +124,10 @@
 </div>
 
 @code {
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
     private IList<Taskk> tasksToShow;
     private IList<Taskk> tasks;
     private string? filterByName;
@@ -137,6 +143,12 @@
         tasksToShow = tasks;
     }
 
+    async Task ShowEditSpecialities(Taskk task1)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Specialities", task1.Specialities);
+        Modal.Show<ViewTaskSpecialties>("Task's Specialties", parameters);
+    }
 
     private void FilterByName(ChangeEventArgs changeEventArgs)
     {
@@ -158,9 +170,9 @@
 
     private void Edit(int id)
     {
-        NavigationManager.NavigateTo($"/EditTask{id}");
+        NavigationManager.NavigateTo($"/EditTask/{id}");
     }
-    
+
     private async Task Remove(int id)
     {
         bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to remove this task?"); // Confirm

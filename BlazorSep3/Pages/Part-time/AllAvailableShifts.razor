@@ -58,7 +58,7 @@
             else if (!shiftsToShow.Any())
             {
                 <p>
-                    <em>No Tasks to show. </em>
+                    <em>No Shifts to show. </em>
                 </p>
             }
             else
@@ -107,7 +107,7 @@
 
     private async Task Filter()
     {
-        shifts = await shiftService.GetShifts(date, startTime, endTime);
+        shifts = await shiftService.GetAllAvailableShift(date, startTime, endTime);
         shiftsToShow = shifts;
     }
 
@@ -130,7 +130,7 @@
         shifts = shifts.Where(t => filterByName != null && (t.Name.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
 
-    private async Task TakeShift(int id)
+    private async void TakeShift(int id)
     {
         await shiftService.TakeShift(id);
         NavigationManager.NavigateTo($"/MyShifts");

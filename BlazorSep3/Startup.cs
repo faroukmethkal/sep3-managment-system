@@ -1,6 +1,7 @@
 using System;
 
 using Blazored.LocalStorage;
+using Blazored.Modal;
 using BlazorSep3.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,7 +29,8 @@ namespace BlazorSep3
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            
+            services.AddBlazoredModal();
+
             services.AddBlazoredLocalStorage(config =>config.JsonSerializerOptions.WriteIndented = true);
             
             services.AddScoped<IServiceUser, ServiceUser>();

@@ -7,7 +7,7 @@
 
 
 <div class="content">
-    <TaskEmployeeNavSide />
+    <TaskEmployeeNavSide/>
     <main class="content-view">
         <div class="filter_option">
             <div class="form__group">
@@ -30,10 +30,8 @@
             </div>
 
             <form action="#" class="form__group_search">
-                <input type="text" class="search_input" placeholder="Search tasks" @oninput="@((arg)=>FilterByName(arg))">
-                @*<button class="search_button" @onclick="">
-                    <span class="icon oi oi-magnifying-glass">Search</span>
-                </button>*@
+                <input type="text" class="search_input" placeholder="Search tasks" @oninput="@((arg) => FilterByName(arg))">
+               
             </form>
 
         </div>
@@ -60,6 +58,8 @@
                         <th>Start Date</th>
                         <th>Estimate</th>
                         <th>Deadline</th>
+                        <th>Status</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -70,6 +70,8 @@
                             <td>@item.StartDate</td>
                             <td>@item.Estimate</td>
                             <td>@item.Deadline</td>
+                            <td>@item.Status</td>
+
                         </tr>
                     }
                     </tbody>
@@ -83,7 +85,7 @@
     private IList<Taskk> tasksToShow;
     private IList<Taskk> tasks;
     private string? filterByName;
-    
+
     private Status? status { get; set; }
 
     private async Task Filter()
@@ -110,6 +112,7 @@
     {
         tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
+
     /*protected override async Task OnInitializedAsync()
     {
         Console.WriteLine(isImportant);

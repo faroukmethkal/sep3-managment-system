@@ -1,0 +1,101 @@
+﻿@using BlazorSep3.model
+@using System.Text
+@using BlazorSep3.Data
+@inject ITaskServices taskServices;
+
+<div class="container">
+    <div class="result">
+        @if (specList == null)
+        {
+            <p><em>Specialties is not exist</em></p>
+        }else if (!specList.Any())
+        {
+            <p>
+                <em>No specialites been added</em>
+            </p>
+        }
+        else
+        {
+            <table class="table table-hover">
+                <thead style="position: sticky;top:0; z-index: 100" class="thead-dark">
+                <tr>
+                    <th>Specialties</th>
+                    <th>Number of Specialities required</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach (var s in specList)
+                {
+                    <tr>
+                        <td>
+                          @splitOnCapitalLitter(s.name)
+                        </td>
+                        <td  style="text-align: center">
+                          @s.requirednumber
+                        </td>
+                      
+                    </tr>
+                }
+
+                </tbody>
+
+            </table>  
+        }
+
+    </div>
+
+  
+</div>
+<div class="modal_foter">
+    <button @onclick="ModalInstance.CancelAsync" class="btn btn-secondary">Close</button>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    BlazoredModalInstance ModalInstance { get; set; }
+
+    [Parameter]
+    public Dictionary<string, int> Specialities { get; set; }
+
+    List<Speciality> specList = new List<Speciality>();
+
+   
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Specialities.Count != 0)
+        {
+            foreach (var speciality in Specialities)
+            {
+                specList.Add(new()
+                {
+                    name = speciality.Key,
+                    requirednumber = speciality.Value
+                });
+            }
+        }
+        else
+        {
+            Specialities = new Dictionary<string, int>();
+        }
+    }
+    
+
+
+    private string splitOnCapitalLitter(string s)
+    {
+        StringBuilder builder = new StringBuilder();
+        s.First().ToString().ToUpper();
+        foreach (char c in s)
+        {
+            if (Char.IsUpper(c) && builder.Length > 0) builder.Append(' ');
+            builder.Append(c);
+        }
+        string newString = builder.ToString();
+        string newsCapitalizeFirstLetter = char.ToUpper(newString[0]) + newString.Substring(1);
+        return newsCapitalizeFirstLetter;
+    }
+
+}

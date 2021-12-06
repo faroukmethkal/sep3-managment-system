@@ -20,5 +20,7 @@ namespace BlazorSep3.Data
         Task TakeTask(int id);
         Task<IList<Taskk>> GetAllMyTasks(Status? status);
 
+        Task<IList<Profile>> GetTeamWorkingOnTask(int taskId);
+
     }
 }

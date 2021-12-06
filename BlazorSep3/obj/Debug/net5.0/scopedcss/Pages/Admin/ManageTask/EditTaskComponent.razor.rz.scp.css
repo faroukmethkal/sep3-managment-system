@@ -28,6 +28,17 @@ header[b-zhnvbgz66g]{
     padding: 2rem;
     margin-top: 0.2rem;
 }
+.form_parts[b-zhnvbgz66g]{
+    margin-top: 2rem;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border: 1px dashed black;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
 .form__group[b-zhnvbgz66g]{
     display: flex;
     align-items: start;

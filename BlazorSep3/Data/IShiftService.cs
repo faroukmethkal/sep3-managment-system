@@ -15,5 +15,6 @@ namespace BlazorSep3.Data
         Task TakeShift(int id);
         Task UnassignFromShift(int id);
         Task<IList<Shift>> GetMyShifts(DateTime? date);
+        Task<IList<Shift>> GetAllAvailableShift(DateTime? date, DateTime? startTime, DateTime? endTime);
     }
 }

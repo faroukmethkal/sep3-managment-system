@@ -13,98 +13,119 @@ namespace BlazorSep3.Pages.Admin.ManageTask
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
+#line 1 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
+#line 2 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
+#line 3 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
+#line 4 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
+#line 5 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
+#line 6 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
+#line 7 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
+#line 8 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
+#line 9 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using BlazorSep3;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\_Imports.razor"
+#line 10 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using BlazorSep3.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
+#line 12 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
+using Blazored;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
 using BlazorSep3.model;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
+#line 3 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
 using BlazorSep3.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
+#line 4 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
 using System.ComponentModel.DataAnnotations;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
+#line 5 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
 using System.Text;
 
 #line default
@@ -119,24 +140,29 @@ using System.Text;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 137 "C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
+#line 125 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\AddTask.razor"
        
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
 
     [CascadingParameter]
     public MainLayout Layout { get; set; }
 
+    public List<Speciality> specList ;
+  
+
     private string errorMessage;
+    
     private Taskk task = new Taskk();
-    private string currentSpec = Specialities.videoGameDesigner.ToString();
 
     [Range(1, int.MaxValue)] private int currentPeople = 1;
 
-    private string textSpecialty;
 
     private async Task AddTaskk()
     {
         try
         {
+            await AddToSpecialties();
             Console.WriteLine(task);
             await taskServices.AddTask(task);
             errorMessage = "";
@@ -148,45 +174,39 @@ using System.Text;
             errorMessage = e.Message;
         }
     }
-
-    private void AddToSpecialties()
+    
+    async Task ShowEditSpecialities()
     {
-        if (!task.Specialities.ContainsKey(currentSpec))
+        var parameters = new ModalParameters();
+        parameters.Add("Specialities", task.Specialities);
+        
+        var modelResult = Modal.Show<EditTaskSpecialties>("Add Task's Specialties", parameters);
+        var result = await modelResult.Result;
+        specList = (List<Speciality>) result.Data;
+        
+    }
+    
+    private async Task AddToSpecialties()
+    {
+        foreach (var s in specList)
         {
-            task.Specialities.Add(currentSpec, currentPeople);
-            textSpecialty = "Speciality " + splitOnCapitalLetter(currentSpec) + " for " + currentPeople +
-                            " has been added to this task";
-        }
-        else
-        {
-            task.Specialities[currentSpec] = currentPeople;
-            textSpecialty = "Speciality " + splitOnCapitalLetter(currentSpec)+" has been updated to "+currentPeople;
+            if (!task.Specialities.ContainsKey(s.name))
+            {
+                task.Specialities.Add(s.name, s.requirednumber);
+            } 
         }
         
-        currentSpec = Specialities.videoGameDesigner.ToString();
-        currentPeople = 1;
     }
+
+
 
     protected override void OnInitialized()
     {
-        task.StartDate = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day);
+        task.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
         task.Deadline = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(7);
         task.Estimate = 1;
     }
-
-    private string splitOnCapitalLetter(string s)
-    {
-        StringBuilder builder = new StringBuilder();
-        s.First().ToString().ToUpper();
-        foreach (char c in s)
-        {
-            if (Char.IsUpper(c) && builder.Length > 0) builder.Append(' ');
-            builder.Append(c);
-        }
-        string newString = builder.ToString();
-        string newsCapitalizeFirstLetter = char.ToUpper(newString[0]) + newString.Substring(1);
-        return newsCapitalizeFirstLetter;
-    }
+    
 
 
 #line default

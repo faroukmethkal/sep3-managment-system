@@ -1,0 +1,160 @@
+﻿@using BlazorSep3.model
+@using System.Text
+@using BlazorSep3.Data
+@inject ITaskServices taskServices;
+
+<div class="container">
+    <div class="result">
+        @if (specList == null)
+        {
+            <p><em>Specialties is not exist</em></p>
+        }else if (!specList.Any())
+        {
+            <p>
+                <em>No specialites been added</em>
+            </p>
+        }
+        else
+        {
+            <table class="table table-hover">
+                <thead style="position: sticky;top:0; z-index: 100" class="thead-dark">
+                <tr>
+                    <th>Specialties</th>
+                    <th>Number of Specialities required</th>
+                    <th>Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach (var s in specList)
+                {
+                    <tr style="text-align: center">
+                        <td>
+                            <select class="form__input_select" placeholder="@s.name" list="Specialitties" @bind="s.name" id="Specialitties">
+
+                                @foreach (var item in Enum.GetValues(typeof(Specialities)))
+                                {
+                                    <option value="@item">@splitOnCapitalLitter(item.ToString())</option>
+                                }
+
+                            </select>
+                        </td>
+                        <td>
+                            <input placeholder="@s.requirednumber" class="form__input_select_number" @bind="s.requirednumber"/>
+                        </td>
+                        <td>
+                            <button @onclick="@(() => RemoveSpeciality(s))">
+                                <i class="oi oi-delete" style="color:red"/>
+                            </button>
+
+                        </td>
+                    </tr>
+                }
+
+                </tbody>
+
+            </table>  
+        }
+
+    </div>
+
+    <div class="form">
+        <div class="form__group_title">
+            <h3> Add New Speciality</h3>
+        </div>
+        <div class="form_content">
+            <div class="form__group_part">
+
+                <label class="form__label">Speciality</label>
+                <select name="specialties" class="form__input_select" @bind="Speciality.name">
+                    @foreach (var speciality in Enum.GetValues(typeof(Specialities)))
+                    {
+                        <option value="@speciality">@splitOnCapitalLitter(speciality.ToString())</option>
+                    }
+                </select>
+            </div>
+            <div class="form__group_part">
+                <label class="form__label">Number of Specialities required</label>
+                <input type="number" class="form__input_select_number" placeholder="NumberOfPeople" @bind="Speciality.requirednumber">
+            </div>
+            <div>
+                <button class="button-spec" type="submit" @onclick="AddToSpecialties">Add</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="modal_foter">
+    <button @onclick="SaveSpeciality" class="btn btn-primary">Submit</button>
+    <button @onclick="ModalInstance.CancelAsync" class="btn btn-secondary">Cancel</button>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    BlazoredModalInstance ModalInstance { get; set; }
+
+    [Parameter]
+    public Dictionary<string, int> Specialities { get; set; }
+
+    List<Speciality> specList = new List<Speciality>();
+    private Speciality Speciality = new Speciality();
+
+    private void RemoveSpeciality(Speciality s)
+    {
+        specList.Remove(s);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Specialities.Count != 0)
+        {
+            foreach (var speciality in Specialities)
+            {
+                Console.WriteLine(speciality.Key + " " + speciality.Value);
+                specList.Add(new()
+                {
+                    name = speciality.Key,
+                    requirednumber = speciality.Value
+                });
+            }
+        }
+        else
+        {
+            Specialities = new Dictionary<string, int>();
+        }
+    }
+
+    private void AddToSpecialties()
+    {
+        specList.Add(Speciality);
+        Speciality = new Speciality();
+    }
+
+    private void SaveSpeciality()
+    {
+        ModalInstance.CloseAsync(ModalResult.Ok<List<Speciality>>(specList));
+        foreach (var item in specList)
+        {
+            Console.WriteLine($"Specialtiy: {item.name}, number: {item.requirednumber}");
+        }
+        Console.WriteLine("################");
+    }
+
+
+    private string splitOnCapitalLitter(string s)
+    {
+        StringBuilder builder = new StringBuilder();
+        s.First().ToString().ToUpper();
+        foreach (char c in s)
+        {
+            if (Char.IsUpper(c) && builder.Length > 0) builder.Append(' ');
+            builder.Append(c);
+        }
+        string newString = builder.ToString();
+        string newsCapitalizeFirstLetter = char.ToUpper(newString[0]) + newString.Substring(1);
+        return newsCapitalizeFirstLetter;
+    }
+
+}
