@@ -1,4 +1,4 @@
 ﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\terez\.nuget\packages\blazored.modal\6.0.1\build\..\staticwebassets\" />
-  <ContentRoot BasePath="/" Path="C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="_content/Blazored.Modal" Path="C:\Users\Farouk\.nuget\packages\blazored.modal\6.0.1\build\..\staticwebassets\" />
+  <ContentRoot BasePath="/" Path="F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\bundle\" />
 </StaticWebAssets>

@@ -113,11 +113,22 @@
         ExecuteFilter();
     }
 
-    private void ChangeStatus(Taskk task)
+    private async void ChangeStatus(Taskk task)
     {
         var parameters = new ModalParameters();
         parameters.Add("Task", task);
-        Modal.Show<ChangeStatus>("Change Status of task: "+task.Title, parameters);
+         
+        
+        var modelResult =Modal.Show<ChangeStatus>("Change Status of task: "+task.Title, parameters);
+        var result = await modelResult.Result;
+        Taskk taskResult = (Taskk) result.Data;
+        
+        foreach (var t in tasksToShow)
+        {
+            if (t.id == taskResult.id) t.Status = taskResult.Status;
+        }
+
+        tasks = tasksToShow;
     }
 
     private void ExecuteFilter()
