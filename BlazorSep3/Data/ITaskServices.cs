@@ -24,6 +24,7 @@ namespace BlazorSep3.Data
         Task ChangeStatus(int id, Status newStatus);
         Task<IList<Profile>> GetTeamWorkingOnTask(int taskId);
         Task UnassignEmployeeFromTask(int taskId, string username);
+        Task AddHoursSpent(int taskId, double hours);
 
     }
 }

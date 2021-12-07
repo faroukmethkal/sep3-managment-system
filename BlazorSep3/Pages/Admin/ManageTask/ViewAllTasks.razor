@@ -82,6 +82,7 @@
                         <th >Description</th>
                         <th >Start Date</th>
                         <th >Estimate</th>
+                        <th> Progress</th>
                         <th >Deadline</th>
                         <th >Status</th>
                         <th >Specialities</th>
@@ -99,6 +100,13 @@
                             <td>@item.Description</td>
                             <td>@item.StartDate.ToString("dd MMMM yyyy")</td>
                             <td>@item.Estimate</td>
+                            <td>
+                                <p>
+                                    @item.SpentHours/@item.Estimate
+                                    <progress value="@item.SpentHours" max="@item.Estimate"></progress>
+                                    @CalculatePercentage(item.SpentHours, item.Estimate)
+                                </p>
+                            </td>
                             <td>@item.Deadline.ToString("dd MMMM yyyy")</td>
                             <td>@item.Status</td>
                             <td>
@@ -167,7 +175,11 @@
         parameters.Add("Id", id);
         Modal.Show<ViewTeam>("Team Working on Task", parameters);
     }
-    
+
+    private double CalculatePercentage(double hours, double estimate)
+    {
+        return hours / estimate * 100;
+    }
     async Task ApproveOrDecline(Taskk task1)
     {
         var parameters = new ModalParameters();

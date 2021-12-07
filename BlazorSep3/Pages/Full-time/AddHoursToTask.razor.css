@@ -1,0 +1,36 @@
+.result{
+    max-height: 25vh;
+    overflow: auto;
+}
+.form__input {
+    font-size: 1rem;
+    padding: 1rem 1rem;
+    border-radius: 1.5px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 5rem;
+    display: inline-block;
+    transition: all .3s;
+    height: 1.2rem;
+    color: #D97706;
+}
+
+.form__input_select {
+    font-size: 1.2rem;
+    border-radius: 1px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 30rem;
+    display: block;
+    transition: all .3s;
+    height: 1.7rem;
+
+}
+
+.form__input_select:focus {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #55c57a;
+}

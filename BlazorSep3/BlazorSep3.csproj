@@ -54,6 +54,9 @@
         <Content Update="Pages\Admin\ManageTask\ViewTeam.razor.css">
             <DependentUpon>ViewTeam.razor</DependentUpon>
         </Content>
+        <Content Update="Pages\Full-time\AddHoursToTask.razor.css" >
+            <DependentUpon>AddHoursToTask.razor</DependentUpon>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>

@@ -216,6 +216,19 @@ namespace BlazorSep3.Data
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
 
+        public async Task AddHoursSpent(int taskId, double hours)
+        {
+            string serializeTask = JsonConvert.SerializeObject(hours);
+            Console.WriteLine(serializeTask);
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpContent content = new StringContent(serializeTask, Encoding.UTF8, "application/json"); 
+
+            var response = await client.PutAsync(client.BaseAddress + $"api/task/spentHours?spentHours={hours}&taskId={taskId}", content); 
+            
+            if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
+        }
+
         public async Task ApproveTask(int id)
         {
             string serializeTask = JsonConvert.SerializeObject(Status.Approved);

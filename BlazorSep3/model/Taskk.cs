@@ -30,7 +30,10 @@ namespace BlazorSep3.model
         [Required] [JsonProperty("deadline")] 
         public DateTime Deadline { get; set; }
 
-        [Required] [JsonProperty("status")] public Status Status { get; set; } = Status.Created;
+        [Required] [JsonProperty("status")] 
+        public Status Status { get; set; } = Status.Created;
+        [Required] [JsonProperty("spentHours")] 
+        public double SpentHours { get; set; } = 0;
 
 
         public override string ToString()

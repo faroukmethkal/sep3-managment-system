@@ -145,8 +145,10 @@ using BlazorSep3.Data;
 
     private async Task Save()
     {
+        Task.Status = NewStatus;
         await taskServices.ChangeStatus(Task.id,NewStatus);
-        await ModalInstance.CancelAsync();
+        
+        await ModalInstance.CloseAsync(ModalResult.Ok<Taskk>(Task));
     }
 
 

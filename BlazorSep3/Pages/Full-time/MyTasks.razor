@@ -57,6 +57,8 @@
                         <th>Title</th>
                         <th>Start Date</th>
                         <th>Estimate</th>
+                        <th>Progress</th>
+                        <th>Add Hours</th>
                         <th>Deadline</th>
                         <th>Status</th>
                     </tr>
@@ -68,6 +70,16 @@
                             <td>@item.Title</td>
                             <td>@item.StartDate</td>
                             <td>@item.Estimate</td>
+                            <td>
+                                <p>
+                                    @item.SpentHours/@item.Estimate
+                                    <progress value="@item.SpentHours" max="@item.Estimate"></progress>
+                                    @CalculatePercentage(item.SpentHours, item.Estimate)
+                                </p>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => AddHoursSpent(item))" class="oi oi-plus" style="color:green"></button>
+                            </td>
                             <td>@item.Deadline</td>
                             <td>
                                 <button @onclick="@(() => ChangeStatus(item))" class="btn btn-secondary">
@@ -90,6 +102,8 @@
     private IList<Taskk> tasksToShow;
     private IList<Taskk> tasks;
     private string? filterByName;
+    private double hours;
+    private int idToChange;
 
     private Status? status { get; set; }
 
@@ -113,12 +127,21 @@
         ExecuteFilter();
     }
 
+    private double CalculatePercentage(double hours, double estimate)
+    {
+        return hours / estimate * 100;
+    }
+
+    private async Task AddHoursSpent(Task task)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("taskId", task.Id);
+        var modelResult = Modal.Show<AddHoursToTask>("Add time spent on task: "+ task.Id, parameters);
+    }
     private async void ChangeStatus(Taskk task)
     {
         var parameters = new ModalParameters();
         parameters.Add("Task", task);
-         
-        
         var modelResult =Modal.Show<ChangeStatus>("Change Status of task: "+task.Title, parameters);
         var result = await modelResult.Result;
         Taskk taskResult = (Taskk) result.Data;
