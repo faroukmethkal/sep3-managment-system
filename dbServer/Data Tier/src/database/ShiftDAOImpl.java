@@ -310,6 +310,7 @@ public class ShiftDAOImpl implements ShiftDAO
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement("select * from shift WHERE starttime = ?");
+      statement.setTime(1, java.sql.Time.valueOf(time));
 
       ResultSet resultSet = statement.executeQuery();
 
