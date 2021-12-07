@@ -155,7 +155,7 @@ using System.Text;
     
     private Taskk task = new Taskk();
 
-    [Range(1, int.MaxValue)] private int currentPeople = 1;
+   // [Range(1, int.MaxValue)] private int currentPeople = 1;
 
 
     private async Task AddTaskk()

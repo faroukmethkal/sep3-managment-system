@@ -172,7 +172,8 @@ using BlazorSep3.Data;
     private void AddToSpecialties()
     {
         specList.Add(Speciality);
-        Speciality = new Speciality();
+            Speciality = new Speciality();
+        
     }
 
     private void SaveSpeciality()

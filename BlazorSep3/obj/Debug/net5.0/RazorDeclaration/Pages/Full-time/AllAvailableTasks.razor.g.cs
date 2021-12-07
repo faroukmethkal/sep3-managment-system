@@ -173,11 +173,11 @@ using BlazorSep3.Pages.Admin.ManageTask;
         tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
 
-    async Task ShowTeamWorkingOnTask(int id)
+    async Task ShowTeamWorkingOnTask(int Id)
     {
         var parameters = new ModalParameters();
-        parameters.Add("Id", id);
-        Modal.Show<ViewTaskSpecialties>("Team Working on Task", parameters);
+        parameters.Add("Id", Id);
+        Modal.Show<ViewTeamWorkingOnTask>("Team Working on Task", parameters);
     }
     
     async Task ShowEditSpecialities(Taskk task1)
