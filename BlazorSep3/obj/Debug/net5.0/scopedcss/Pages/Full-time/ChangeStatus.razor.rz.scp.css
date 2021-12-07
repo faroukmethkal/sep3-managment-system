@@ -1,0 +1,23 @@
+.result[b-v3xr8ptm6d]{
+    max-height: 35vh;
+    overflow: auto;
+}
+
+.form__input_select[b-v3xr8ptm6d] {
+    font-size: 1.2rem;
+    border-radius: 1px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 30rem;
+    display: block;
+    transition: all .3s;
+    height: 1.7rem;
+
+}
+
+.form__input_select:focus[b-v3xr8ptm6d] {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #55c57a;
+}

@@ -576,3 +576,12 @@ C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\s
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageTask\ViewTeamWorkingOnTask.razor.g.cs
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\ViewTeamWorkingOnTask.razor.g.cs
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\ViewTeamWorkingOnTask.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageTask\ApproveDecline.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageTask\ViewTeam.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Full-time\ChangeStatus.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\ApproveDecline.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\ViewTeam.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Full-time\ChangeStatus.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\ApproveDecline.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\ViewTeam.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Full-time\ChangeStatus.razor.rz.scp.css

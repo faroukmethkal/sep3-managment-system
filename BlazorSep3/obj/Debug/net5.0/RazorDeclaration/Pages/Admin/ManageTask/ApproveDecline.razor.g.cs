@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorSep3
+namespace BlazorSep3.Pages.Admin.ManageTask
 {
     #line hidden
     using System;
@@ -76,6 +76,13 @@ using BlazorSep3;
 #line hidden
 #nullable disable
 #nullable restore
+#line 10 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
+using BlazorSep3.Shared;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 12 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\_Imports.razor"
 using Blazored;
 
@@ -97,19 +104,62 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\App.razor"
-using BlazorSep3.Shared;
+#line 1 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\ApproveDecline.razor"
+using BlazorSep3.model;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class App : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 2 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\ApproveDecline.razor"
+using System.Text;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\ApproveDecline.razor"
+using BlazorSep3.Data;
+
+#line default
+#line hidden
+#nullable disable
+    public partial class ApproveDecline : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 23 "F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\Pages\Admin\ManageTask\ApproveDecline.razor"
+       
+
+    [CascadingParameter]
+    BlazoredModalInstance ModalInstance { get; set; }
+
+    [Parameter]
+    public Taskk Task { get; set; }
+
+    private async Task Accept(int id)
+    {
+        await taskServices.ApproveTask(id);
+        await ModalInstance.CancelAsync();
+    }
+    private async Task Decline(int id)
+    {
+        await taskServices.DeclineTask(id);
+        await ModalInstance.CancelAsync();
+    }
+    
+    
+    
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ITaskServices taskServices { get; set; }
     }
 }
 #pragma warning restore 1591

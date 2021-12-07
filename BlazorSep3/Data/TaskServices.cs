@@ -179,7 +179,7 @@ namespace BlazorSep3.Data
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
             HttpContent content = new StringContent(serializeTask, Encoding.UTF8, "application/json"); 
 
-            var response = await client.PutAsync(client.BaseAddress + $"api/task?status={newStatus}&taskId={id}", content); 
+            var response = await client.PutAsync(client.BaseAddress + $"api/task/status?status={newStatus}&taskId={id}", content); 
             
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
@@ -210,7 +210,7 @@ namespace BlazorSep3.Data
             Account currentAccount = await GetCurrentAccount();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
 
-            var response = await client.DeleteAsync(client.BaseAddress + $"api/employee/task?taskId={taskId} & username={username}"); 
+            var response = await client.DeleteAsync(client.BaseAddress + $"api/employee/task?taskId={taskId}&username={username}"); 
             
             
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
@@ -224,7 +224,7 @@ namespace BlazorSep3.Data
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
             HttpContent content = new StringContent(serializeTask, Encoding.UTF8, "application/json"); 
 
-            var response = await client.PutAsync(client.BaseAddress + $"api/task?status={Status.Approved}&taskId={id}", content); 
+            var response = await client.PutAsync(client.BaseAddress + $"api/task/status?status={Status.Approved}&taskId={id}", content); 
             
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
@@ -237,7 +237,7 @@ namespace BlazorSep3.Data
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
             HttpContent content = new StringContent(serializeTask, Encoding.UTF8, "application/json"); 
 
-            var response = await client.PutAsync(client.BaseAddress + $"api/task?status={Status.Rejected}&taskId={id}", content); 
+            var response = await client.PutAsync(client.BaseAddress + $"api/task/status?status={Status.Rejected}&taskId={id}", content); 
             
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
