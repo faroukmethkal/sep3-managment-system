@@ -115,6 +115,18 @@ public class RemoteTaskManager implements RemoteTask
     taskDB.removeEmployeeFromTask(taskId, username);
   }
 
+  @Override public void setSpentHoursForTask(int taskId, double spentHours)
+      throws RemoteException
+  {
+    taskDB.setSpentHoursForTask(taskId, spentHours);
+  }
+
+  @Override public void increaseSpentHoursInTaskBy(int taskId, double spentHours)
+  {
+    double setTo = taskDB.getTaskById(taskId).getSpentHours() + spentHours;
+    taskDB.setSpentHoursForTask(taskId, setTo);
+  }
+
   @Override
   public Map<String, Integer> getSpecialtiesOfTask(int taskId) throws RemoteException {
     return taskDB.getSpecialtiesOfTask(taskId);

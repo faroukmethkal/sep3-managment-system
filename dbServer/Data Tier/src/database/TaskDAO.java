@@ -34,6 +34,9 @@ public interface TaskDAO
 
   List<Profile> getAllTeamMembersOfTask(int taskId); //use this for manager to view team members
   void removeEmployeeFromTask(int taskId, String username);
+  //estimate and spentHours
+
+  void setSpentHoursForTask(int taskId, double spentHours);
 
   //validation methods
   int getNumberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties s);

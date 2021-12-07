@@ -29,6 +29,9 @@ public interface RemoteTask extends Remote {
   List<Task> getMyTasksWhereStatusIs(String username, Status status) throws RemoteException;
   void setStatusOfTask(int taskId, Status status) throws RemoteException;
   void removeEmployeeFromTask(int taskId, String username) throws RemoteException;
+  //estimate and spentHours
+  void setSpentHoursForTask(int taskId, double spentHours) throws RemoteException;
+  void increaseSpentHoursInTaskBy(int taskId, double spentHours) throws RemoteException;
 
   /**
    TODO edit task's especialties

@@ -72,7 +72,7 @@ public class TaskDAOImpl implements TaskDAO
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT taskid, title, description, startdate, estimatedtime, deadline, status FROM task WHERE taskid = ?");
+          "SELECT taskid, title, description, startdate, estimatedtime, deadline, status, spenthours FROM task WHERE taskid = ?");
 
       statement.setInt(1, id);
 
@@ -87,12 +87,14 @@ public class TaskDAOImpl implements TaskDAO
         double estimatedTime = resultSet.getDouble("estimatedtime");
         LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
         Status status = Status.valueOf(resultSet.getString("status"));
+        double spentHours = resultSet.getDouble("spenthours");
 
         if(idDB == -1) return null;
         else
         {
           Task toReturn = new Task(title, description,getSpecialtiesOfTask(idDB), startDate, estimatedTime, deadline, status);
           toReturn.setId(idDB);
+          toReturn.setSpentHours(spentHours);
           return toReturn;
         }
       }
@@ -122,8 +124,11 @@ public class TaskDAOImpl implements TaskDAO
         double estimatedTime = resultSet.getDouble("estimatedtime");
         LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
         Status status = Status.valueOf(resultSet.getString("status"));
+        double spentHours = resultSet.getDouble("spenthours");
+
         Task task = new Task(title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline,status);
         task.setId(idDB);
+        task.setSpentHours(spentHours);
         tasks.add(task);
       }
       System.out.println(tasks);
@@ -299,8 +304,11 @@ public class TaskDAOImpl implements TaskDAO
         double estimatedTime = resultSet.getDouble("estimatedtime");
         LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
         Status status = Status.valueOf(resultSet.getString("status"));
+        double spentHours = resultSet.getDouble("spenthours");
+
         Task task = new Task(title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline,status);
         task.setId(idDB);
+        task.setSpentHours(spentHours);
         tasks.add(task);
       }
       System.out.println(tasks);
@@ -468,8 +476,11 @@ public class TaskDAOImpl implements TaskDAO
         double estimatedTime = resultSet.getDouble("estimatedtime");
         LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
         Status status = Status.valueOf(resultSet.getString("status"));
+        double spentHours = resultSet.getDouble("spenthours");
+
         Task task = new Task(title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline,status);
         task.setId(idDB);
+        task.setSpentHours(spentHours);
         tasks.add(task);
       }
       System.out.println(tasks);
@@ -506,8 +517,11 @@ public class TaskDAOImpl implements TaskDAO
         double estimatedTime = resultSet.getDouble("estimatedtime");
         LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
         Status status1 = Status.valueOf(resultSet.getString("status"));
+        double spentHours = resultSet.getDouble("spenthours");
+
         Task task = new Task(title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline,status1);
         task.setId(idDB);
+        task.setSpentHours(spentHours);
         tasks.add(task);
       }
       System.out.println(tasks);
@@ -594,6 +608,25 @@ public class TaskDAOImpl implements TaskDAO
       System.out.println(s);
     }
   }
+
+  @Override public void setSpentHoursForTask(int taskId, double spentHours)
+  {
+    {
+      try (Connection connection = ConnectionDB.getInstance().getConnection())
+      {
+        PreparedStatement statement = connection.prepareStatement(
+            "UPDATE task SET spentHours = ? WHERE taskid = ?");
+
+        statement.setDouble(1, spentHours);
+        statement.setInt(2, taskId);
+
+        statement.executeUpdate();
+      }
+      catch (SQLException s)
+      {
+        System.out.println(s);
+      }
+    }}
 
   @Override
   public int getNumberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties specialty)
