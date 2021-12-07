@@ -23,7 +23,7 @@ public interface TaskDAO
   List<Task> getFinishedTasks();
   void removeTask(int taskId);
   void editTask(Task task);
-  void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties);
+  void editSpecialtiesOfTask(Task task);
   void removeSpecialtyFromTask(int taskId, Specialties specialty);
   int getTeamIdByTask(int taskId);
   void assignEmployeeToTeam(String username, int teamId);

@@ -21,4 +21,7 @@ public interface ShiftDAO
   List<Shift> getAvailableShifts(LocalDate date);
   void assignEmployeeToShift(int shiftId, String username);
   void removeEmployeeFromShift(int shiftId, String username);
+  List<String> getAssignedEmployeesToShift(int shiftId);
+  //for test
+  int getLatestId(String shiftName);
 }

@@ -120,10 +120,10 @@ public class RemoteTaskManager implements RemoteTask
     return taskDB.getSpecialtiesOfTask(taskId);
   }
 
-  @Override
+  /*@Override
   public void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties) throws RemoteException {
     taskDB.editSpecialtiesOfTask(taskId, specialties);
-  }
+  }*/
 
   @Override
   public void removeSpecialtyFromTask(int taskId,  Specialties specialty) throws RemoteException {

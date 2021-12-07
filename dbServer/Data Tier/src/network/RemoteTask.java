@@ -35,7 +35,7 @@ public interface RemoteTask extends Remote {
    */
   Map<String,Integer> getSpecialtiesOfTask(int taskId) throws RemoteException;
   // maybe don't need editSpecialtiesOfTask() in remote because I edit specialties while calling method editTask()
-  void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties) throws RemoteException;
+ // void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties) throws RemoteException;
   //idk why we would ever just delete specialties from task
   void removeSpecialtyFromTask(int taskId, Specialties specialty) throws RemoteException;
 

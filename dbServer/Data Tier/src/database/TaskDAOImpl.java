@@ -352,21 +352,21 @@ public class TaskDAOImpl implements TaskDAO
 
       statement.executeUpdate();
 
-      editSpecialtiesOfTask(task.getId(),task.getSpecialties());
+      editSpecialtiesOfTask(task);
     }
     catch(SQLException s){
       System.out.println(s);
     }
   }
 
-  @Override public void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties)
+  @Override public void editSpecialtiesOfTask(Task task)
   {
     //maybe just use these 2 methods to delete all specialties from task and then add new ones
     //
-    // removeSpecialtiesFromTask(taskId);
-    //  addSpecialtiesOfTask(getTaskById(taskId));
+    removeSpecialtiesFromTask(task.getId());
+    addSpecialtiesOfTask(task);
     //--------------------------------------------- or update statement method
-    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    /*try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       for (Object key : specialties.keySet())
       {
@@ -383,7 +383,7 @@ public class TaskDAOImpl implements TaskDAO
     }
     catch(SQLException s){
       System.out.println(s);
-    }
+    }*/
   }
 
   @Override public void removeSpecialtyFromTask(int taskId, Specialties specialty)
@@ -672,7 +672,7 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
-  private int getLatestId(String title)
+  public int getLatestId(String title)
   {
     {
       try (Connection connection =  ConnectionDB.getInstance().getConnection())

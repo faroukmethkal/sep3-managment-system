@@ -243,6 +243,33 @@ public class ShiftDAOImpl implements ShiftDAO
     }
   }
 
+  @Override public List<String> getAssignedEmployeesToShift(int shiftId)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("SELECT username from assigned_employees WHERE shiftid = ?");
+
+      statement.setInt(1, shiftId);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<String> usernames = new ArrayList<String>();
+
+      while (resultSet.next())
+      {
+        String name = resultSet.getString("username");
+        usernames.add(name);
+      }
+      System.out.println(usernames);
+      return usernames;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s + " - returned null");
+      return null;
+    }
+  }
+
   @Override public List<Shift> getShiftsStartingAtDate(LocalDate date) //exact date or date+later ?
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
@@ -345,6 +372,32 @@ public class ShiftDAOImpl implements ShiftDAO
       System.out.println(s + " - returned null");
       return null;
     }
+  }
+  @Override public int getLatestId(String shiftName)
+  {
+    {
+      try (Connection connection =  ConnectionDB.getInstance().getConnection())
+      {
+        PreparedStatement statement = connection.prepareStatement("select * from shift where name = ? order by taskid desc limit 1");
+        statement.setString(1, shiftName);
+
+
+        ResultSet resultSet = statement.executeQuery();
+
+
+        if (resultSet.next())
+        {
+          int id = resultSet.getInt("shiftid");
+          return id;
+        }
+
+      }
+      catch (SQLException s)
+      {
+        System.out.println(s+"(get id method)");
+      }
+    }
+    return -1;
   }
 }
 
