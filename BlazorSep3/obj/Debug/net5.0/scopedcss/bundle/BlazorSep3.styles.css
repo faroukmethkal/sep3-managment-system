@@ -1358,6 +1358,20 @@ header[b-f5ypzovfwh]{
     color: #fff;
 
 }
+/* _content/BlazorSep3/Pages/Admin/ManageTask/ApproveDecline.razor.rz.scp.css */
+.result[b-02koaadbu3]{
+    max-height: 35vh;
+    overflow: auto;
+}
+.btnMy[b-02koaadbu3]{
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: .1rem;
+    border: none;
+    padding: .4rem .8rem .2rem .8rem;
+    border-radius: 10px;
+}
 /* _content/BlazorSep3/Pages/Admin/ManageTask/EditTaskComponent.razor.rz.scp.css */
 .content[b-zhnvbgz66g] {
     display: flex;
@@ -1930,6 +1944,7 @@ search content
     max-height: 30vh;
     overflow: auto;
 }
+/* _content/BlazorSep3/Pages/Admin/ManageTask/ViewTeamWorkingOnTask.razor.rz.scp.css */
 /* _content/BlazorSep3/Pages/Full-time/AllAvailableTasks.razor.rz.scp.css */
 .content[b-c3k7vppjaw] {
     display: flex;
@@ -2115,6 +2130,30 @@ search content
     margin-top: 2rem;
 }
 
+/* _content/BlazorSep3/Pages/Full-time/ChangeStatus.razor.rz.scp.css */
+.result[b-v3xr8ptm6d]{
+    max-height: 35vh;
+    overflow: auto;
+}
+
+.form__input_select[b-v3xr8ptm6d] {
+    font-size: 1.2rem;
+    border-radius: 1px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 30rem;
+    display: block;
+    transition: all .3s;
+    height: 1.7rem;
+
+}
+
+.form__input_select:focus[b-v3xr8ptm6d] {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #55c57a;
+}
 /* _content/BlazorSep3/Pages/Full-time/MyTasks.razor.rz.scp.css */
 .content[b-zjodemoi42] {
     display: flex;

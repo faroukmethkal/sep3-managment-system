@@ -85,8 +85,10 @@
                         <th >Deadline</th>
                         <th >Status</th>
                         <th >Specialities</th>
+                        <th>Team</th>
                         <th>Edit</th>
                         <th>Remove</th>
+                        <th>Approve</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -102,7 +104,9 @@
                             <td>
                                 <button @onclick="@(() => ShowEditSpecialities(item))" class="btn btn-primary">View</button>
                             </td>
-
+                            <td>
+                                <button @onclick="@(() => ShowTeamWorkingOnTask(item.id))" class="btn btn-primary">View Team</button>
+                            </td>
                             <td>
                                 <button @onclick="@(() => Edit(item.id))">
                                     <i class="oi oi-pencil" style="color:#1b6ec2"/>
@@ -113,6 +117,14 @@
                                     <i class="oi oi-delete" style="color:red"/>
                                 </button>
                             </td>
+                            <td>
+                                @if (item.Status == Status.Finished)
+                                {
+                                    <button @onclick="@(() => ApproveOrDecline(item))" class="btn btn-primary">
+                                        Approve/Decline
+                                    </button>
+                                }
+                                </td>
                         </tr>
                     }
 
@@ -149,6 +161,19 @@
         parameters.Add("Specialities", task1.Specialities);
         Modal.Show<ViewTaskSpecialties>("Task's Specialties", parameters);
     }
+    async Task ShowTeamWorkingOnTask(int id)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Id", id);
+        Modal.Show<ViewTeam>("Team Working on Task", parameters);
+    }
+    
+    async Task ApproveOrDecline(Taskk task1)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Task", task1);
+        Modal.Show<ApproveDecline>("Approve or decline task: "+task1.Title, parameters);
+    }
 
     private void FilterByName(ChangeEventArgs changeEventArgs)
     {
@@ -181,6 +206,7 @@
             await taskServices.RemoveTask(id);
         }
     }
+    
 
     protected override async Task OnInitializedAsync()
     {

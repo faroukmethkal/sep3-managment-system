@@ -171,6 +171,19 @@ namespace BlazorSep3.Data
             return result; 
         }
 
+        public async Task ChangeStatus(int id, Status newStatus)
+        {
+            string serializeTask = JsonConvert.SerializeObject(newStatus);
+            Console.WriteLine(serializeTask);
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpContent content = new StringContent(serializeTask, Encoding.UTF8, "application/json"); 
+
+            var response = await client.PutAsync(client.BaseAddress + $"api/task?status={newStatus}&taskId={id}", content); 
+            
+            if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
+        }
+
         public async Task<IList<Profile>> GetTeamWorkingOnTask(int taskId)
         {
             IList<Profile> team = new List<Profile>();
@@ -190,6 +203,43 @@ namespace BlazorSep3.Data
              team =  JsonConvert.DeserializeObject<List<Profile>>(message);
             
             return team; 
+        }
+
+        public async Task UnassignEmployeeFromTask(int taskId, string username)
+        {
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+
+            var response = await client.DeleteAsync(client.BaseAddress + $"api/employee/task?taskId={taskId} & username={username}"); 
+            
+            
+            if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
+        }
+
+        public async Task ApproveTask(int id)
+        {
+            string serializeTask = JsonConvert.SerializeObject(Status.Approved);
+            Console.WriteLine(serializeTask);
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpContent content = new StringContent(serializeTask, Encoding.UTF8, "application/json"); 
+
+            var response = await client.PutAsync(client.BaseAddress + $"api/task?status={Status.Approved}&taskId={id}", content); 
+            
+            if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
+        }
+
+        public async Task DeclineTask(int id)
+        {
+            string serializeTask = JsonConvert.SerializeObject(Status.Rejected);
+            Console.WriteLine(serializeTask);
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpContent content = new StringContent(serializeTask, Encoding.UTF8, "application/json"); 
+
+            var response = await client.PutAsync(client.BaseAddress + $"api/task?status={Status.Rejected}&taskId={id}", content); 
+            
+            if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
     }
 }

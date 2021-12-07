@@ -19,8 +19,11 @@ namespace BlazorSep3.Data
 
         Task TakeTask(int id);
         Task<IList<Taskk>> GetAllMyTasks(Status? status);
-
+        Task ApproveTask(int id);
+        Task DeclineTask(int id);
+        Task ChangeStatus(int id, Status newStatus);
         Task<IList<Profile>> GetTeamWorkingOnTask(int taskId);
+        Task UnassignEmployeeFromTask(int taskId, string username);
 
     }
 }

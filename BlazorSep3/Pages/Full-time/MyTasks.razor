@@ -7,7 +7,7 @@
 
 
 <div class="content">
-    <TaskEmployeeNavSide/>
+    <TaskEmployeeNavSide />
     <main class="content-view">
         <div class="filter_option">
             <div class="form__group">
@@ -59,7 +59,6 @@
                         <th>Estimate</th>
                         <th>Deadline</th>
                         <th>Status</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -70,8 +69,11 @@
                             <td>@item.StartDate</td>
                             <td>@item.Estimate</td>
                             <td>@item.Deadline</td>
-                            <td>@item.Status</td>
-
+                            <td>
+                                <button @onclick="@(() => ChangeStatus(item))" class="btn btn-secondary">
+                                    @item.Status
+                                </button>
+                            </td>                     
                         </tr>
                     }
                     </tbody>
@@ -82,6 +84,9 @@
 </div>
 
 @code {
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
     private IList<Taskk> tasksToShow;
     private IList<Taskk> tasks;
     private string? filterByName;
@@ -108,11 +113,17 @@
         ExecuteFilter();
     }
 
+    private void ChangeStatus(Taskk task)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Task", task);
+        Modal.Show<ChangeStatus>("Change Status of task: "+task.Title, parameters);
+    }
+
     private void ExecuteFilter()
     {
         tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
-
     /*protected override async Task OnInitializedAsync()
     {
         Console.WriteLine(isImportant);
