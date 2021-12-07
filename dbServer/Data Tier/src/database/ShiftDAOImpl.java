@@ -378,7 +378,7 @@ public class ShiftDAOImpl implements ShiftDAO
     {
       try (Connection connection =  ConnectionDB.getInstance().getConnection())
       {
-        PreparedStatement statement = connection.prepareStatement("select * from shift where name = ? order by taskid desc limit 1");
+        PreparedStatement statement = connection.prepareStatement("select * from shift where name = ? order by shiftid desc limit 1");
         statement.setString(1, shiftName);
 
 
