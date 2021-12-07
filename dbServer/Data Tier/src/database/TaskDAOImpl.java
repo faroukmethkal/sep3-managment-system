@@ -188,11 +188,9 @@ public class TaskDAOImpl implements TaskDAO
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT taskid, status FROM task_speciality WHERE speciality = ? AND status = ?");
+          "SELECT taskid FROM task_speciality WHERE speciality = ?");
 
       statement.setString(1,specialty.toString());
-      statement.setString(2,Status.Created.toString());
-
 
       ResultSet resultSet = statement.executeQuery();
       List<Task> tasks = new ArrayList<>();
@@ -365,8 +363,8 @@ public class TaskDAOImpl implements TaskDAO
   {
     //maybe just use these 2 methods to delete all specialties from task and then add new ones
     //
-    //removeSpecialtiesFromTask(taskId);
-    //addSpecialtiesOfTask(getTaskById(taskId));
+    // removeSpecialtiesFromTask(taskId);
+    //  addSpecialtiesOfTask(getTaskById(taskId));
     //--------------------------------------------- or update statement method
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -374,6 +372,7 @@ public class TaskDAOImpl implements TaskDAO
       {
         PreparedStatement statement = connection.prepareStatement(
             "UPDATE task_speciality SET speciality = ?, numberofemployees = ? where taskid = ?");
+        System.out.println("edit s task ---->>>>"+ key.toString()+"  "+specialties.get(key));
 
         statement.setString(1, key.toString());
         statement.setInt(2,(int)specialties.get(key));

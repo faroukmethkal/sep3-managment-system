@@ -81,12 +81,12 @@ public class RemoteShiftManager implements RemoteShift{
         return shiftDB.getShiftsStartingAtTime(startTime);
     }
 
-    @Override public void assignEmployeeToShift(int shiftId, String username)
+    @Override public void assignEmployeeToShift(int shiftId, String username) throws RemoteException
     {
         shiftDB.assignEmployeeToShift(shiftId, username);
     }
 
-    @Override public void removeEmployeeFromShift(int shiftId, String username)
+    @Override public void removeEmployeeFromShift(int shiftId, String username) throws RemoteException
     {
         shiftDB.removeEmployeeFromShift(shiftId, username);
     }
