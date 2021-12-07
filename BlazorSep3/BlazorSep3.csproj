@@ -45,6 +45,15 @@
         <Content Update="Pages\Admin\ManageTask\EditTaskComponent.razor.css">
             <DependentUpon>EditTaskComponent.razor</DependentUpon>
         </Content>
+        <Content Update="Pages\Admin\ManageTask\ApproveDecline.razor.css">
+            <DependentUpon>ApproveDecline.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Full-time\ChangeStatus.razor.css">
+        <DependentUpon>ChangeStatus.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Admin\ManageTask\ViewTeam.razor.css">
+            <DependentUpon>ViewTeam.razor</DependentUpon>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>

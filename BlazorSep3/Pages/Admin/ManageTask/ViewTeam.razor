@@ -1,0 +1,113 @@
+﻿@using BlazorSep3.model
+@using System.Text
+@using BlazorSep3.Data
+@inject ITaskServices taskServices;
+@inject IJSRuntime _jsRuntime;
+
+<div class="container">
+    <div class="result">
+        @if (team == null)
+        {
+            <p>
+                <em>team is not exist</em>
+            </p>
+        }
+        else if (!team.Any())
+        {
+            <p>
+                <em>no team been assigned to taks</em>
+            </p>
+        }
+        else
+        {
+            <table class="table table-hover">
+                <thead style="position: sticky;top:0; z-index: 100" class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Specialties</th>
+                    <th>Age</th>
+                    <th>Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach (var t in team)
+                {
+                    <tr>
+                        <td>
+                            @t.FirstName + @t.LastName
+                        </td>
+                        <td >
+                            @splitOnCapitalLitter(t.Specialities)
+                        </td>
+                        <td >
+                            @CalculateAge(t.Birthday)
+                        </td>
+                        <td>
+                            <button @onclick="@(() => Remove(t.Username))">
+                                <i class="oi oi-delete" style="color:red"/>
+                            </button>
+                        </td>
+                    </tr>
+                }
+
+                </tbody>
+
+            </table>
+        }
+
+    </div>
+
+
+</div>
+<div class="modal_foter">
+    <button @onclick="ModalInstance.CancelAsync" class="btn btn-secondary">Close</button>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    BlazoredModalInstance ModalInstance { get; set; }
+
+    [Parameter]
+    public int Id { get; set; }
+
+    IList<Profile> team = new List<Profile>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        team = await taskServices.GetTeamWorkingOnTask(Id);
+    }
+    
+    private async Task Remove(string username)
+    {
+        bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to remove this teamMember?"); // Confirm
+        if (confirmed)
+        {
+            await taskServices.UnassignEmployeeFromTask(Id,username);
+        }
+        await ModalInstance.CancelAsync();
+    }
+
+
+    private string splitOnCapitalLitter(string s)
+    {
+        StringBuilder builder = new StringBuilder();
+        s.First().ToString().ToUpper();
+        foreach (char c in s)
+        {
+            if (Char.IsUpper(c) && builder.Length > 0) builder.Append(' ');
+            builder.Append(c);
+        }
+        string newString = builder.ToString();
+        string newsCapitalizeFirstLetter = char.ToUpper(newString[0]) + newString.Substring(1);
+        return newsCapitalizeFirstLetter;
+    }
+
+    private int CalculateAge(DateTime birthda)
+    {
+        return DateTime.Now.Year - birthda.Year;
+    }
+
+}
