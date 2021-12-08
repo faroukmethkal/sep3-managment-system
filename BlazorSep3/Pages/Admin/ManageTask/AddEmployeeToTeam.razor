@@ -1,0 +1,48 @@
+﻿@using BlazorSep3.model
+@using System.Text
+@using BlazorSep3.Data
+@inject ITaskServices taskServices;
+<div class="container">
+    <div class="result">
+        <div>
+            <span class="error-message">@errorMessage</span>
+        </div>
+        <body>
+        <input type="text" class="form__input" placeholder="username" @bind="@username">
+        </body>
+    </div>
+</div>
+<div class="modal_foter">
+    <button @onclick="Save" class="btn btn-success">Save</button>
+    <button @onclick="ModalInstance.CancelAsync" class="btn btn-secondary">Close</button>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    BlazoredModalInstance ModalInstance { get; set; }
+
+    [Parameter]
+    public int taskId { get; set; }
+
+    private string username { get; set; }
+    private string errorMessage { get; set; }
+
+    private async Task Save()
+    {
+        try
+        {
+            await taskServices.AddEmployeeToTeam(taskId, username.Trim());
+            errorMessage = "employee added";
+            username = "";
+        }
+        catch(Exception e)
+        {
+            errorMessage = e.Message;
+        }
+    }
+
+
+
+
+}

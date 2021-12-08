@@ -1,4 +1,4 @@
-﻿@page "/MyTasks"
+﻿@page "/CriticalTasks"
 @using BlazorSep3.model
 @using BlazorSep3.Data
 @inject NavigationManager NavigationManager
@@ -7,28 +7,9 @@
 
 
 <div class="content">
-    <TaskEmployeeNavSide />
+    <TaskNavSide />
     <main class="content-view">
         <div class="filter_option">
-            <div class="form__group">
-                <div class="form__group-title">
-                    <span class="icon oi oi-person"/>
-                    <label class="form__label">Status</label>
-                </div>
-                <div>
-                    <select name="specialties" class="form__input_select" @bind="status">
-                        @foreach (var status in Enum.GetValues(typeof(Status)))
-                        {
-                            <option value="@status">@status</option>
-                        }
-                    </select>
-                </div>
-            </div>
-
-            <div class="form__group">
-                <button class="button-spec" type="submit" @onclick="Filter">Filter</button>
-            </div>
-
             <form action="#" class="form__group_search">
                 <input type="text" class="search_input" placeholder="Search tasks" @oninput="@((arg) => FilterByName(arg))">
                
@@ -58,9 +39,10 @@
                         <th>Start Date</th>
                         <th>Estimate</th>
                         <th>Progress</th>
-                        <th>Add Hours</th>
-                        <th>Deadline</th>
+                        <th style="color: darkred">Deadline</th>
                         <th>Status</th>
+                        <th>Team</th>
+                        <th>Add people</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,15 +59,14 @@
                                     @CalculatePercentage(item.SpentHours, item.Estimate)
                                 </p>
                             </td>
-                            <td>
-                                <button @onclick="@(() => AddHoursSpent(item))" class="oi oi-plus" style="color:green"></button>
-                            </td>
                             <td>@item.Deadline</td>
+                            <td>@item.Status</td>  
                             <td>
-                                <button @onclick="@(() => ChangeStatus(item))" class="btn btn-secondary">
-                                    @item.Status
-                                </button>
-                            </td>                     
+                                <button @onclick="@(() => ShowTeamWorkingOnTask(item.id))" class="btn btn-primary">View Team</button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => AddEmployeeToTeam(item))" class="oi oi-plus" style="color:green"></button>
+                            </td>
                         </tr>
                     }
                     </tbody>
@@ -96,21 +77,14 @@
 </div>
 
 @code {
+
     [CascadingParameter]
     public IModalService Modal { get; set; }
 
     private IList<Taskk> tasksToShow;
     private IList<Taskk> tasks;
     private string? filterByName;
-
-    private Status? status { get; set; }
-
-    private async Task Filter()
-    {
-        tasks = await taskServices.GetAllMyTasks(status);
-        tasksToShow = tasks;
-    }
-
+    
 
     private void FilterByName(ChangeEventArgs changeEventArgs)
     {
@@ -129,36 +103,32 @@
     {
         return hours / estimate * 100;
     }
-
-    private async Task AddHoursSpent(Taskk task)
+    
+    async Task ShowTeamWorkingOnTask(int id)
     {
         var parameters = new ModalParameters();
-        parameters.Add("taskId", task.id);
-        var modelResult = Modal.Show<AddHoursToTask>("Add time spent on task: "+ task.Title, parameters);
+        parameters.Add("Id", id);
+        Modal.Show<ViewTeam>("Team Working on Task", parameters);
     }
-    private async void ChangeStatus(Taskk task)
-    {
-        var parameters = new ModalParameters();
-        parameters.Add("Task", task);
-        var modelResult =Modal.Show<ChangeStatus>("Change Status of task: "+task.Title, parameters);
-        var result = await modelResult.Result;
-        Taskk taskResult = (Taskk) result.Data;
-        
-        foreach (var t in tasksToShow)
-        {
-            if (t.id == taskResult.id) t.Status = taskResult.Status;
-        }
-
-        tasks = tasksToShow;
-    }
+    
+    
 
     private void ExecuteFilter()
     {
         tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
     }
-    /*protected override async Task OnInitializedAsync()
+
+    private async Task AddEmployeeToTeam(Taskk task)
     {
-        Console.WriteLine(isImportant);
-    }*/
+        var parameters = new ModalParameters();
+        parameters.Add("taskId", task.id);
+        var modelResult = Modal.Show<AddEmployeeToTeam>("Add employee to team: "+ task.Title, parameters);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        tasks = await taskServices.GetCriticalTasks();
+        tasksToShow = tasks;
+    }
 
 }

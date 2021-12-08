@@ -229,6 +229,39 @@ namespace BlazorSep3.Data
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
 
+        public async Task<IList<Taskk>> GetCriticalTasks()
+        {
+            List<Taskk> result = new List<Taskk>();
+            
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + "/api/criticalTasks"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+            result = JsonConvert.DeserializeObject<List<Taskk>>(message);
+            
+            return result; 
+        }
+
+        public async Task AddEmployeeToTeam(int taskId, string username)
+        {
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                                      $"api/employee/task?username={username}&taskId={taskId}"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+        }
+
         public async Task ApproveTask(int id)
         {
             string serializeTask = JsonConvert.SerializeObject(Status.Approved);

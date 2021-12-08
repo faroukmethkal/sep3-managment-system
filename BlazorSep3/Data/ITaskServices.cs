@@ -25,6 +25,8 @@ namespace BlazorSep3.Data
         Task<IList<Profile>> GetTeamWorkingOnTask(int taskId);
         Task UnassignEmployeeFromTask(int taskId, string username);
         Task AddHoursSpent(int taskId, double hours);
+        Task<IList<Taskk>> GetCriticalTasks();
+        Task AddEmployeeToTeam(int taskId, string username);
 
     }
 }

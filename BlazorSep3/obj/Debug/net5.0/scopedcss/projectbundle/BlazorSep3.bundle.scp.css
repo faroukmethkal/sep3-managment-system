@@ -1174,6 +1174,43 @@ Content view
     margin-right: 2rem;
     fill: currentColor;
 }
+/* _content/BlazorSep3/Pages/Admin/ManageTask/AddEmployeeToTeam.razor.rz.scp.css */
+.result[b-x1vlur34qt]{
+    max-height: 25vh;
+    overflow: auto;
+}
+.form__input[b-x1vlur34qt] {
+    font-size: 1rem;
+    padding: 1rem 1rem;
+    border-radius: 1.5px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 12rem;
+    display: inline-block;
+    transition: all .3s;
+    height: 1.2rem;
+    color: #D97706;
+}
+
+.form__input_select[b-x1vlur34qt] {
+    font-size: 1.2rem;
+    border-radius: 1px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 30rem;
+    display: block;
+    transition: all .3s;
+    height: 1.7rem;
+
+}
+
+.form__input_select:focus[b-x1vlur34qt] {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #55c57a;
+}
 /* _content/BlazorSep3/Pages/Admin/ManageTask/AddTask.razor.rz.scp.css */
 .content[b-f5ypzovfwh] {
     display: flex;
@@ -1374,6 +1411,127 @@ header[b-f5ypzovfwh]{
     border: none;
     padding: .4rem .8rem .2rem .8rem;
     border-radius: 10px;
+}
+/* _content/BlazorSep3/Pages/Admin/ManageTask/CriticalTasks.razor.rz.scp.css */
+.content[b-vrglyh8zv9] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-vrglyh8zv9] {
+    background-color: #fff;
+    flex: 1;
+}
+
+.filter_option[b-vrglyh8zv9]{
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #fff;
+    height: 6rem;
+    padding: 2rem 1rem;
+    border-bottom: 3px solid #E5E7EB;
+    margin: 1rem 0rem;
+}
+
+.form__group_search[b-vrglyh8zv9]{
+    display: flex;
+
+}
+
+.search_input[b-vrglyh8zv9] {
+    transition: all, .2s;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: .1rem;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    padding: .4rem 1.2rem;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.button-spec[b-vrglyh8zv9] {
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .1rem;
+    color: #333;
+    background-color: #E5E7EB;
+    border: none;
+    padding: .4rem .8rem;
+    border-radius: 10px;
+}
+
+
+.button-spec:hover[b-vrglyh8zv9] {
+    background-color:#D97706;
+    color: #fff;
+}
+
+.search_input:focus[b-vrglyh8zv9] {
+    outline: none;
+    width: 82%;
+    background-color: #fff;
+}
+
+.search_input[b-vrglyh8zv9]::-webkit-input-placeholder {
+    font-weight: 100;
+    color: #D97706;
+}
+
+
+
+.search_input:focus[b-vrglyh8zv9] {
+    border-bottom: 1px solid #D97706;
+}
+
+
+.search_button[b-vrglyh8zv9] {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: .1rem;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    padding: .4rem .8rem;
+    border-radius: 10px;
+    width: 30%;
+    margin-left: 1px;
+}
+
+
+.search_button:hover[b-vrglyh8zv9] {
+    transition: all, .2s;
+    background-color:#E5E7EB;
+    color: #333;
+}
+
+
+.search_input:focus[b-vrglyh8zv9] {
+    outline: none;
+}
+
+
+.search_input:active[b-vrglyh8zv9] {
+    transform: translateY(2px);
+}
+
+
+.form__group-title[b-vrglyh8zv9]{
+    display: flex;
+}
+
+
+.icon[b-vrglyh8zv9]{
+    height: .8rem;
+    margin-top: 0.2rem;
 }
 /* _content/BlazorSep3/Pages/Admin/ManageTask/EditTaskComponent.razor.rz.scp.css */
 .content[b-zhnvbgz66g] {
@@ -1669,20 +1827,6 @@ header[b-zhnvbgz66g]{
     background-color:#059669;
     color: #fff;
 
-}
-/* _content/BlazorSep3/Pages/Admin/ManageTask/ManageTask.razor.rz.scp.css */
-.content[b-l29e9n9pv8] {
-    display: flex;
-    height: 91vh;
-}
-
-/******
-Content view 
-*******/
-
-.content-view[b-l29e9n9pv8] {
-    background-color: #fff;
-    flex: 1;
 }
 /* _content/BlazorSep3/Pages/Admin/ManageTask/TaskNavSide.razor.rz.scp.css */
 .sidebar[b-nn8520mob5] {
@@ -2323,7 +2467,7 @@ Content view
     background-color: #fff;
     border: none;
     border-bottom: 3px solid transparent;
-    width: 4rem;
+    width: 12rem;
     display: inline-block;
     transition: all .3s;
     height: 1.2rem;
