@@ -15,6 +15,8 @@ import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +45,7 @@ public class TaskLogicManager implements TaskLogic {
 
         if (startDate != null && deadline != null) {
             try {
-                return remoteTask.getAllTaskBetween(startDate,deadline);
+                return remoteTask.getAllTaskBetween(startDate, deadline);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -58,7 +60,7 @@ public class TaskLogicManager implements TaskLogic {
         }
         if (deadline != null) {
             try {
-                return remoteTask.getAllTaskBetween(LocalDate.now().minusMonths(3),deadline);
+                return remoteTask.getAllTaskBetween(LocalDate.now().minusMonths(3), deadline);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -73,7 +75,7 @@ public class TaskLogicManager implements TaskLogic {
         if (isImportant != null) {
 
             try {
-                return remoteTask.getAllTaskBetween(LocalDate.now().minusMonths(3),LocalDate.now().plusDays(2));
+                return remoteTask.getAllTaskBetween(LocalDate.now().minusMonths(3), LocalDate.now().plusDays(2));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -100,6 +102,7 @@ public class TaskLogicManager implements TaskLogic {
 
     @Override
     public void editTask(Task task) {
+
         try {
             remoteTask.editTask(task);
         } catch (RemoteException e) {
@@ -116,34 +119,6 @@ public class TaskLogicManager implements TaskLogic {
         }
     }
 
-    @Override
-    public Map<String, Integer> getSpecialtiesOfTask(int taskId) {
-        try {
-            return remoteTask.getSpecialtiesOfTask(taskId);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    @Override
-    public void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties)  {
-        try {
-            remoteTask.editSpecialtiesOfTask(taskId, specialties);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void removeSpecialtyFromTask(int taskId, Specialties specialty)  {
-        try {
-            remoteTask.removeSpecialtyFromTask(taskId,specialty);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public List<Profile> getAllTeamMemberForTask(int taskId) {
@@ -157,8 +132,8 @@ public class TaskLogicManager implements TaskLogic {
     }
 
     /**
-     full time employee
-     * */
+     * full time employee
+     */
 
     @Override
     public List<Task> getAllTaskForUsername(String username) {
@@ -184,7 +159,6 @@ public class TaskLogicManager implements TaskLogic {
     }
 
 
-
     @Override
     public void assignEmployeeToTask(String username, int taskId) {
         int teamId = -1;
@@ -192,11 +166,11 @@ public class TaskLogicManager implements TaskLogic {
         int specialitiesRequired = -1;
         int specialitiesAssigned = -1;
         try {
-            teamId =  remoteTask.getTeamIdByTask(taskId);
-            specialitiesRequired = remoteTask.numberOfEmpWithSpecialtiesAreRequiredForTask(taskId,s);
-            specialitiesAssigned = remoteTask.numberOfEmpAssignedToTaskWithSpecialties(taskId,s);
-            if(teamId != -1 && specialitiesAssigned < specialitiesRequired){
-                remoteTask.assignEmployeeToTeam(username,teamId);
+            teamId = remoteTask.getTeamIdByTask(taskId);
+            specialitiesRequired = remoteTask.numberOfEmpWithSpecialtiesAreRequiredForTask(taskId, s);
+            specialitiesAssigned = remoteTask.numberOfEmpAssignedToTaskWithSpecialties(taskId, s);
+            if (teamId != -1 && specialitiesAssigned < specialitiesRequired) {
+                remoteTask.assignEmployeeToTeam(username, teamId);
             }
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -204,12 +178,11 @@ public class TaskLogicManager implements TaskLogic {
     }
 
 
-
     @Override
     public List<Task> getMyTasksWhereStatus(String username, @Nullable Status status) {
-        if (status != null){
+        if (status != null) {
             try {
-                return remoteTask.getMyTasksWhereStatusIs(username,status);
+                return remoteTask.getMyTasksWhereStatusIs(username, status);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -222,6 +195,50 @@ public class TaskLogicManager implements TaskLogic {
         }
 
         return null;
+    }
+
+    @Override
+    public void setStatusOfTask(int taskId, Status status) {
+        try {
+            remoteTask.setStatusOfTask(taskId, status);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void removeEmployeeFromTask(int taskId, String username) {
+        try {
+            remoteTask.removeEmployeeFromTask(taskId, username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void increaseSpentHoursInTaskBy(int taskId, double spentHours) {
+        try {
+            remoteTask.increaseSpentHoursInTaskBy(taskId, spentHours);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<Task> getAvailableTask() {
+        List<Task> list = new ArrayList<>();
+        List<Task> criticalTasks = new ArrayList<>();
+        try {
+            list = remoteTask.getAvailableTask();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        for (Task task : list){
+            if (task.getDeadline().isBefore(LocalDate.now().plusDays(5))) criticalTasks.add(task);
+        }
+
+        return criticalTasks;
     }
 
 

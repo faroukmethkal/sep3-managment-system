@@ -30,13 +30,20 @@ public class TaskAdminController {
 
     @PreAuthorize("hasAnyRole('ROLE_admin')")
     @GetMapping("api/tasks")
-    public List<Task> getAllTask(@RequestParam("startTime") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalDate startTime,
+    public List<Task> getAllTasks(@RequestParam("startTime") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalDate startTime,
                                  @RequestParam("deadLine") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalDate deadLine,
                                  @RequestParam("isImportant") @Nullable Boolean isImportant,
                                  @RequestParam("status") @Nullable Status status){
 
        return taskLogic.getAllTask(startTime, deadLine, isImportant,status);
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_admin')")
+    @GetMapping("api/criticalTasks")
+    public List<Task> getAllCriticalTasks(){
+        return taskLogic.getAvailableTask();
+    }
+
     @PreAuthorize("hasAnyRole('ROLE_admin')")
     @GetMapping("api/task")
     public Task getTask(@RequestParam("id")int id){
@@ -56,6 +63,17 @@ public class TaskAdminController {
         System.out.println("task to edit contoller ->>>>>>>>"+task.toString());
         taskLogic.editTask(task);
     }
+
+    @PutMapping("api/task/status")
+    @PreAuthorize("hasAnyRole('ROLE_fullTimeEmployee','ROLE_admin')")
+    public void changeTaskStatus(@RequestParam("status") Status status, @RequestParam("taskId") int taskId){
+        taskLogic.setStatusOfTask(taskId, status);
+    }
+
+    /****
+     * remove team from task
+     */
+
 
 
 }

@@ -55,10 +55,26 @@ public class RemoteTaskManager implements RemoteTask{
     }
 
     @Override
+    public List<Task> getAvailableTask() throws RemoteException {
+        return remoteTask.getAvailableTask();
+    }
+
+    @Override
     public List<Task> getAllTaskWithStatus(Status status){
         try {
             return remoteTask.getAllTaskWithStatus(status);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Task> getFinishedTasks() {
+        try {
+            return remoteTask.getFinishedTasks();
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
 
@@ -151,6 +167,42 @@ public class RemoteTaskManager implements RemoteTask{
     }
 
     @Override
+    public void setStatusOfTask(int taskId, Status status){
+        try {
+            remoteTask.setStatusOfTask(taskId, status);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void removeEmployeeFromTask(int taskId, String username)  {
+        try {
+            remoteTask.removeEmployeeFromTask(taskId, username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void setSpentHoursForTask(int taskId, double spentHours) {
+        try {
+            remoteTask.setSpentHoursForTask(taskId, spentHours);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void increaseSpentHoursInTaskBy(int taskId, double spentHours) {
+        try {
+            remoteTask.increaseSpentHoursInTaskBy(taskId, spentHours);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public Map<String, Integer> getSpecialtiesOfTask(int taskId) {
         try {
             return remoteTask.getSpecialtiesOfTask(taskId);
@@ -161,23 +213,8 @@ public class RemoteTaskManager implements RemoteTask{
         return null;
     }
 
-    @Override
-    public void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties)  {
-        try {
-            remoteTask.editSpecialtiesOfTask(taskId, specialties);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
 
-    @Override
-    public void removeSpecialtyFromTask(int taskId, Specialties specialty)  {
-        try {
-            remoteTask.removeSpecialtyFromTask(taskId,specialty);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     @Override
     public List<Profile> getAllTeamMemberForTask(int taskId) {

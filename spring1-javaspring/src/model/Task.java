@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class Task implements Serializable {
 
+
    private int id;
    private String title;
    private String description;
@@ -14,8 +15,10 @@ public class Task implements Serializable {
    private double estimatedTime;
    private LocalDate deadline;
    private Status status;
+   private double spentHours;
 
    public Task(String title, String description, Map<String, Integer> specialties, LocalDate startDate, double estimatedTime, LocalDate deadline, Status status) {
+      this.id = id;
       this.title = title;
       this.description = description;
       this.specialties = specialties;
@@ -23,6 +26,7 @@ public class Task implements Serializable {
       this.estimatedTime = estimatedTime;
       this.deadline = deadline;
       this.status = status;
+      this.spentHours = 0;
    }
 
    public void setSpecialties(Map<String, Integer> specialties) {
@@ -90,6 +94,17 @@ public class Task implements Serializable {
    public void setDeadline(LocalDate deadline) {
       this.deadline = deadline;
    }
+
+   public double getSpentHours()
+   {
+      return spentHours;
+   }
+
+   public void setSpentHours(double spentHours)
+   {
+      this.spentHours = spentHours;
+   }
+
 
    @Override
    public String toString() {

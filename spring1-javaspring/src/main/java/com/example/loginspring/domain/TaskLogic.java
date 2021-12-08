@@ -18,12 +18,12 @@ public interface TaskLogic {
     void editTask(Task task);
     void removeTask(int id);
 
+
     /**
      TODO edit task's especialties
      */
-    Map<String,Integer> getSpecialtiesOfTask(int taskId);
-    void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties);
-    void removeSpecialtyFromTask(int taskId, Specialties specialty);
+
+
     List<Profile> getAllTeamMemberForTask(int taskId);
     /**
      * full time employee
@@ -33,7 +33,12 @@ public interface TaskLogic {
     void assignEmployeeToTask(String username, int taskId);
     List<Task> getMyTasksWhereStatus(String username, Status status);
 
+    void setStatusOfTask(int taskId, Status status) ;
+    void removeEmployeeFromTask(int taskId, String username);
 
+    void increaseSpentHoursInTaskBy(int taskId, double spentHours) ;
+
+    List<Task> getAvailableTask();
 
 
 
