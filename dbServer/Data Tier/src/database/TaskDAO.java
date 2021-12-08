@@ -20,13 +20,15 @@ public interface TaskDAO
   void setStatusOfTask(int taskId, Status status); //use this for manager to approve/reject task
   List<Task> getTasksWhereStatusIs(Status status);
   List<Task> getTasksBetweenDates(LocalDate startDate, LocalDate deadline);
+  List<Task> getAvailableTasks();
   List<Task> getFinishedTasks();
   void removeTask(int taskId);
   void editTask(Task task);
   void editSpecialtiesOfTask(Task task);
   void removeSpecialtyFromTask(int taskId, Specialties specialty);
   int getTeamIdByTask(int taskId);
-  void assignEmployeeToTeam(String username, int teamId);
+  boolean assignEmployeeToTeam(String username, int teamId);
+  //get My tasks
   List<Task> getTasksOfEmployee(String username);
   List<Task> getTasksOfEmployeeWithStatus(String username, Status status);
   //idk if needed

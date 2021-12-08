@@ -4,6 +4,7 @@ import model.*;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -284,6 +285,36 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
+  @Override public List<Task> getAvailableTasks()
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * from task t where startdate >= ?");
+      statement.setDate(1, java.sql.Date.valueOf(LocalDate.now())); //today and later
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Task> tasks = new ArrayList<Task>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("taskid");
+        if(getNumOfAssignedEmployees(idDB) < getNumberOfNeededEmployeesByTask(idDB))
+        {
+          tasks.add(getTaskById(idDB));
+        }
+      }
+      System.out.println(tasks);
+      return tasks;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s+" - returned null");
+      return null;
+    }
+  }
+
   @Override public List<Task> getFinishedTasks()
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
@@ -435,7 +466,7 @@ public class TaskDAOImpl implements TaskDAO
     return -1;
   }
 
-  @Override public void assignEmployeeToTeam(String username, int teamId)
+  @Override public boolean assignEmployeeToTeam(String username, int teamId)
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -446,11 +477,12 @@ public class TaskDAOImpl implements TaskDAO
       statement.setInt(2, teamId);
 
       statement.executeUpdate();
-
     }
     catch(SQLException s){
       System.out.println(s);
+      return false;
     }
+    return true;
   }
 
   @Override public List<Task> getTasksOfEmployee(String username)
@@ -781,5 +813,52 @@ public class TaskDAOImpl implements TaskDAO
     catch(SQLException s){
       System.out.println(s);
     }
+  }
+
+  private int getNumberOfNeededEmployeesByTask(int taskId)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT SUM(numberofemployees) FROM task_speciality WHERE taskid = ?");
+
+      statement.setInt(1, taskId);
+
+      ResultSet resultSet = statement.executeQuery();
+
+
+      while (resultSet.next())
+      {
+        int total = resultSet.getInt("sum");
+        return total;
+      }
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+    return -1;
+  }
+
+  private int getNumOfAssignedEmployees(int taskId)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT count(username) from team_mates WHERE teamid = ?");
+
+      statement.setInt(1, taskId);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      while (resultSet.next())
+      {
+        int total = resultSet.getInt("count");
+        return total;
+      }
+    }
+    catch(SQLException s){
+      System.out.println(s);
+    }
+    return -1;
   }
 }

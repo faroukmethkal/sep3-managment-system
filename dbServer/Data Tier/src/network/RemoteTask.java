@@ -19,12 +19,13 @@ public interface RemoteTask extends Remote {
   List<Task> getAllTask()throws RemoteException;
   List<Task> getAllTaskBetween(LocalDate start, LocalDate deadline)throws RemoteException;
   List<Task> getAllTaskWithStatus(Status status)throws RemoteException;
+  List<Task> getAvailableTasks() throws RemoteException;
   List<Task> getFinishedTasks() throws RemoteException;
   Task getTaskById(int taskId) throws RemoteException;
   void editTask(Task task) throws RemoteException;
   void removeTask(int id) throws RemoteException;
   int getTeamIdByTask(int taskId) throws RemoteException;
-  void assignEmployeeToTeam(String username, int teamId) throws RemoteException;
+  boolean assignEmployeeToTeam(String username, int teamId) throws RemoteException;
   List<Task> getMyTasks(String username) throws RemoteException;
   List<Task> getMyTasksWhereStatusIs(String username, Status status) throws RemoteException;
   void setStatusOfTask(int taskId, Status status) throws RemoteException;

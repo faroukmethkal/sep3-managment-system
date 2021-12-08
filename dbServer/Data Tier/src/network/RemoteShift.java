@@ -20,5 +20,6 @@ public interface RemoteShift extends Remote {
     List<Shift> getAllShiftsStartAtTime(LocalTime startTime) throws RemoteException;
     void assignEmployeeToShift(int shiftId, String username) throws RemoteException;
     void removeEmployeeFromShift(int shiftId, String username) throws RemoteException;
+    List<Shift> getShiftsOfEmployee(String username)throws RemoteException;
     //remove, edit
 }

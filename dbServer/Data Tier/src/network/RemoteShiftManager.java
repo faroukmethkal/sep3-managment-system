@@ -91,4 +91,10 @@ public class RemoteShiftManager implements RemoteShift{
         shiftDB.removeEmployeeFromShift(shiftId, username);
     }
 
+    @Override public List<Shift> getShiftsOfEmployee(String username)
+        throws RemoteException
+    {
+        return shiftDB.getShiftsOfEmployee(username);
+    }
+
 }

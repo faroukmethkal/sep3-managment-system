@@ -61,6 +61,11 @@ public class RemoteTaskManager implements RemoteTask
     return taskDB.getTasksWhereStatusIs(status);
   }
 
+  @Override public List<Task> getAvailableTasks() throws RemoteException
+  {
+    return taskDB.getAvailableTasks();
+  }
+
   @Override public List<Task> getFinishedTasks() throws RemoteException
   {
     return taskDB.getFinishedTasks();
@@ -86,10 +91,10 @@ public class RemoteTaskManager implements RemoteTask
     return taskDB.getTeamIdByTask(taskId);
   }
 
-  @Override public void assignEmployeeToTeam(String username, int teamId)
+  @Override public boolean assignEmployeeToTeam(String username, int teamId)
       throws RemoteException
   {
-    taskDB.assignEmployeeToTeam(username, teamId);
+    return taskDB.assignEmployeeToTeam(username, teamId);
   }
 
   @Override public List<Task> getMyTasks(String username) throws RemoteException

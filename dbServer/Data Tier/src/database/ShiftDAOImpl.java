@@ -270,6 +270,33 @@ public class ShiftDAOImpl implements ShiftDAO
     }
   }
 
+  @Override public List<Shift> getShiftsOfEmployee(String username)
+  {
+    try (Connection connection = ConnectionDB.getInstance().getConnection())
+    {
+      PreparedStatement statement = connection.prepareStatement("select * from assigned_emplyoees WHERE username = ?");
+
+      statement.setString(1, username);
+
+      ResultSet resultSet = statement.executeQuery();
+
+      List<Shift> shifts = new ArrayList<Shift>();
+
+      while (resultSet.next())
+      {
+        int idDB = resultSet.getInt("shiftid");
+        shifts.add(getShiftById(idDB));
+      }
+      System.out.println(shifts);
+      return shifts;
+    }
+    catch (SQLException s)
+    {
+      System.out.println(s + " - returned null");
+      return null;
+    }
+  }
+
   @Override public List<Shift> getShiftsStartingAtDate(LocalDate date) //exact date or date+later ?
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
