@@ -224,7 +224,7 @@ namespace BlazorSep3.Data
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
             HttpContent content = new StringContent(serializeTask, Encoding.UTF8, "application/json"); 
 
-            var response = await client.PutAsync(client.BaseAddress + $"api/task/spentHours?spentHours={hours}&taskId={taskId}", content); 
+            var response = await client.PutAsync(client.BaseAddress + $"api/employee/task?spentHours={hours}&taskId={taskId}", content); 
             
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }

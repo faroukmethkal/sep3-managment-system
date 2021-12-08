@@ -15,25 +15,28 @@
         <nav class="main-nav">
             <ul class="main-nav-list">
                 <AuthorizeView Policy="MustBeAdmin">
+                    <li>
+                        <a class="main-nav-link" href="ManageShift">Manage Shift</a>
+                    </li>
 
+                    <li>
+                        <a class="main-nav-link" href="ManageEmployee">Manage Employee</a>
+                    </li>
+                    <li>
+                        <a class="main-nav-link" href="ManageTask">Manage Task</a>
+                    </li>
                 </AuthorizeView>
-                <li>
-                    <a class="main-nav-link" href="ManageShift">Manage Shift</a>
-                </li>
+                <AuthorizeView Policy="MustBePartTimeEmp">
+                    <li>
+                        <a class="main-nav-link" href="AllAvailableShifts">Shifts</a>
+                    </li>
+                </AuthorizeView>
+                <AuthorizeView Policy="MustBeFullTimeEmp">
+                    <li>
+                        <a class="main-nav-link" href="AllAvailableTasks">Tasks</a>
+                    </li>
+                </AuthorizeView>
 
-                <li>
-                    <a class="main-nav-link" href="ManageEmployee">Manage Employee</a>
-                </li>
-                <li>
-                    <a class="main-nav-link" href="ManageTask">Manage Task</a>
-                </li>
-                <li>
-                    <a class="main-nav-link" href="AllAvailableShifts">Employee Shifts</a>
-                </li>
-                <li>
-                    <a class="main-nav-link" href="AllAvailableTasks">Employee Tasks</a>
-                </li>
-                
 
                 <AuthorizeView>
 

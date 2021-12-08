@@ -60,7 +60,7 @@ namespace BlazorSep3
                 {
                     a.RequireAuthenticatedUser().RequireClaim("Role", Role.partTimeEmployee.ToString());
                 });
-                options.AddPolicy("MustBePartTimeEmp", a =>
+                options.AddPolicy("MustBeFullTimeEmp", a =>
                 {
                     a.RequireAuthenticatedUser().RequireClaim("Role", Role.fullTimeEmployee.ToString());
                 });

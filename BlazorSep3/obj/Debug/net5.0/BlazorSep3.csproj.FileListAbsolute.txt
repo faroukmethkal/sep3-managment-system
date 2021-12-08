@@ -585,3 +585,6 @@ F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageTask\ViewTeam.razor.g.cs
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\ViewTeam.razor.g.cs
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\ViewTeam.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Full-time\AddHoursToTask.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Full-time\AddHoursToTask.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Full-time\AddHoursToTask.razor.rz.scp.css

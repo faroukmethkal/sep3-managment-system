@@ -132,11 +132,11 @@
         return hours / estimate * 100;
     }
 
-    private async Task AddHoursSpent(Task task)
+    private async Task AddHoursSpent(Taskk task)
     {
         var parameters = new ModalParameters();
-        parameters.Add("taskId", task.Id);
-        var modelResult = Modal.Show<AddHoursToTask>("Add time spent on task: "+ task.Id, parameters);
+        parameters.Add("taskId", task.id);
+        var modelResult = Modal.Show<AddHoursToTask>("Add time spent on task: "+ task.id, parameters);
     }
     private async void ChangeStatus(Taskk task)
     {

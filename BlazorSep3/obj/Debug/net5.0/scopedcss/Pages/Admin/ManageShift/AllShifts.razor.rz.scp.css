@@ -21,7 +21,7 @@ Content view
     height: 6rem;
     padding: 2rem 1rem;
     border-bottom: 3px solid #E5E7EB;
-    margin: 1rem 0rem;
+    margin: 0 1rem 0 0;
 }
 
 .form__group_search[b-xhwi1krbk2]{
@@ -179,6 +179,7 @@ search content
 .search_result[b-xhwi1krbk2]{
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    overflow: auto;
+    height: 76vh;
 }
 
