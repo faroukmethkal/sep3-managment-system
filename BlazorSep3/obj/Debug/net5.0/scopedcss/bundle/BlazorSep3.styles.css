@@ -547,6 +547,43 @@ search content
     margin-top: 2rem;
 }
 
+/* _content/BlazorSep3/Pages/Admin/ManageShift/AddEmployeeToShift.razor.rz.scp.css */
+.result[b-fcjg7b8daj]{
+    max-height: 25vh;
+    overflow: auto;
+}
+.form__input[b-fcjg7b8daj] {
+    font-size: 1rem;
+    padding: 1rem 1rem;
+    border-radius: 1.5px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 12rem;
+    display: inline-block;
+    transition: all .3s;
+    height: 1.2rem;
+    color: #D97706;
+}
+
+.form__input_select[b-fcjg7b8daj] {
+    font-size: 1.2rem;
+    border-radius: 1px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 30rem;
+    display: block;
+    transition: all .3s;
+    height: 1.7rem;
+
+}
+
+.form__input_select:focus[b-fcjg7b8daj] {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #55c57a;
+}
 /* _content/BlazorSep3/Pages/Admin/ManageShift/AddShift.razor.rz.scp.css */
 .content[b-4lgi0nl7bg] {
     display: flex;
@@ -909,6 +946,127 @@ search content
     height: 76vh;
 }
 
+/* _content/BlazorSep3/Pages/Admin/ManageShift/CriticalShifts.razor.rz.scp.css */
+.content[b-hjxjospoxk] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-hjxjospoxk] {
+    background-color: #fff;
+    flex: 1;
+}
+
+.filter_option[b-hjxjospoxk]{
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #fff;
+    height: 6rem;
+    padding: 2rem 1rem;
+    border-bottom: 3px solid #E5E7EB;
+    margin: 1rem 0rem;
+}
+
+.form__group_search[b-hjxjospoxk]{
+    display: flex;
+
+}
+
+.search_input[b-hjxjospoxk] {
+    transition: all, .2s;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: .1rem;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    padding: .4rem 1.2rem;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.button-spec[b-hjxjospoxk] {
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .1rem;
+    color: #333;
+    background-color: #E5E7EB;
+    border: none;
+    padding: .4rem .8rem;
+    border-radius: 10px;
+}
+
+
+.button-spec:hover[b-hjxjospoxk] {
+    background-color:#D97706;
+    color: #fff;
+}
+
+.search_input:focus[b-hjxjospoxk] {
+    outline: none;
+    width: 82%;
+    background-color: #fff;
+}
+
+.search_input[b-hjxjospoxk]::-webkit-input-placeholder {
+    font-weight: 100;
+    color: #D97706;
+}
+
+
+
+.search_input:focus[b-hjxjospoxk] {
+    border-bottom: 1px solid #D97706;
+}
+
+
+.search_button[b-hjxjospoxk] {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: .1rem;
+    color: #333;
+    background-color: #fff;
+    border: none;
+    padding: .4rem .8rem;
+    border-radius: 10px;
+    width: 30%;
+    margin-left: 1px;
+}
+
+
+.search_button:hover[b-hjxjospoxk] {
+    transition: all, .2s;
+    background-color:#E5E7EB;
+    color: #333;
+}
+
+
+.search_input:focus[b-hjxjospoxk] {
+    outline: none;
+}
+
+
+.search_input:active[b-hjxjospoxk] {
+    transform: translateY(2px);
+}
+
+
+.form__group-title[b-hjxjospoxk]{
+    display: flex;
+}
+
+
+.icon[b-hjxjospoxk]{
+    height: .8rem;
+    margin-top: 0.2rem;
+}
 /* _content/BlazorSep3/Pages/Admin/ManageShift/EditShiftComponent.razor.rz.scp.css */
 .content[b-m57y67cx57] {
     display: flex;
@@ -3057,6 +3215,20 @@ search content
     margin-top: 2rem;
 }
 
+/* _content/BlazorSep3/Pages/Part-time/CalendarView.razor.rz.scp.css */
+.content[b-lovtymxd6a] {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view[b-lovtymxd6a] {
+    background-color: #fff;
+    flex: 1;
+}
 /* _content/BlazorSep3/Pages/Part-time/MyShifts.razor.rz.scp.css */
 .content[b-wxl4r8ju4g] {
     display: flex;

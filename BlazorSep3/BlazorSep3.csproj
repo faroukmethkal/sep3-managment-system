@@ -57,9 +57,18 @@
         <Content Update="Pages\Full-time\AddHoursToTask.razor.css">
             <DependentUpon>AddHoursToTask.razor</DependentUpon>
         </Content>
-        <Content Update="Pages\Admin\ManageTask\AddEmployeeToTask.razor.css" >
+        <Content Update="Pages\Admin\ManageTask\AddEmployeeToTask.razor.css">
             <DependentUpon>AddEmployeeToTask.razor</DependentUpon>
          </Content>
+        <Content Update="Pages\Admin\ManageShift\AddEmployeeToShift.razor.css">
+            <DependentUpon>AddEmployeeToShift.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Admin\ManageShift\CiritcalShifts.razor.css">
+            <DependentUpon>CriticalShifts.razor</DependentUpon>
+        </Content>
+        <Content Update="Pages\Part-time\CalendarView.razor.css" >
+        <DependentUpon>CalendarView.razor</DependentUpon>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>

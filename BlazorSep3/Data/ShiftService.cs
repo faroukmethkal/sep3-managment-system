@@ -26,6 +26,27 @@ namespace BlazorSep3.Data
             Account account = JsonConvert.DeserializeObject<Account>(userAsJson);
             return account;
         }
+
+        public async Task<IList<Shift>> GetCriticalShifts()
+        {
+            List<Shift> result = new List<Shift>();
+            
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + "api/criticalShifts"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error, not response");
+            }
+
+            string message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+            result = JsonConvert.DeserializeObject<List<Shift>>(message);
+            
+            return result;
+        }
+
         public async Task AddShift(Shift shift)
         {
             if (string.IsNullOrEmpty(shift.Name)) throw new Exception("Enter tittle");
@@ -143,6 +164,11 @@ namespace BlazorSep3.Data
             {
                 throw new Exception("Error, not response");
             }
+        }
+
+        public Task AddParttimerToShift(int shiftId, string username)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task UnassignFromShift(int id)
