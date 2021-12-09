@@ -39,7 +39,7 @@ public class ShiftAdminController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_admin')")
-    @GetMapping("api/criticalShift")
+    @GetMapping("api/criticalShifts")
     public List<Shift> getAllShift(){
         return shiftLogic.getCriticalShift();
     }
