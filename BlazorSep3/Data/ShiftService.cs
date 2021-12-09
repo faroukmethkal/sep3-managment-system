@@ -166,9 +166,22 @@ namespace BlazorSep3.Data
             }
         }
 
-        public Task AddParttimerToShift(int shiftId, string username)
+        public async Task AddParttimerToShift(int shiftId, string username)
         {
-            throw new NotImplementedException();
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                                      $"api/employee/shift?username={currentAccount.username}&Id={shiftId}"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                string message = await response.Content.ReadAsStringAsync();
+                string errorMessage = "";
+                Dictionary<string, string> values =
+                    JsonConvert.DeserializeObject<Dictionary<string, String>>(message);
+                if(values.TryGetValue("message",out errorMessage))
+                    throw new Exception(errorMessage);
+            }
         }
 
         public async Task UnassignFromShift(int id)
