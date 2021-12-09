@@ -7,6 +7,7 @@
         <div>
             <span class="error-message">@errorMessage</span>
         </div>
+        
         <body>
         <input type="text" class="form__input" placeholder="username" @bind="@username">
         </body>
@@ -36,6 +37,7 @@
             errorMessage = "employee added";
             username = "";
         }
+        
         catch(Exception e)
         {
             errorMessage = e.Message;

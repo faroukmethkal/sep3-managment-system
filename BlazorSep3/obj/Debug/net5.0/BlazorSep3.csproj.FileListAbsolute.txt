@@ -418,7 +418,6 @@ F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageShift\ManageShift.razor.g.cs
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageShift\ShiftNavSide.razor.g.cs
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageTask\AddTask.razor.g.cs
-F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageTask\ManageTask.razor.g.cs
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageTask\TaskNavSide.razor.g.cs
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageTask\ViewAllTasks.razor.g.cs
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
@@ -442,7 +441,6 @@ F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageShift\ManageShift.razor.g.cs
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageShift\ShiftNavSide.razor.g.cs
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\AddTask.razor.g.cs
-F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\ManageTask.razor.g.cs
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\TaskNavSide.razor.g.cs
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\ViewAllTasks.razor.g.cs
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
@@ -464,7 +462,6 @@ F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageShift\ManageShift.razor.rz.scp.css
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageShift\ShiftNavSide.razor.rz.scp.css
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\AddTask.razor.rz.scp.css
-F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\ManageTask.razor.rz.scp.css
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\TaskNavSide.razor.rz.scp.css
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\ViewAllTasks.razor.rz.scp.css
 F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Index.razor.rz.scp.css
@@ -594,3 +591,9 @@ C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\R
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\CriticalTasks.razor.g.cs
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\AddEmployeeToTeam.razor.rz.scp.css
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\CriticalTasks.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageTask\AddEmployeeToTeam.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\RazorDeclaration\Pages\Admin\ManageTask\CriticalTasks.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\AddEmployeeToTeam.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\Razor\Pages\Admin\ManageTask\CriticalTasks.razor.g.cs
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\AddEmployeeToTeam.razor.rz.scp.css
+F:\VIA\Third Semester\SEP3\Backup\sep3-managment-system-blazor-server\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageTask\CriticalTasks.razor.rz.scp.css

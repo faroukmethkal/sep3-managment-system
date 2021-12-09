@@ -135,21 +135,7 @@ namespace BlazorSep3.Data
             if (!response.IsSuccessStatusCode) throw new Exception("Server is down");
         }
         
-        public async Task TakeTask(int id)
-        {
-           // string serializeId = JsonConvert.SerializeObject(id);
-            Account currentAccount = await GetCurrentAccount();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
-           // HttpContent content = new StringContent(serializeId, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = 
-                await client.GetAsync(client.BaseAddress + 
-                                      $"api/employee/task?username={currentAccount.username}&taskId={id}"); 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception("Error, not response");
-            }
-        }
-
+     
         public async Task<IList<Taskk>> GetAllMyTasks(Status? status)
         {
             List<Taskk> result = new List<Taskk>();
@@ -236,7 +222,7 @@ namespace BlazorSep3.Data
             Account currentAccount = await GetCurrentAccount();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
             HttpResponseMessage response = 
-                await client.GetAsync(client.BaseAddress + "/api/criticalTasks"); 
+                await client.GetAsync(client.BaseAddress + "api/criticalTasks"); 
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Error, not response");
@@ -258,9 +244,32 @@ namespace BlazorSep3.Data
                                       $"api/employee/task?username={username}&taskId={taskId}"); 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Error, not response");
+                string message = await response.Content.ReadAsStringAsync();
+                string errorMessage = "";
+                Dictionary<string, string> values =
+                    JsonConvert.DeserializeObject<Dictionary<string, String>>(message);
+                if(values.TryGetValue("message",out errorMessage))
+                throw new Exception(errorMessage);
+            }
+            
+        }
+        public async Task TakeTask(int id)
+        {
+            // string serializeId = JsonConvert.SerializeObject(id);
+            Account currentAccount = await GetCurrentAccount();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
+            // HttpContent content = new StringContent(serializeId, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = 
+                await client.GetAsync(client.BaseAddress + 
+                                      $"api/employee/task?username={currentAccount.username}&taskId={id}"); 
+            if (!response.IsSuccessStatusCode)
+            {
+                string message = await response.Content.ReadAsStringAsync();
+                
+                throw new Exception(message);
             }
         }
+
 
         public async Task ApproveTask(int id)
         {
