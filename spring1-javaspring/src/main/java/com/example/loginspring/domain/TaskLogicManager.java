@@ -1,9 +1,7 @@
 package com.example.loginspring.domain;
 
-import model.Profile;
-import model.Specialties;
-import model.Status;
-import model.Task;
+import com.example.loginspring.exception.ApiRequestException;
+import model.*;
 import network.RemoteProfile;
 import network.RemoteProfileManager;
 import network.RemoteTask;
@@ -162,16 +160,49 @@ public class TaskLogicManager implements TaskLogic {
     @Override
     public void assignEmployeeToTask(String username, int taskId) {
         int teamId = -1;
-        Specialties s = getSpecialty(username);
+        Specialties userSpecialty = getSpecialty(username);
         int specialitiesRequired = -1;
         int specialitiesAssigned = -1;
+        Role role = null;
+        boolean flag = false;
         try {
-            teamId = remoteTask.getTeamIdByTask(taskId);
-            specialitiesRequired = remoteTask.numberOfEmpWithSpecialtiesAreRequiredForTask(taskId, s);
-            specialitiesAssigned = remoteTask.numberOfEmpAssignedToTaskWithSpecialties(taskId, s);
-            if (teamId != -1 && specialitiesAssigned < specialitiesRequired) {
-                remoteTask.assignEmployeeToTeam(username, teamId);
+            /**
+             * check if the employee's spec among task spec
+             * */
+            try {
+                role = remoteProfile.login(username).getRole();
+            }catch (Exception e){
+                throw new IllegalArgumentException(e.getMessage());
             }
+            if (!role.equals(Role.fullTimeEmployee)){
+                throw new IllegalArgumentException("Only full time employee can be assigned to task");
+            }
+
+            teamId = remoteTask.getTeamIdByTask(taskId);
+            if (teamId == -1){
+                throw new IllegalArgumentException("No team has been found for task");
+            }
+
+            specialitiesRequired = remoteTask.numberOfEmpWithSpecialtiesAreRequiredForTask(taskId, userSpecialty);
+            specialitiesAssigned = remoteTask.numberOfEmpAssignedToTaskWithSpecialties(taskId, userSpecialty);
+            List<Task> tasks = remoteTask.getTaskWhereSpecialtiesIs(userSpecialty);
+            for (Task task : tasks) {
+                if (task.getId() == taskId) {
+                  flag = true;
+                }
+            }
+            if (!flag){
+                throw new IllegalArgumentException("Employee specialties isn't required for this task");
+            }
+
+            if(specialitiesAssigned >= specialitiesRequired){
+                    throw new IllegalArgumentException("Task has all required number of Employee Specialty: "+userSpecialty);
+                }
+               if(!remoteTask.assignEmployeeToTeam(username, teamId)){
+                   throw new IllegalArgumentException("Couldn't assign employee to task");
+               }
+
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -229,12 +260,12 @@ public class TaskLogicManager implements TaskLogic {
         List<Task> list = new ArrayList<>();
         List<Task> criticalTasks = new ArrayList<>();
         try {
-            list = remoteTask.getAvailableTask();
-        }catch (Exception e){
-            e.printStackTrace();
+            list = remoteTask.getAvailableTasks();
+        } catch (Exception e) {
+           throw new ApiRequestException(e.getMessage());
         }
 
-        for (Task task : list){
+        for (Task task : list) {
             if (task.getDeadline().isBefore(LocalDate.now().plusDays(5))) criticalTasks.add(task);
         }
 

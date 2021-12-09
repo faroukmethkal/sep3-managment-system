@@ -1,5 +1,6 @@
 package com.example.loginspring.domain;
 
+import com.example.loginspring.exception.ApiRequestException;
 import model.Shift;
 import network.RemoteShiftManager;
 import org.springframework.stereotype.Service;
@@ -65,18 +66,28 @@ public class ShiftLogicManager implements ShiftLogic {
 
     @Override
     public Shift getShiftById(int shiftId) {
-        try {
+
             return server.getShiftById(shiftId);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return null;
+
     }
 
     @Override
-    public List<Shift> getAllAvailableShift(LocalDate date, LocalTime startTime, LocalTime endTime) {
+    public List<Shift> getAllAvailableShift(String username, LocalDate date, LocalTime startTime, LocalTime endTime, Boolean inMyCalendar) {
         List<Shift> shifts =  server.getAllAvailableShift(LocalDate.now().plusDays(1));
         List<Shift> shiftList = new ArrayList<>();
+
+        // filter by inMyCalendar
+        if (inMyCalendar != null){
+            List<Shift> list = new ArrayList<>();
+            if (inMyCalendar){
+                for (Shift shift: shifts) {
+                    for (LocalDate date1 : server.getMyCalendar(username)){
+                        if (shift.getDate().equals(date1)) list.add(shift);
+                    }
+                }
+            }
+            shifts = list;
+        }
 
         if(date != null && startTime != null){
             for(Shift shift: shifts){
@@ -103,11 +114,43 @@ public class ShiftLogicManager implements ShiftLogic {
 
     @Override
     public void assignEmployeeToShift(int shiftId, String username) {
+        if (numberOfEmployeeAlreadyAssignedToShift(shiftId) >= server.getShiftById(shiftId).getNumberOfEmployees()){
+            throw new ApiRequestException("Shift already been taken");
+        }
         server.assignEmployeeToShift(shiftId, username);
     }
 
     @Override
     public void removeEmployeeFromShift(int shiftId, String username) {
         server.removeEmployeeFromShift(shiftId, username);
+    }
+
+    @Override
+    public List<Shift> getCriticalShift() {
+        List<Shift>  newList = new ArrayList<>();
+        List<Shift>  shiftList = server.getAllShiftsStartAtDate(LocalDate.now().plusDays(1));
+        for (Shift shift: shiftList){
+            if (shift.getNumberOfEmployees() < numberOfEmployeeAlreadyAssignedToShift(shift.getId())) newList.add(shift);
+        }
+        return shiftList;
+    }
+
+    @Override
+    public List<Shift> getMyShifts(String username, @Nullable LocalDate date) {
+
+        List<Shift> shiftList =  server.getMyShifts(username);
+        if (date != null){
+            List<Shift> list = new ArrayList<>();
+            for (Shift shift: shiftList){
+                if (shift.getDate().equals(date)) list.add(shift);
+            }
+
+            return list;
+        }
+        return shiftList;
+    }
+
+    private int numberOfEmployeeAlreadyAssignedToShift(int shiftId){
+        return server.getAssignedEmployeesToShift(shiftId).size();
     }
 }

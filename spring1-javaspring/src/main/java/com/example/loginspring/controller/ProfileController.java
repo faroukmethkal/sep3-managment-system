@@ -4,9 +4,11 @@ import model.Account;
 import model.Profile;
 import model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Nullable;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -46,6 +48,12 @@ public class ProfileController {
     @PreAuthorize("hasAnyRole('ROLE_admin')")
     public Account getAccountByUsername(@RequestParam("username") String username){
         return profileLogic.findUserByUsername(username);
+    }
+
+    @PostMapping("calendar")
+    @PreAuthorize("hasAnyRole('ROLE_partTimeEmployee')")
+    public void addDateToCalendar(@RequestParam("date") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") LocalDate date){
+        profileLogic.addDateToCalendar(date);
     }
 
 }

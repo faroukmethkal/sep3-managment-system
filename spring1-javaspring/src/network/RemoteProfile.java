@@ -10,6 +10,7 @@ import model.Specialties;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface RemoteProfile extends Remote {
@@ -19,4 +20,5 @@ public interface RemoteProfile extends Remote {
     List<Account> getAllAccounts() throws RemoteException;
     Specialties getSpecialty(String username) throws RemoteException;
     List<Profile> getAllProfileByRole(Role role) throws RemoteException;
+    void addDateToCalendar(LocalDate date) throws RemoteException;
 }

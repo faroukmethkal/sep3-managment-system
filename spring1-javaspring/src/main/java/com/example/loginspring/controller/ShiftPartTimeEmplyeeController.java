@@ -2,6 +2,7 @@ package com.example.loginspring.controller;
 
 import com.example.loginspring.domain.ShiftLogic;
 import model.Shift;
+import model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,19 +27,21 @@ public class ShiftPartTimeEmplyeeController {
     @PreAuthorize("hasAnyRole('ROLE_partTimeEmployee')")
     public List<Shift> getAvailableShift(@RequestParam("date") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalDate date,
                                          @RequestParam("startTime") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalTime startTime,
-                                         @RequestParam("endTime") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalTime endTime) {
+                                         @RequestParam("endTime") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalTime endTime,
+                                         @RequestParam("inMyCalendar") @Nullable Boolean inMyCalendar,
+                                         @RequestParam("username") String username) {
 
-        return shiftLogic.getAllAvailableShift(date, startTime, endTime);
+        return shiftLogic.getAllAvailableShift(username, date, startTime, endTime, inMyCalendar);
     }
     @GetMapping("myShifts")
     @PreAuthorize("hasAnyRole('ROLE_partTimeEmployee')")
     public List<Shift> getMyShifts(@RequestParam("date") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalDate date,
                                          @RequestParam("username") String username) {
-            return null;
+            return shiftLogic.getMyShifts(username, date);
     }
 
     @PutMapping("shift")
-    @PreAuthorize("hasAnyRole('ROLE_partTimeEmployee')")
+    @PreAuthorize("hasAnyRole('ROLE_partTimeEmployee','ROLE_admin')")
     public void assignEmplToShift(@RequestParam("username") String username,
                                   @RequestParam("Id") int shiftId) {
 
@@ -51,4 +54,6 @@ public class ShiftPartTimeEmplyeeController {
                                     @RequestParam("Id") int shiftId) {
         shiftLogic.removeEmployeeFromShift(shiftId, username);
     }
+
+
 }

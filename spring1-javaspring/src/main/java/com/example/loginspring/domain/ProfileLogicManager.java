@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -68,6 +69,10 @@ public class ProfileLogicManager implements ProfileLogic {
         return server.getSpecialty(username);
     }
 
+    @Override
+    public void addDateToCalendar(LocalDate date) {
+        server.addDateToCalendar(date);
+    }
 
 
     private String generateUsername(Profile profile) {

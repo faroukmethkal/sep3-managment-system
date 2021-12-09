@@ -2,6 +2,7 @@ package com.example.loginspring.controller;
 
 import com.example.loginspring.domain.TaskLogic;
 
+import com.example.loginspring.exception.ApiRequestException;
 import model.Profile;
 import model.Status;
 import model.Task;
@@ -31,13 +32,18 @@ public class TaskFullTimeEmployeeController {
     @GetMapping("task")
     @PreAuthorize("hasAnyRole('ROLE_fullTimeEmployee','ROLE_admin')")
     public void assignEmployeeToTask(@RequestParam("username") String username, @RequestParam("taskId") int taskId){
-        taskLogic.assignEmployeeToTask(username, taskId);
+        try {
+            taskLogic.assignEmployeeToTask(username, taskId);
+        } catch (Exception e) {
+            throw new ApiRequestException(e.getMessage());
+        }
     }
 
     @DeleteMapping("task")
     @PreAuthorize("hasAnyRole('ROLE_fullTimeEmployee', 'ROLE_admin')")
     public void unAssignEmployeeToTask(@RequestParam("username") String username, @RequestParam("taskId") int taskId){
         taskLogic.removeEmployeeFromTask(taskId, username);
+
     }
 
    /* @PutMapping("task")

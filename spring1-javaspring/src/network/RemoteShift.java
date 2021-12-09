@@ -17,7 +17,7 @@ public interface RemoteShift extends Remote {
     List<Shift> getAllShiftsStartAtDate(LocalDate date) throws RemoteException;
     List<Shift> getAllShiftsStartAndEndAtTime(LocalTime startTime, LocalTime endTime) throws RemoteException;
     List<Shift> getAllShiftsStartAtTime(LocalTime startTime) throws RemoteException;
-
+    List<String> getAssignedEmployeesToShift(int shiftId) throws RemoteException;
 
 
     /**
@@ -26,4 +26,7 @@ public interface RemoteShift extends Remote {
     List<Shift> getAllAvailableShift(LocalDate date) throws RemoteException;
     void assignEmployeeToShift(int shiftId, String username) throws RemoteException;
     void removeEmployeeFromShift(int shiftId, String username) throws RemoteException;
+    List<Shift> getMyShifts(String username) throws RemoteException;
+
+    List<LocalDate> getMyCalendar(String username) throws RemoteException;
 }

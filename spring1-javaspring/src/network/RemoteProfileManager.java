@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class RemoteProfileManager implements RemoteProfile {
@@ -62,6 +63,15 @@ public class RemoteProfileManager implements RemoteProfile {
         }
 
         return null;
+    }
+
+    @Override
+    public void addDateToCalendar(LocalDate date) {
+        try {
+            server.addDateToCalendar(date);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

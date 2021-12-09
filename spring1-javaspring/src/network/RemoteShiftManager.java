@@ -36,8 +36,13 @@ public class RemoteShiftManager implements RemoteShift{
     }
 
     @Override
-    public Shift getShiftById(int shiftId) throws RemoteException {
-        return remoteShift.getShiftById(shiftId);
+    public Shift getShiftById(int shiftId) {
+        try {
+            return remoteShift.getShiftById(shiftId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
@@ -95,6 +100,15 @@ public class RemoteShiftManager implements RemoteShift{
     }
 
     @Override
+    public List<String> getAssignedEmployeesToShift(int shiftId) {
+        try {
+            return remoteShift.getAssignedEmployeesToShift(shiftId);
+        } catch (RemoteException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    @Override
     public List<Shift> getAllAvailableShift(LocalDate date){
         try {
             return remoteShift.getAllAvailableShift(date);
@@ -121,5 +135,26 @@ public class RemoteShiftManager implements RemoteShift{
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Shift> getMyShifts(String username)  {
+        try {
+            return remoteShift.getMyShifts(username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<LocalDate> getMyCalendar(String username)  {
+        try {
+            return remoteShift.getMyCalendar(username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

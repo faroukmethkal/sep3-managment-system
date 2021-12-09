@@ -55,8 +55,8 @@ public class RemoteTaskManager implements RemoteTask{
     }
 
     @Override
-    public List<Task> getAvailableTask() throws RemoteException {
-        return remoteTask.getAvailableTask();
+    public List<Task> getAvailableTasks() throws RemoteException {
+        return remoteTask.getAvailableTasks();
     }
 
     @Override
@@ -137,12 +137,13 @@ public class RemoteTaskManager implements RemoteTask{
     }
 
     @Override
-    public void assignEmployeeToTeam(String username, int teamId){
+    public boolean assignEmployeeToTeam(String username, int teamId){
         try {
-            remoteTask.assignEmployeeToTeam(username,teamId);
+           return remoteTask.assignEmployeeToTeam(username,teamId);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override

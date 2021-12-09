@@ -22,9 +22,12 @@ public interface ShiftLogic {
     /**
      * part-time employee
      * **/
-    List<Shift> getAllAvailableShift(LocalDate date, LocalTime startTime, LocalTime endTime);
+    List<Shift> getAllAvailableShift(String username,LocalDate date, LocalTime startTime, LocalTime endTime, Boolean inMyCalendar);
     void assignEmployeeToShift(int shiftId, String username);
     void removeEmployeeFromShift(int shiftId, String username);
+    List<Shift> getCriticalShift();
+    List<Shift> getMyShifts(String username, @Nullable LocalDate date);
+
 
 
 

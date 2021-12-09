@@ -7,6 +7,8 @@ import model.Role;
 import model.Specialties;
 
 import javax.annotation.Nullable;
+import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ProfileLogic {
@@ -16,5 +18,5 @@ public interface ProfileLogic {
     List<Profile> getAllProfiles(@Nullable Role role);
     Specialties getSpecialty(String username);
 
-
+    void addDateToCalendar(LocalDate date);
 }
