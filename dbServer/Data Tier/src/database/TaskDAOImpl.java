@@ -291,7 +291,7 @@ public class TaskDAOImpl implements TaskDAO
     {
       PreparedStatement statement = connection.prepareStatement(
           "SELECT * from task t where status = ?");
-      statement.setString(1, Status.Created.name());
+      statement.setString(1, Status.Created.name()); //today and later
 
       ResultSet resultSet = statement.executeQuery();
 
@@ -803,7 +803,7 @@ public class TaskDAOImpl implements TaskDAO
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO team (taskid) VALUES = ?");
+          "INSERT INTO team (taskid) VALUES (?)");
 
       statement.setInt(1, taskId);
 
