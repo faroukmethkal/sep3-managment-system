@@ -290,8 +290,8 @@ public class TaskDAOImpl implements TaskDAO
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT * from task t where startdate >= ?");
-      statement.setDate(1, java.sql.Date.valueOf(LocalDate.now())); //today and later
+          "SELECT * from task t where status = ?");
+      statement.setString(1, Status.Created.name());
 
       ResultSet resultSet = statement.executeQuery();
 
@@ -803,7 +803,7 @@ public class TaskDAOImpl implements TaskDAO
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO team (taskid) VALUES (?)");
+          "INSERT INTO team (taskid) VALUES = ?");
 
       statement.setInt(1, taskId);
 

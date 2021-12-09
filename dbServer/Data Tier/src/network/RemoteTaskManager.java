@@ -138,14 +138,12 @@ public class RemoteTaskManager implements RemoteTask
   }
 
   /*@Override
-  public void editSpecialtiesOfTask(int taskId, Map<String, Integer> specialties) throws RemoteException {
+  public void editSpecialtiesOfTask(int taskId, Map.Entry<String, Integer> specialties) throws RemoteException {
     taskDB.editSpecialtiesOfTask(taskId, specialties);
   }*/
 
-  @Override
-  public void removeSpecialtyFromTask(int taskId,  Specialties specialty) throws RemoteException {
-    taskDB.removeSpecialtyFromTask(taskId, specialty);
-  }
+
+
 
   @Override
   public List<Profile> getAllTeamMemberForTask(int taskId) throws RemoteException {

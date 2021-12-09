@@ -15,7 +15,6 @@ public interface TaskDAO
   Task getTaskById(int id);
   List<Task> getAllTasks();
   Map<String,Integer> getSpecialtiesOfTask(int taskId);
-  //void assignTeamToTask(int teamId, int taskId);
   List<Task> getTasksWhereSpecialtiesIs(Specialties specialty);
   void setStatusOfTask(int taskId, Status status); //use this for manager to approve/reject task
   List<Task> getTasksWhereStatusIs(Status status);
