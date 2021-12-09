@@ -54,7 +54,6 @@ public class TaskDAOImpl implements TaskDAO
       task.setId(getLatestId(task.getTitle()));
 
       addSpecialtiesOfTask(task);
-      addTeam(task.getId());
 
       //prints for test
       System.out.println(task.getTitle());
@@ -355,7 +354,7 @@ public class TaskDAOImpl implements TaskDAO
   @Override public void removeTask(int taskId)
   {
     removeSpecialtiesFromTask(taskId);
-    removeTaskFromTeam(taskId);
+
 
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -442,7 +441,7 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
-  @Override public int getTeamIdByTask(int taskId)
+  @Override public int getTeamIdByTask(int taskId) //not needed anymore because taskId = teamId
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -490,8 +489,7 @@ public class TaskDAOImpl implements TaskDAO
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT * from team join team_mates tm on team.teamid = tm.teamid join task t on t.taskid = team.taskid"
-          + " WHERE username = ?");
+          "SELECT * from team_mates WHERE username = ?");
 
       statement.setString(1,username);
 
@@ -501,19 +499,8 @@ public class TaskDAOImpl implements TaskDAO
 
       while (resultSet.next())
       {
-        int idDB = resultSet.getInt("taskid");
-        String title = resultSet.getString("title");
-        String description = resultSet.getString("description");
-        LocalDate startDate = resultSet.getDate("startdate").toLocalDate();
-        double estimatedTime = resultSet.getDouble("estimatedtime");
-        LocalDate deadline = resultSet.getDate("deadline").toLocalDate();
-        Status status = Status.valueOf(resultSet.getString("status"));
-        double spentHours = resultSet.getDouble("spenthours");
-
-        Task task = new Task(title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline,status);
-        task.setId(idDB);
-        task.setSpentHours(spentHours);
-        tasks.add(task);
+        int idDB = resultSet.getInt("teamid"); // teamId = taskId
+        tasks.add(getTaskById(idDB));
       }
       System.out.println(tasks);
       return tasks;
@@ -525,13 +512,12 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
-  @Override public List<Task> getTasksOfEmployeeWithStatus(String username, Status status)
+  @Override public List<Task> getTasksOfEmployeeWithStatus(String username, Status status) //if not working use join tables
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT * from team join team_mates tm on team.teamid = tm.teamid join task t on t.taskid = team.taskid"
-              + " WHERE username = ? and t.status = ?");
+          "SELECT * from team_mates WHERE username = ?");
 
       statement.setString(1,username);
       statement.setString(2,status.toString());
@@ -543,7 +529,7 @@ public class TaskDAOImpl implements TaskDAO
       while (resultSet.next())
       {
         int idDB = resultSet.getInt("taskid");
-        String title = resultSet.getString("title");
+       /* String title = resultSet.getString("title");
         String description = resultSet.getString("description");
         LocalDate startDate = resultSet.getDate("startdate").toLocalDate();
         double estimatedTime = resultSet.getDouble("estimatedtime");
@@ -553,7 +539,9 @@ public class TaskDAOImpl implements TaskDAO
 
         Task task = new Task(title,description,getSpecialtiesOfTask(idDB),startDate,estimatedTime,deadline,status1);
         task.setId(idDB);
-        task.setSpentHours(spentHours);
+        task.setSpentHours(spentHours);*/
+        Task task = getTaskById(idDB);
+        if(task.getStatus().equals(status)) //not sure if .equals is correct
         tasks.add(task);
       }
       System.out.println(tasks);
@@ -566,36 +554,33 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
-  @Override public void assignEmployeeToTask(String username, int taskId)
+  @Override public boolean assignEmployeeToTask(String username, int taskId) //use this instead of assignEmployeeToTeam()
   {
-    int teamId = getTeamIdByTask(taskId);
     try(Connection connection =  ConnectionDB.getInstance().getConnection())
     {
         PreparedStatement statement = connection.prepareStatement(
             "INSERT INTO team_mates (username, teamid) VALUES (?,?)");
 
         statement.setString(1, username);
-        statement.setInt(2, teamId);
+        statement.setInt(2, taskId); //teamId = taskId
 
         statement.executeUpdate();
+        return true;
       //prints for test
     }
     catch(SQLException s){
       System.out.println(s+" - Nothing was added to database");
+      return false;
     }
   }
 
   @Override public List<Profile> getAllTeamMembersOfTask(int taskId)
   {
-    int teamId = getTeamIdByTask(taskId);
-
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement("SELECT * from team_mates "
-          + "join profile p on p.username = team_mates.username "
-          + "join account a on a.username = p.username "
-          + "WHERE teamid = ?");
-      statement.setInt(1, teamId);
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT * from team_mates join profile p on team_mates.username = p.username WHERE teamid = ?");
+      statement.setInt(1, taskId); //taskId = teamId
 
       ResultSet resultSet = statement.executeQuery();
 
@@ -607,7 +592,7 @@ public class TaskDAOImpl implements TaskDAO
         String firstname = resultSet.getString("firstname");
         String lastname = resultSet.getString("lastname");
         LocalDate birthday = resultSet.getDate("birthday").toLocalDate();
-        Specialties specialties = Specialties.valueOf(resultSet.getString("Speciality"));
+        Specialties specialties = Specialties.valueOf(resultSet.getString("speciality"));
         Role role1 = Role.valueOf(resultSet.getString("role"));
 
         Profile p = new Profile(username,firstname,lastname,specialties,birthday);
@@ -661,15 +646,15 @@ public class TaskDAOImpl implements TaskDAO
     }}
 
   @Override
-  public int getNumberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties specialty)
+  public int getNumberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties specialty) //not tested
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
-      PreparedStatement statement = connection.prepareStatement("SELECT count(profile.username) from profile "
-          + "join team_mates tm on profile.username = tm.username join team t on t.teamid = tm.teamid "
-          + "where taskid = ? and profile.speciality = ?");
+      PreparedStatement statement = connection.prepareStatement(
+          "SELECT count(p.username) FROM team_mates join profile p on p.username = team_mates.username"
+              + " WHERE teamid = ? and speciality = ?");
 
-      statement.setInt(1, taskId);
+      statement.setInt(1, taskId); //teamId = taskId
       statement.setString(2, specialty.toString());
 
       ResultSet resultSet = statement.executeQuery();
@@ -688,13 +673,12 @@ public class TaskDAOImpl implements TaskDAO
   }
 
   @Override
-  public int getNumberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties specialty)
+  public int getNumberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties specialty) // not tested
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT numberofemployees from task_speciality join task t on t.taskid = task_speciality.taskid"
-          + " where t.taskid = ? and speciality = ?");
+          "SELECT numberofemployees from task_speciality WHERE taskid = ? and speciality = ?");
 
       statement.setInt(1, taskId);
       statement.setString(2, specialty.toString());
@@ -781,24 +765,7 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
-  private void removeTaskFromTeam(int taskId)
-  {
-    try (Connection connection = ConnectionDB.getInstance().getConnection())
-    {
-      PreparedStatement statement = connection.prepareStatement(
-          "DELETE FROM team WHERE taskid = ?");
-
-      statement.setInt(1, taskId);
-
-      statement.executeUpdate();
-
-    }
-    catch(SQLException s){
-      System.out.println(s);
-    }
-  }
-
-  private void addTeam(int taskId)
+  /*private void addTeam(int taskId)
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -813,7 +780,7 @@ public class TaskDAOImpl implements TaskDAO
     catch(SQLException s){
       System.out.println(s);
     }
-  }
+  }*/
 
   private int getNumberOfNeededEmployeesByTask(int taskId)
   {

@@ -31,7 +31,7 @@ public interface TaskDAO
   List<Task> getTasksOfEmployee(String username);
   List<Task> getTasksOfEmployeeWithStatus(String username, Status status);
   //idk if needed
-  void assignEmployeeToTask(String username, int taskId );
+  boolean assignEmployeeToTask(String username, int taskId ); // maybe use this instead of assignEmployeeToTeam
 
   List<Profile> getAllTeamMembersOfTask(int taskId); //use this for manager to view team members
   void removeEmployeeFromTask(int taskId, String username);

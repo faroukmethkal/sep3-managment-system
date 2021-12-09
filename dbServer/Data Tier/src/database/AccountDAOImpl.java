@@ -82,7 +82,9 @@ public class AccountDAOImpl implements AccountDAO
 
       statement.executeUpdate();
     }
-    catch(SQLException s){}
+    catch(SQLException s){
+      System.out.println(s);
+    }
   }
 
   @Override public List<Account> getAllAccounts()

@@ -2,10 +2,7 @@ package network;
 
 
 
-import database.AccountDAO;
-import database.AccountDAOImpl;
-import database.ProfileDAO;
-import database.ProfileDAOImpl;
+import database.*;
 import model.Account;
 import model.Profile;
 import model.Role;
@@ -18,12 +15,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class RemoteProfileManager implements RemoteProfile
 {
     private AccountDAO accountDB;
     private ProfileDAO profileDB;
+    private CalendarDAO calendarDB;
 
     public RemoteProfileManager()
         throws RemoteException, MalformedURLException, SQLException
@@ -32,6 +31,7 @@ public class RemoteProfileManager implements RemoteProfile
          startServer();
          accountDB = new AccountDAOImpl();
          profileDB = new ProfileDAOImpl();
+         calendarDB = new CalendarDAOImpl();
     }
     private void startRegistry() throws RemoteException {
         try {
@@ -90,6 +90,18 @@ public class RemoteProfileManager implements RemoteProfile
         throws RemoteException
     {
         return profileDB.getProfilesBySpecialty(specialty);
+    }
+
+    @Override public void addEntryToCalendar(String username, LocalDate date)
+        throws RemoteException
+    {
+        calendarDB.addEntryToCalendar(username, date);
+    }
+
+    @Override public List<LocalDate> getDatesOfEmployee(String username)
+        throws RemoteException
+    {
+        return calendarDB.getDatesOfEmployee(username);
     }
 
 }
