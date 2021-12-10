@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -179,6 +180,7 @@ namespace BlazorSep3.Data
                 string errorMessage = "";
                 Dictionary<string, string> values =
                     JsonConvert.DeserializeObject<Dictionary<string, String>>(message);
+                Debug.Assert(values != null, nameof(values) + " != null");
                 if(values.TryGetValue("message",out errorMessage))
                     throw new Exception(errorMessage);
             }

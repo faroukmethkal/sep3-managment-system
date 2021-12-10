@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using BlazorSep3.Data;
 using BlazorSep3.model;
 using Microsoft.AspNetCore.Components.Authorization;
+using Syncfusion.Blazor;
+using Syncfusion.Blazor.Calendars;
 
 namespace BlazorSep3
 {
@@ -30,6 +32,7 @@ namespace BlazorSep3
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddBlazoredModal();
+            services.AddSyncfusionBlazor();
 
             services.AddBlazoredLocalStorage(config =>config.JsonSerializerOptions.WriteIndented = true);
             
@@ -70,6 +73,8 @@ namespace BlazorSep3
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(
+                "NTQ1OTk4QDMxMzkyZTMzMmUzME9Oa3VPdFVZN2JKTW45cG5VRXBMOGh4YjdKeGptbjlWcUM1TkljY29NWVE9");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

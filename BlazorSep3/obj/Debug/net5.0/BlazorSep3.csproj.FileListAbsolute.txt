@@ -606,3 +606,8 @@ C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\R
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageShift\AddEmployeeToShift.razor.rz.scp.css
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Admin\ManageShift\CriticalShifts.razor.rz.scp.css
 C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\obj\Debug\net5.0\scopedcss\Pages\Part-time\CalendarView.razor.rz.scp.css
+C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\bin\Debug\net5.0\Syncfusion.Blazor.dll
+C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\bin\Debug\net5.0\Syncfusion.ExcelExport.Net.dll
+C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\bin\Debug\net5.0\Syncfusion.Licensing.dll
+C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\bin\Debug\net5.0\Syncfusion.PdfExport.Net.dll
+C:\Users\terez\RiderProjects\sep3-managment-system\BlazorSep3\bin\Debug\net5.0\Syncfusion.Blazor.Themes.dll
