@@ -42,6 +42,7 @@
                         <th style="color: darkred">Deadline</th>
                         <th>Status</th>
                         <th>Team</th>
+                        <th>Specialties</th>
                         <th>Add people</th>
                     </tr>
                     </thead>
@@ -63,6 +64,9 @@
                             <td>@item.Status</td>  
                             <td>
                                 <button @onclick="@(() => ShowTeamWorkingOnTask(item.id))" class="btn btn-primary">View Team</button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => ShowEditSpecialities(item))" class="btn btn-primary">View</button>
                             </td>
                             <td>
                                 <button @onclick="@(() => AddEmployeeToTeam(item))" class="oi oi-plus" style="color:green"></button>
@@ -102,6 +106,12 @@
     private double CalculatePercentage(double hours, double estimate)
     {
         return hours / estimate * 100;
+    }
+    async Task ShowEditSpecialities(Taskk task1)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Specialities", task1.Specialities);
+        Modal.Show<ViewTaskSpecialties>("Task's Specialties", parameters);
     }
     
     async Task ShowTeamWorkingOnTask(int id)
