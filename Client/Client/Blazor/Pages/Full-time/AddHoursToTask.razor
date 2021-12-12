@@ -1,0 +1,35 @@
+﻿@using Blazor.Data
+
+@inject ITaskServices taskServices;
+<div class="container">
+    <div class="result">
+        <body>
+        <input type="number" class="form__input" placeholder="hours" @bind="@hours">
+        </body>
+    </div>
+</div>
+<div class="modal_foter">
+    <button @onclick="Save" class="btn btn-success">Save</button>
+    <button @onclick="ModalInstance.CancelAsync" class="btn btn-secondary">Close</button>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    BlazoredModalInstance ModalInstance { get; set; }
+
+    [Parameter]
+    public int taskId { get; set; }
+
+    private double hours { get; set; }
+
+    private async Task Save()
+    {
+        await taskServices.AddHoursSpent(taskId,hours);
+        await ModalInstance.CancelAsync();
+    }
+
+
+
+
+}

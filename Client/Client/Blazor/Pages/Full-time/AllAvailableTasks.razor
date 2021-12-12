@@ -1,0 +1,197 @@
+﻿@page "/AllAvailableTasks"
+@using Blazor.Data
+@using Blazor.Pages.Admin.ManageTask
+@using Model
+
+@inject NavigationManager NavigationManager
+@inject ITaskServices taskServices;
+@inject IJSRuntime _jsRuntime;
+
+
+<div class="content">
+    <TaskEmployeeNavSide/>
+    <main class="content-view">
+        <div class="filter_option">
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-calendar"/>
+                    <label class="form__label">StartDate</label>
+                </div>
+                <input type="date" class="form__input" placeholder="StartDate"
+                       @bind="@startTime" min=@DateTime.Today>
+            </div>
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-calendar"/>
+                    <label class="form__label">Deadline</label>
+                </div>
+                <input type="date" class="form__input" placeholder="Deadline"
+                       @bind="@deadline" min=@DateTime.Today.AddDays(1)>
+            </div>
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-person"/>
+                    <label class="form__label">Status</label>
+                </div>
+                <div>
+                    <select name="specialties" class="form__input_select" @bind="status">
+                        @foreach (var status in Enum.GetValues(typeof(Status)))
+                        {
+                            <option value="@status">@status</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-pencil"></span>
+                    <label class="form__label">Is important</label>
+                </div>
+                <input type="checkbox" class="form__radio-input" @bind="@isImportant"/>
+            </div>
+
+            <div class="form__group">
+                <button class="button-spec" type="submit" @onclick="Filter">Filter</button>
+            </div>
+
+            <form action="#" class="form__group_search">
+                <input type="text" class="search_input" placeholder="Search tasks" @oninput="@((arg) => FilterByName(arg))">
+                @*<button class="search_button" @onclick="">
+                    <span class="icon oi oi-magnifying-glass">Search</span>
+                </button>*@
+            </form>
+
+        </div>
+        <div class="search_result">
+
+            @if (tasksToShow == null)
+            {
+                <p>
+                    <em>Loading...</em>
+                </p>
+            }
+            else if (!tasksToShow.Any())
+            {
+                <p>
+                    <em>No Tasks to show. </em>
+                </p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>Estimate</th>
+                        <th>Deadline</th>
+                        <th>Status</th>
+                        <th >Specialities</th>
+                        <th>Team</th>
+                        <th>Take task</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in tasksToShow)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.StartDate.ToString("dd MMMM yyyy")</td>
+                            <td>@item.Estimate</td>
+                            <td>@item.Deadline.ToString("dd MMMM yyyy")</td>
+                            <td>@item.Status</td>
+
+                            <td>
+                                <button @onclick="@(() => ShowEditSpecialities(item))" class="btn btn-primary">View</button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => ShowTeamWorkingOnTask(item.id))" class="btn btn-primary">View Team</button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => TakeTask(item.id))">
+                                    <i class="oi oi-arrow-thick-right" style="color:green"/>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </main>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
+    private IList<Taskk> tasksToShow;
+    private IList<Taskk> tasks;
+    private string? filterByName;
+
+    private DateTime? startTime { get; set; }
+    private DateTime? deadline { get; set; }
+    private bool? isImportant { get; set; }
+    private Status? status { get; set; }
+
+    private async Task Filter()
+    {
+        tasks = await taskServices.GetAllRelativeTasks(startTime, deadline, isImportant, status);
+        tasksToShow = tasks;
+    }
+
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
+
+    async Task ShowTeamWorkingOnTask(int Id)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Id", Id);
+        Modal.Show<ViewTeamWorkingOnTask>("Team Working on Task", parameters);
+    }
+    
+    async Task ShowEditSpecialities(Taskk task1)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Specialities", task1.Specialities);
+        Modal.Show<ViewTaskSpecialties>("Task's Specialties", parameters);
+    }
+    private async Task TakeTask(int id)
+    {
+        bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to be assigned to this task?"); 
+        if (confirmed)
+        {
+            try
+            {
+                await taskServices.TakeTask(id);
+                NavigationManager.NavigateTo($"/MyTasks");
+            }
+            catch (Exception e)
+            {
+                 confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", e.Message);
+                if (confirmed)
+                {
+                    NavigationManager.NavigateTo($"/AllAvailableTasks");
+                }
+            }
+            
+        }
+    }
+}

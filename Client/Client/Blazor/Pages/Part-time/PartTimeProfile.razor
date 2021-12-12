@@ -1,0 +1,83 @@
+﻿@page "/PartTimeProfile"
+@inject IServiceUser _serviceUser;
+
+@using Model
+@using Blazor.Data
+<div class="content">
+    <ShiftEmployeeNavSide />
+
+   
+    <main class="content-view">
+        <div class="form">
+            <div class="form__content">
+
+                <div class="form-header">
+                    <h2>
+                        My profile
+                    </h2>
+                </div>
+                <div>
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-person"/>
+                        </div>
+                        <div>
+                            <label for="name" class="form__label">Name</label>
+                            <span class="form__input">@Profile.FirstName @Profile.LastName</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-calendar"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Birthday</label>
+                            <span class="form__input">@Profile.Birthday.ToString("d")</span>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-pencil"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Specialities</label>
+                            <span class="form__input">@Profile.Specialities</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-pencil"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Role</label>
+                            <span class="form__input">@Profile.Role</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </main>
+</div>
+
+@code {
+    public Profile Profile { get; set; } = new Profile();
+
+    protected  override async Task OnInitializedAsync()
+    {
+        Profile = await _serviceUser.GetMyProfile();
+    }
+    
+
+}

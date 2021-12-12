@@ -1,0 +1,201 @@
+﻿@page "/EditTask/{id:int}"
+@using Microsoft.AspNetCore.Components
+@using Model
+@using Blazor.Data
+
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ITaskServices taskServices;
+
+<div class="content">
+    <TaskNavSide/>
+    <main class="content-view">
+        <div class="form">
+            <div class="form-header">
+                <h2>
+                    Edit Task @Id
+                </h2>
+            </div>
+            <div>
+                <span class="error-message">@errorMessage</span>
+            </div>
+            
+            <div class="form_parts">
+                <div class="form_part1">
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-pencil"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Title</label>
+                            <input type="text" class="form__input" placeholder="Title" @bind="@task.Title">
+                        </div>
+            
+                    </div>
+            
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-briefcase"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Description</label>
+                            <input type="text" class="form__input" placeholder="Description" @bind="task.Description">
+                        </div>
+                    </div>
+            
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-person"/>
+                        </div>
+                        <div>
+                            <div>
+                                <label class="form__label">Speciality</label>
+                               <button @onclick="@(() => ShowEditSpecialities())" class="btn btn-primary">Edit Specialities</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <div class="form_part2">
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-calendar"/>
+                        </div>
+                        <div>
+                            <label class="form__label">StartDate</label>
+                            <input type="date" class="form__input" placeholder="StartDate" @bind="task.StartDate"
+                                   min=@DateTime.Today>
+                        </div>
+                    </div>
+            
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-calculator"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Estimate</label>
+                            <input type="number" class="form__input" placeholder="Estimate" @bind="task.Estimate"
+                                   min="1">
+                        </div>
+                    </div>
+            
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-calendar"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Deadline</label>
+                            <input type="date" class="form__input" placeholder="Deadline" @bind="task.Deadline"
+                                   min=@DateTime.Today.AddDays(1)>
+                        </div>
+                    </div>
+            
+                    <div class="form__group">
+                        <div class="icon">
+                            <span class="oi oi-pencil"/>
+                        </div>
+                        <div>
+                            <label class="form__label">Status</label>
+            
+                            <select name="specialties" class="form__input_select" @bind="task.Status">
+                                @foreach (var status in Enum.GetValues(typeof(Status)))
+                                {
+                                    <option value="@status">@status</option>
+                                }
+                            </select>
+                        </div>
+            
+                    </div>
+                </div>
+                            
+            </div>
+            <div class="form__group">
+                <button class="button-white" type="submit" @onclick="EditTask">Edit Task</button>
+            </div>
+        </div>
+            
+    </main>
+</div>
+
+
+@code {
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+    
+
+    public List<Speciality> specList ;
+    
+
+
+    async Task ShowEditSpecialities()
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Specialities", task.Specialities);
+        
+        var modelResult = Modal.Show<EditTaskSpecialties>("Edit Task's Specialties", parameters);
+        var result = await modelResult.Result;
+        specList = (List<Speciality>) result.Data;
+        if (specList != null)
+        {
+            await AddToSpecialties();
+
+        }
+        
+    }
+    
+    [Parameter]
+    public int Id { get; set; }
+    private Taskk task = new Taskk();
+
+    
+    private string errorMessage;
+
+    
+    private async Task AddToSpecialties()
+    {
+        task.Specialities = new Dictionary<string, int>();
+        foreach (var s in specList)
+        {
+            if (!task.Specialities.ContainsKey(s.name))
+            {
+                task.Specialities.Add(s.name, s.requirednumber);
+            } 
+        }
+        
+    }
+    
+    
+    private async Task EditTask()
+    {
+        try
+        {
+           
+            await taskServices.EditTask(task);
+            errorMessage = "";
+            NavigationManager.NavigateTo("/ViewAllTasks");
+            foreach (var s in task.Specialities)
+            {
+                Console.WriteLine($"after submit-------------------------------> {s.Key}:{s.Value}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            errorMessage = e.Message;
+        }
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        task = await taskServices.GetTaskById(Id);
+        Console.WriteLine("from edit form "+task);
+
+    }
+  
+
+}

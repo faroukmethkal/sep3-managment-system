@@ -1,0 +1,105 @@
+﻿@page "/ViewAllAccount"
+@using Blazor.Data
+@using Model
+
+@inject NavigationManager NavigationManager
+@inject IServiceUser serviceUser;
+@inject IJSRuntime _jsRuntime;
+<div class="content">
+    <EmployeeSideNav/>
+ <main class="content-view">
+        <div class="form">
+            <div class="form-header">
+                <h2>
+                    Look for account
+                </h2>
+            </div>
+            <div>
+                <div class="form__group-title">
+                    <span class="icon oi oi-person"/>
+                    <label class="form__label">Search by username</label>
+                </div>
+                <input type="text" class="search_input" placeholder="Username" @bind="searchUsername">
+                <button class="search_button" @onclick="SearchByUsername">
+                    <span class="icon oi oi-magnifying-glass">Search</span>
+                </button>
+            </div>
+            <div>
+                <span class="error-message">@errorMessage</span>
+            </div>
+            @if (account == null)
+            {
+                <p>
+                    <em>Search by username...</em>
+                </p>
+            }
+            else
+            {
+                <div class="form_parts">
+                    <div>
+                        <div class="form__group">
+                            <div class="icon">
+                                <span class="oi oi-person"/>
+                            </div>
+                            <div>
+                                <label for="name" class="form__label">Username</label>
+                                <label type="text" class="form__account">@account.username</label>
+                            </div>
+
+                        </div>
+
+                        <div class="form__group">
+                            <div class="icon">
+                                <span class="oi oi-key"/>
+                            </div>
+                            <div>
+                                <label class="form__label">Password</label>
+                                <label type="text" class="form__account">@account.password</label>
+                            </div>
+
+                        </div>
+
+                        <div class="form__group">
+                            <div class="icon">
+                                <span class="oi oi-briefcase"/>
+                            </div>
+                            <div>
+                                <label class="form__label">Role</label>
+                                <label type="text" class="form__account">@account.Role</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+                </div >
+                </main >
+                </div >
+            }
+
+@code {
+
+    [CascadingParameter]
+    public MainLayout Layout { get; set; }
+
+    private Account account;
+    private string errorMessage;
+    private string? searchUsername;
+
+    private async Task SearchByUsername()
+    {
+        try
+        {
+            account = await serviceUser.GetAccountByUsername(searchUsername);
+            errorMessage = "";
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            errorMessage = e.Message;
+        }
+    }
+    
+
+}

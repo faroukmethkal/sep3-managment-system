@@ -1,0 +1,48 @@
+﻿@using Blazor.Data
+
+
+@inject IServiceUser _serviceUser;
+
+<div class="container">
+    <div class="form__group">
+        <div class="icon">
+            <span class="oi oi-calendar"/>
+        </div>
+        <div>
+            <label class="form__label">Add new Date to my calendar</label>
+            <input type="date" class="form__input" placeholder="Birthday" @bind="DateToSave"
+                   min="1990-01-01">
+
+        </div>
+
+    </div>
+</div>
+<div class="modal_foter">
+    <button @onclick="SaveDate" class="btn btn-primary">Submit</button>
+    <button @onclick="ModalInstance.CancelAsync" class="btn btn-secondary">Cancel</button>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    BlazoredModalInstance ModalInstance { get; set; }
+
+    [Parameter]
+    public DateTime DateToSave { get; set; }
+
+
+    private async Task SaveDate()
+    {
+        try
+        {
+            await _serviceUser.AddNewDateToCalendar(DateToSave);
+            ModalInstance.CloseAsync(ModalResult.Ok<string>("ok"));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+
+
+}

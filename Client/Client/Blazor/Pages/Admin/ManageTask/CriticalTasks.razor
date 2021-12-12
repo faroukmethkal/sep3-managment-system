@@ -1,0 +1,145 @@
+﻿@page "/CriticalTasks"
+@using Blazor.Data
+@using Model
+
+@inject NavigationManager NavigationManager
+@inject ITaskServices taskServices;
+@inject IJSRuntime _jsRuntime;
+
+
+<div class="content">
+    <TaskNavSide />
+    <main class="content-view">
+        <div class="filter_option">
+            <form action="#" class="form__group_search">
+                <input type="text" class="search_input" placeholder="Search tasks" @oninput="@((arg) => FilterByName(arg))">
+               
+            </form>
+
+        </div>
+        <div class="search_result">
+
+            @if (tasksToShow == null)
+            {
+                <p>
+                    <em>Loading...</em>
+                </p>
+            }
+            else if (!tasksToShow.Any())
+            {
+                <p>
+                    <em>No Tasks to show. </em>
+                </p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>Estimate</th>
+                        <th>Progress</th>
+                        <th style="color: darkred">Deadline</th>
+                        <th>Status</th>
+                        <th>Team</th>
+                        <th>Specialties</th>
+                        <th>Add people</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in tasksToShow)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.StartDate.ToString("dd MMMM yyyy")</td>
+                            <td>@item.Estimate</td>
+                            <td>
+                                <p>
+                                    @item.SpentHours/@item.Estimate
+                                    <progress value="@item.SpentHours" max="@item.Estimate"></progress>
+                                    @CalculatePercentage(item.SpentHours, item.Estimate)
+                                </p>
+                            </td>
+                            <td>@item.Deadline.ToString("dd MMMM yyyy")</td>
+                            <td>@item.Status</td>  
+                            <td>
+                                <button @onclick="@(() => ShowTeamWorkingOnTask(item.id))" class="btn btn-primary">View Team</button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => ShowEditSpecialities(item))" class="btn btn-primary">View</button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => AddEmployeeToTeam(item))" class="oi oi-plus" style="color:green"></button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </main>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
+    private IList<Taskk> tasksToShow;
+    private IList<Taskk> tasks;
+    private string? filterByName;
+    
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private double CalculatePercentage(double hours, double estimate)
+    {
+        return hours / estimate * 100;
+    }
+    async Task ShowEditSpecialities(Taskk task1)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Specialities", task1.Specialities);
+        Modal.Show<ViewTaskSpecialties>("Task's Specialties", parameters);
+    }
+    
+    async Task ShowTeamWorkingOnTask(int id)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Id", id);
+        Modal.Show<ViewTeam>("Team Working on Task", parameters);
+    }
+    
+    
+
+    private void ExecuteFilter()
+    {
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
+
+    private async Task AddEmployeeToTeam(Taskk task)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("taskId", task.id);
+        var modelResult = Modal.Show<AddEmployeeToTeam>("Add employee to team: "+ task.Title, parameters);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        tasks = await taskServices.GetCriticalTasks();
+        tasksToShow = tasks;
+    }
+
+}

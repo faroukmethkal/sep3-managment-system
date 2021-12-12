@@ -1,0 +1,164 @@
+﻿@page "/CalendarView"
+@using Blazor.Data
+@using Model
+@inject IServiceUser _serviceUser;
+@inject IShiftService _shiftService;
+@inject NavigationManager nav;
+
+<div class="content">
+    <ShiftEmployeeNavSide/>
+    <main class="content-view">
+        <div class="header">
+            <div class="header__part1">
+                <button class="button-white" @onclick="previusMonth">
+                    <span class="oi oi-arrow-circle-left">Previous</span>
+                </button>
+                <h1>@monthName</h1>
+                <button class="button-white" @onclick="nextMonth">Next <span class="oi oi-arrow-circle-right"></span></button>
+            </div>
+            <div>
+                <button class="button-white book_date" @onclick="@(() => AddDateToCalendar(new DateTime(DateTime.Now.Year, cureentMonth, 1)))">
+                    Book date
+                </button>
+            </div>
+
+
+        </div>
+
+        <section>
+            @for (int i = 0; i < numColumn; i++)
+            {
+                <div class="dayCell">
+                </div>
+            }
+            @if (shifts != null)
+            {
+                @for (int day = 1; day <= monthEnd.Day; day++)
+                {
+                    var shift = shifts.FirstOrDefault(s => s.Date == new DateTime(DateTime.Now.Year, cureentMonth, day));
+
+                    if (isDateinRecord(day))
+                    {
+                        <div class="cell_added">
+                            <h2>@day</h2>
+                            @if (shift != null)
+                            {
+                                <span style="color: #1e40af">Shift: @shift.Name</span>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="cell_empty">
+                            <h2>@day</h2>
+                            @if (shift != null)
+                            {
+                                <span style="color: #1e40af">Shift: @shift.Name</span>
+                            }
+                        </div>
+                    }
+                }
+            }
+            else
+            {
+                @for (int day = 1; day <= monthEnd.Day; day++)
+                {
+
+                    if (isDateinRecord(day))
+                    {
+                        <div class="cell_added">
+                            <h2>@day</h2>
+                          
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="cell_empty">
+                            <h2>@day</h2>
+                        </div>
+                    }
+                }
+            }
+          
+            
+
+        </section>
+    </main>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
+    string monthName = "";
+    int cureentMonth = 0;
+    DateTime monthEnd;
+    int numColumn = 0;
+    int monthAway = 0;
+    IList<Shift> shifts;
+    List<DateTime> record = new List<DateTime>();
+
+
+    private void nextMonth()
+    {
+        if (!monthName.Equals("December"))
+        {
+            monthAway++;
+            CreateMonth();
+        }
+    }
+
+    private void previusMonth()
+    {
+        if (!monthName.Equals("January"))
+        {
+            monthAway--;
+            CreateMonth();
+        }
+    }
+
+    async Task AddDateToCalendar(DateTime date)
+    {
+        Console.WriteLine(date.ToString("d"));
+        var parameters = new ModalParameters();
+        parameters.Add("DateToSave", date);
+
+        var modelResult = Modal.Show<AddDateToCalendar>("Save Date to My Calendar", parameters);
+        if (modelResult.Equals("ok"))
+        {
+            nav.NavigateTo("/CalendarView",true);
+            
+            
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        record = await _serviceUser.GetAllMyDate();
+        shifts = await _shiftService.GetAllMyShifts();
+        CreateMonth();
+    }
+
+    private bool isDateinRecord(int day)
+    {
+        foreach (var date in record)
+        {
+            if (date.Equals(new DateTime(DateTime.Now.Year, cureentMonth, day)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void CreateMonth()
+    {
+        cureentMonth = DateTime.Now.Month + monthAway;
+        DateTime monthStart = new DateTime(DateTime.Now.Year, cureentMonth, 1);
+        monthEnd = monthStart.AddMonths(1).AddDays(-1);
+        monthName = monthStart.ToString("MMMM");
+        numColumn = (int) monthStart.DayOfWeek;
+    }
+
+}

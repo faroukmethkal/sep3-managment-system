@@ -1,0 +1,128 @@
+@page "/"
+@using Blazor.Authentication
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inject IJSRuntime _jsRuntime
+<header class="header">
+    <div class="box">
+        <div>
+            <h1 class="header-primary">
+                <span class="heading-primary-main">Employee Mangement system</span>
+                <span class="heading-primary-sub">Productivity at Your Fingertips</span>
+            </h1>
+        </div>
+        <div class="box-buttons">
+            <AuthorizeView>
+                <NotAuthorized>
+                    <div>
+                        <a href="Login" class="button button-white">Login</a> 
+                    </div>
+                </NotAuthorized>
+                <Authorized>
+                    <div>
+                        <a href="#" class="button button-white" @onclick="PerformLogout">Logout</a>
+                    </div>
+                </Authorized>
+            </AuthorizeView>
+
+            <div>
+                <a href="#learn" class="button button-white">Learn More</a>
+            </div>
+        </div>
+
+    </div>
+</header>
+
+<section id="learn" class="learn-more">
+    <div class="learn-more-header">
+        <h2>What does our employee management system offer?</h2>
+    </div>
+    <div class="learn-more-content">
+        <div class="learn-more-child">
+            <p class="features-title">
+                <strong>Manage Employees</strong>
+            </p>
+            <p class="features-text">
+                Our software offers the reliability of managing the employees currently working at your company. <br>
+                You have the possibility of either adding or deleting a new employee, with its current specialities and other important details.
+            </p>
+        </div>
+        <div class="learn-more-child">
+            <p class="features-title">
+                <strong>Manage Task</strong>
+            </p>
+            <p class="features-text">
+                Tasks that are usually found during the work day can be added at any time using our software. Every employee will be announced about the task change, and the manager will be constantly updated with the progress on it.
+            </p>
+        </div>
+        <div class="learn-more-child">
+            <p class="features-title">
+                <strong>Manage Shift</strong>
+            </p>
+            <p class="features-text">
+                Management of the shifts is an important aspect of our company. Managers can add a shift available for all employees, and are able to edit or delete them afterwards.
+            </p>
+        </div>
+    </div>
+
+</section>
+
+<section class="learn-more">
+    <div class="learn-more-header">
+        <h2>Development Team</h2>
+    </div>
+    <div class="learn-more-content">
+        <div class="learn-more-child">
+            <p class="features-title">
+                <strong>Alex</strong>
+            </p>
+            <p class="features-text">
+                Along with the PM is responsible for planning, designing and executing the test phases.
+            </p>
+        </div>
+
+        <div class="learn-more-child">
+            <p class="features-title">
+                <strong>Tereza</strong>
+            </p>
+            <p class="features-text">
+                Responsible for managing task definition and planning, product backlog, communication with the client and first level escalation.
+            </p>
+        </div>
+
+        <div class="learn-more-child">
+            <p class="features-title">
+                <strong>Farouk</strong>
+            </p>
+            <p class="features-text">
+                Responsible for the correct Scrum process implementation, and the maximization of its benefits.
+            </p>
+        </div>
+        <div class="learn-more-child">
+            <p class="features-title">
+                <strong>Samuel</strong>
+            </p>
+            <p class="features-text">
+                Defines the project’s architecture. Develops software, reviews code and creates unit tests.
+            </p>
+        </div>
+  
+    </div>
+
+</section>
+
+@code
+{
+    private async Task PerformLogout()
+    {
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+}

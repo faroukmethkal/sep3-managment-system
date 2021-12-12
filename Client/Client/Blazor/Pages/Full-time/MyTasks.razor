@@ -1,0 +1,179 @@
+﻿@page "/MyTasks"
+@using Blazor.Data
+@using Blazor.Pages.Admin.ManageTask
+@using Model
+
+@inject NavigationManager NavigationManager
+@inject ITaskServices taskServices;
+@inject IJSRuntime _jsRuntime;
+
+
+<div class="content">
+    <TaskEmployeeNavSide/>
+    <main class="content-view">
+        <div class="filter_option">
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-person"/>
+                    <label class="form__label">Status</label>
+                </div>
+                <div>
+                    <select name="specialties" class="form__input_select" @bind="status">
+                        @foreach (var status in Enum.GetValues(typeof(Status)))
+                        {
+                            <option value="@status">@status</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form__group">
+                <button class="button-spec" type="submit" @onclick="Filter">Filter</button>
+            </div>
+
+            <form action="#" class="form__group_search">
+                <input type="text" class="search_input" placeholder="Search tasks" @oninput="@((arg) => FilterByName(arg))">
+
+            </form>
+
+        </div>
+        <div class="search_result">
+
+            @if (tasksToShow == null)
+            {
+                <p>
+                    <em>Loading...</em>
+                </p>
+            }
+            else if (!tasksToShow.Any())
+            {
+                <p>
+                    <em>No Tasks to show. </em>
+                </p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>Estimate</th>
+                        <th>Progress</th>
+                        <th>Add Hours</th>
+                        <th>Deadline</th>
+                        <th>Status</th>
+                        <th >Specialities</th>
+                        <th>Team</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in tasksToShow)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.StartDate.ToString("dd MMMM yyyy")</td>
+                            <td>@item.Estimate</td>
+                            <td>
+                                <p>
+                                    @item.SpentHours/@item.Estimate
+                                    <progress value="@item.SpentHours" max="@item.Estimate"></progress>
+                                    @CalculatePercentage(item.SpentHours, item.Estimate)
+                                </p>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => AddHoursSpent(item))" class="oi oi-plus" style="color:green"></button>
+                            </td>
+                            <td>@item.Deadline.ToString("dd MMMM yyyy")</td>
+                            <td>
+                                <button @onclick="@(() => ChangeStatus(item))" class="btn btn-secondary">
+                                    @item.Status
+                                </button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => ShowEditSpecialities(item))" class="btn btn-primary">View</button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => ShowTeamWorkingOnTask(item.id))" class="btn btn-primary">View Team</button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </main>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
+    private IList<Taskk> tasksToShow;
+    private IList<Taskk> tasks;
+    private string? filterByName;
+
+    private Status? status { get; set; }
+
+    private async Task Filter()
+    {
+        tasks = await taskServices.GetAllMyTasks(status);
+        tasksToShow = tasks;
+    }
+    async Task ShowTeamWorkingOnTask(int Id)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Id", Id);
+        Modal.Show<ViewTeamWorkingOnTask>("Team Working on Task", parameters);
+    }
+    
+    async Task ShowEditSpecialities(Taskk task1)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Specialities", task1.Specialities);
+        Modal.Show<ViewTaskSpecialties>("Task's Specialties", parameters);
+    }
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private double CalculatePercentage(double hours, double estimate)
+    {
+        return hours / estimate * 100;
+    }
+
+    private async Task AddHoursSpent(Taskk task)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("taskId", task.id);
+        var modelResult = Modal.Show<AddHoursToTask>("Add time spent on task: " + task.Title, parameters);
+    }
+
+    private async void ChangeStatus(Taskk task)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Task", task);
+        var modelResult = Modal.Show<ChangeStatus>("Change Status of task: " + task.Title, parameters);
+        var result = await modelResult.Result;
+      //  Taskk taskResult = (Taskk) result.Data;
+        
+    }
+
+    private void ExecuteFilter()
+    {
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
+
+
+}

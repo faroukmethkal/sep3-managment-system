@@ -1,0 +1,124 @@
+﻿@page "/CriticalShifts"
+@using Blazor.Data
+@using Blazor.Pages.Part_time
+@using Model
+
+@inject NavigationManager NavigationManager
+@inject IShiftService shiftService;
+@inject IJSRuntime _jsRuntime;
+
+
+<div class="content">
+    <ShiftNavSide/>
+    <main class="content-view">
+        <div class="filter_option">
+            <form action="#" class="form__group_search">
+                <input type="text" class="search_input" placeholder="Search shifts" @oninput="@((arg) => FilterByName(arg))">
+            </form>
+
+        </div>
+        <div class="search_result">
+
+            @if (shiftsToShow == null)
+            {
+                <p>
+                    <em>Loading...</em>
+                </p>
+            }
+            else if (!shiftsToShow.Any())
+            {
+                <p>
+                    <em>No Tasks to show. </em>
+                </p>
+            }
+            else
+            {
+                <table class="table table-hover">
+                    <thead class="thead-dark" style="position: sticky; top: 0; z-index: 100">
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>People needed</th>
+                        <th>Add part-timers</th>
+                        <th>Employee</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in shiftsToShow)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Date.ToString("dd MMMM yyyy")</td>
+                            <td>@item.StartTime.ToString("t")</td>
+                            <td>@item.EndTime.ToString("t")</td>
+                            <td>@item.NumberOfEmployee</td>
+                            <td>
+                                <button @onclick="@(() => AddParttimerToShift(item))">
+                                    <i class="oi oi-plus" style="color:green"/>
+                                </button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => ShowEmployeeWorkingOnShift(item.Id))" class="btn btn-primary">View Team</button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </main>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
+    private IList<Shift> shiftsToShow;
+    private IList<Shift> shifts;
+    private string? filterByName;
+
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+
+    private void ExecuteFilter()
+    {
+        shiftsToShow = shifts.Where(t => filterByName != null && (t.Name.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
+
+    private async Task AddParttimerToShift(Shift shift)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Id", shift.Id);
+        var modelResult = Modal.Show<AddEmployeeToShift>("Add part-timers to shift: " + shift.Name, parameters);
+    }
+    async Task ShowEmployeeWorkingOnShift(int Id)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Id", Id);
+        Modal.Show<ViewEmplWorkingOnShift>("Employee Working on shift", parameters);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        shifts = await shiftService.GetCriticalShifts();
+        shiftsToShow = shifts;
+    }
+
+}

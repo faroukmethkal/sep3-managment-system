@@ -1,0 +1,229 @@
+﻿@page "/ViewAllTasks"
+@using Blazor.Data
+@using Model
+
+@inject NavigationManager NavigationManager
+@inject ITaskServices taskServices;
+@inject IJSRuntime _jsRuntime;
+
+<div class="content">
+    <TaskNavSide/>
+    <main class="content-view">
+        <div class="filter_option">
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-calendar"/>
+                    <label class="form__label">StartDate</label>
+                </div>
+                <input type="date" class="form__input" placeholder="StartDate"
+                       @bind="@startTime" min=@DateTime.Today>
+            </div>
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-calendar"/>
+                    <label class="form__label">Deadline</label>
+                </div>
+                <input type="date" class="form__input" placeholder="Deadline"
+                       @bind="@deadline" min=@DateTime.Today.AddDays(1)>
+            </div>
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-person"/>
+                    <label class="form__label">Status</label>
+                </div>
+                <div>
+                    <select name="specialties" class="form__input_select" @bind="status">
+                        @foreach (var status in Enum.GetValues(typeof(Status)))
+                        {
+                            <option value="@status">@status</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form__group">
+                <div class="form__group-title">
+                    <span class="icon oi oi-pencil"></span>
+                    <label class="form__label">Is important</label>
+                </div>
+                <input type="checkbox" class="form__radio-input" @bind="@isImportant"/>
+            </div>
+
+            <div class="form__group">
+                <button class="button-spec" type="submit" @onclick="Filter">Filter</button>
+            </div>
+
+            <form action="#" class="form__group_search">
+                <input type="text" class="search_input" placeholder="Search tasks" @oninput="@((arg) => FilterByName(arg))">
+                @*<button class="search_button" @onclick="">
+                    <span class="icon oi oi-magnifying-glass">Search</span>
+                </button>*@
+            </form>
+
+        </div>
+        <div class="search_result">
+
+            @if (tasksToShow == null)
+            {
+                <p>
+                    <em>Loading...</em>
+                </p>
+            }
+            else if (!tasksToShow.Any())
+            {
+                <p>
+                    <em>No Tasks to show. </em>
+                </p>
+            }
+            else
+            {
+                <table class="table table-hover">
+                    <thead style="position: sticky;top:0; z-index: 100" class="thead-dark">
+                    <tr >
+                        <th >Title</th>
+                        <th >Description</th>
+                        <th >Start Date</th>
+                        <th >Estimate</th>
+                        <th> Progress</th>
+                        <th >Deadline</th>
+                        <th >Status</th>
+                        <th >Specialities</th>
+                        <th>Team</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
+                        <th>Approve</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in tasksToShow)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.Description</td>
+                            <td>@item.StartDate.ToString("dd MMMM yyyy")</td>
+                            <td>@item.Estimate</td>
+                            <td>
+                                <p>
+                                    @item.SpentHours/@item.Estimate
+                                    <progress value="@item.SpentHours" max="@item.Estimate"></progress>
+                                    @CalculatePercentage(item.SpentHours, item.Estimate)
+                                </p>
+                            </td>
+                            <td>@item.Deadline.ToString("dd MMMM yyyy")</td>
+                            <td>@item.Status</td>
+                            <td>
+                                <button @onclick="@(() => ShowEditSpecialities(item))" class="btn btn-primary">View</button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => ShowTeamWorkingOnTask(item.id))" class="btn btn-primary">View Team</button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => Edit(item.id))">
+                                    <i class="oi oi-pencil" style="color:#1b6ec2"/>
+                                </button>
+                            </td>
+                            <td>
+                                <button @onclick="@(() => Remove(item.id))">
+                                    <i class="oi oi-delete" style="color:red"/>
+                                </button>
+                            </td>
+                            <td>
+                                @if (item.Status == Status.Finished)
+                                {
+                                    <button @onclick="@(() => ApproveOrDecline(item))" class="btn btn-primary">
+                                        Approve/Decline
+                                    </button>
+                                }
+                                </td>
+                        </tr>
+                    }
+
+                    </tbody>
+                </table>
+            }
+        </div>
+    </main>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
+    private IList<Taskk> tasksToShow;
+    private IList<Taskk> tasks;
+    private string? filterByName;
+
+    private DateTime? startTime { get; set; }
+    private DateTime? deadline { get; set; }
+    private bool? isImportant { get; set; }
+    private Status? status { get; set; }
+
+    private async Task Filter()
+    {
+        tasks = await taskServices.GetTasks(startTime, deadline, isImportant, status);
+        tasksToShow = tasks;
+    }
+
+    async Task ShowEditSpecialities(Taskk task1)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Specialities", task1.Specialities);
+        Modal.Show<ViewTaskSpecialties>("Task's Specialties", parameters);
+    }
+    async Task ShowTeamWorkingOnTask(int id)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Id", id);
+        Modal.Show<ViewTeam>("Team Working on Task", parameters);
+    }
+
+    private double CalculatePercentage(double hours, double estimate)
+    {
+        return hours / estimate * 100;
+    }
+    async Task ApproveOrDecline(Taskk task1)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("Task", task1);
+        Modal.Show<ApproveDecline>("Approve or decline task: "+task1.Title, parameters);
+    }
+
+    private void FilterByName(ChangeEventArgs changeEventArgs)
+    {
+        filterByName = null;
+        try
+        {
+            filterByName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        tasksToShow = tasks.Where(t => filterByName != null && (t.Title.ToLower().Contains(filterByName.ToLower()) || t.Description.ToLower().Contains(filterByName.ToLower())) || filterByName == null).ToList();
+    }
+
+    private void Edit(int id)
+    {
+        NavigationManager.NavigateTo($"/EditTask/{id}");
+    }
+
+    private async Task Remove(int id)
+    {
+        bool confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to remove this task?"); // Confirm
+        if (confirmed)
+        {
+            await taskServices.RemoveTask(id);
+        }
+    }
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(isImportant);
+    }
+
+}

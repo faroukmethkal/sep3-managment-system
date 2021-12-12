@@ -1,0 +1,73 @@
+﻿@using Blazor.Authentication
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+<div class="main">
+
+    <header class="header">
+        <a href="/">
+            <img class="logo" alt="project management system" src="images/logo.png"/>
+        </a>
+
+        <nav class="main-nav">
+            <ul class="main-nav-list">
+                <AuthorizeView Policy="MustBeAdmin">
+                    <li>
+                        <a class="main-nav-link" href="ManageShift">Manage Shift</a>
+                    </li>
+
+                    <li>
+                        <a class="main-nav-link" href="ManageEmployee">Manage Employee</a>
+                    </li>
+                    <li>
+                        <a class="main-nav-link" href="ManageTask">Manage Task</a>
+                    </li>
+                </AuthorizeView>
+                <AuthorizeView Policy="MustBePartTimeEmp">
+                    <li>
+                        <a class="main-nav-link" href="PartTimeProfile">Shifts</a>
+                    </li>
+                </AuthorizeView>
+                <AuthorizeView Policy="MustBeFullTimeEmp">
+                    <li>
+                        <a class="main-nav-link" href="FullTimeProfile">Tasks</a>
+                    </li>
+                </AuthorizeView>
+
+
+                <AuthorizeView>
+
+                    <Authorized>
+                        <li>
+                            <a herf="#" class="main-nav-link nav-cta" @onclick="PerformLogout">Logout</a>
+                        </li>
+                    </Authorized>
+
+                    <NotAuthorized>
+                        <li>
+                            <a href="Login" class="main-nav-link nav-cta">Login</a>
+                        </li>
+                    </NotAuthorized>
+                </AuthorizeView>
+
+            </ul>
+        </nav>
+
+    </header>
+
+</div>
+
+
+@code
+{
+    private async Task PerformLogout()
+    {
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+        }
+    }
+}

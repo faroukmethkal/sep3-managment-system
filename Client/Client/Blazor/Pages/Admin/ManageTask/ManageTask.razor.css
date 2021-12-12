@@ -1,0 +1,13 @@
+﻿.content {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view {
+    background-color: #fff;
+    flex: 1;
+}

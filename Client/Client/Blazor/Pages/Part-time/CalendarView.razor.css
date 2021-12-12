@@ -1,0 +1,71 @@
+﻿
+.content {
+    display: flex;
+    height: 91vh;
+}
+
+/******
+Content view 
+*******/
+
+.content-view {
+    background-color: #fff;
+    flex: 1;
+}
+
+section{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    margin: 1rem;
+}
+
+.cell_added{
+    border: 1px solid black;
+    padding: 1rem;
+    background-color: #fd7e14;
+    color: white;
+}
+
+.cell_empty{
+    border: 1px solid black;
+    padding: 1rem;
+    background-color: #69db7c;
+    color: white;
+}
+
+.header__part1{
+    display: flex;
+    justify-content: space-around;
+    max-width: 33rem;
+}
+
+.header{
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 1rem 3rem 1rem;
+}
+
+.button-white {
+    text-transform: uppercase;
+    padding: .4rem 1rem;
+    border-radius: 100px;
+    transition: all, .2s;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: .1rem;
+}
+.book_date{
+    margin-left: 2rem;
+}
+
+.button-white:hover {
+    background-color:#34D399;
+    color: #fff;
+}
+
+
+.button-white {
+    background-color:#059669;
+    color: #fff;
+
+}
