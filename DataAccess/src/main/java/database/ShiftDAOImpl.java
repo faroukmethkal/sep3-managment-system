@@ -176,10 +176,12 @@ public class ShiftDAOImpl implements ShiftDAO
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
       PreparedStatement statement = connection.prepareStatement(
-          "SELECT * from shift s where date <= ? and "
+          "SELECT * from shift s where date <= ? and date >= ? and "
               + "(SELECT count(username) from assigned_employees where shiftID = s.shiftID) < s.numberofemployees");
 
       statement.setDate(1, Date.valueOf(date));
+      statement.setDate(2, Date.valueOf(LocalDate.now()));
+
 
       ResultSet resultSet = statement.executeQuery();
 
