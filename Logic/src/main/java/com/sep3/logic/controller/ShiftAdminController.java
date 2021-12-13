@@ -33,7 +33,7 @@ public class ShiftAdminController {
 
     @PreAuthorize("hasAnyRole('ROLE_admin')")
     @GetMapping("api/shifts")
-    public List<Shift> getAllShift(@RequestParam("date") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalDate date,
+    public List<Shift> getAllShifts(@RequestParam("date") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalDate date,
                                    @RequestParam("startTime") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalTime startTime,
                                    @RequestParam("endTime") @DateTimeFormat(pattern = "dd/MM/yyyy HH.mm.ss") @Nullable LocalTime endTime){
         return shiftLogic.getAllShifts(date,startTime,endTime);
@@ -41,7 +41,7 @@ public class ShiftAdminController {
 
     @PreAuthorize("hasAnyRole('ROLE_admin')")
     @GetMapping("api/criticalShifts")
-    public List<Shift> getAllShift(){
+    public List<Shift> getCriticalShift(){
         return shiftLogic.getCriticalShift();
     }
 

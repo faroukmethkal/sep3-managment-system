@@ -53,11 +53,6 @@ public class TaskFullTimeEmployeeController {
 
     }
 
-   /* @PutMapping("task")
-    @PreAuthorize("hasAnyRole('ROLE_fullTimeEmployee')")
-    public void changeTaskStatus(@RequestParam("status") Status status, @RequestParam("taskId") int taskId){
-        taskLogic.setStatusOfTask(taskId, status);
-    }*/
 
     @GetMapping("myTasks")
     @PreAuthorize("hasAnyRole('ROLE_fullTimeEmployee')")
@@ -77,9 +72,5 @@ public class TaskFullTimeEmployeeController {
         taskLogic.increaseSpentHoursInTaskBy(taskId, spentHours);
     }
 
-
-    /**
-     * employee to unassign
-     */
 
 }
