@@ -100,8 +100,9 @@ public class ShiftLogicManager implements ShiftLogic {
                         if (shift.getDate().equals(date1)) list.add(shift);
                     }
                 }
+                shifts = list;
             }
-            shifts = list;
+
         }
 
         if(date != null && startTime != null){
