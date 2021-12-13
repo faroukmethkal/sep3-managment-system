@@ -21,8 +21,7 @@ namespace Blazor.Data
             this.jsonRuntime = jsonRuntime;
         }
         
-        private async Task<Account> GetCurrentAccount()
-        {
+        private async Task<Account> GetCurrentAccount() {
             string userAsJson = await jsonRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
             Account account = JsonConvert.DeserializeObject<Account>(userAsJson);
             return account;
@@ -249,21 +248,10 @@ namespace Blazor.Data
             }
             
         }
-
-        private string getErrorMessage(String message)
-        {
-            string errorMessage = "";
-            Dictionary<string, string> values =
-                JsonConvert.DeserializeObject<Dictionary<string, String>>(message);
-            if (values.TryGetValue("message", out errorMessage)) ;
-            return errorMessage;
-        }
         public async Task TakeTask(int id)
         {
-            // string serializeId = JsonConvert.SerializeObject(id);
             Account currentAccount = await GetCurrentAccount();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" + currentAccount.Token);
-            // HttpContent content = new StringContent(serializeId, Encoding.UTF8, "application/json");
             HttpResponseMessage response = 
                 await client.GetAsync(client.BaseAddress + 
                                       $"api/employee/task?username={currentAccount.username}&taskId={id}"); 
@@ -275,7 +263,14 @@ namespace Blazor.Data
             }
         }
 
-
+        private string getErrorMessage(String message)
+        {
+            string errorMessage = "";
+            Dictionary<string, string> values =
+                JsonConvert.DeserializeObject<Dictionary<string, String>>(message);
+            if (values.TryGetValue("message", out errorMessage)) ;
+            return errorMessage;
+        }
         public async Task ApproveTask(int id)
         {
             string serializeTask = JsonConvert.SerializeObject(Status.Approved);

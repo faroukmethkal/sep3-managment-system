@@ -182,16 +182,13 @@
             {
                 await taskServices.TakeTask(id);
                 NavigationManager.NavigateTo($"/MyTasks");
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                  confirmed = await _jsRuntime.InvokeAsync<bool>("confirm", e.Message);
                 if (confirmed)
                 {
                     NavigationManager.NavigateTo($"/AllAvailableTasks");
                 }
             }
-            
         }
     }
 }
