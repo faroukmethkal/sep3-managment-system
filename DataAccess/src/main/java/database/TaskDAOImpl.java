@@ -252,7 +252,7 @@ public class TaskDAOImpl implements TaskDAO
     {
       PreparedStatement statement = connection.prepareStatement(
           "SELECT * from task t where status = ?");
-      statement.setString(1, Status.Created.name()); //today and later
+      statement.setString(1, Status.Created.name());
 
       ResultSet resultSet = statement.executeQuery();
 
@@ -451,7 +451,7 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
-  @Override public List<Task> getTasksOfEmployeeWithStatus(String username, Status status) //if not working use join tables
+  @Override public List<Task> getTasksOfEmployeeWithStatus(String username, Status status)
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -470,7 +470,7 @@ public class TaskDAOImpl implements TaskDAO
         int idDB = resultSet.getInt("taskid");
 
         Task task = getTaskById(idDB);
-        if(task.getStatus().equals(status)) //not sure if .equals is correct
+        if(task.getStatus().equals(status))
         tasks.add(task);
       }
       System.out.println(tasks);
@@ -483,7 +483,7 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
-  @Override public boolean assignEmployeeToTask(String username, int taskId) //use this instead of assignEmployeeToTeam()
+  @Override public boolean assignEmployeeToTask(String username, int taskId)
   {
     try(Connection connection =  ConnectionDB.getInstance().getConnection())
     {
@@ -517,7 +517,7 @@ public class TaskDAOImpl implements TaskDAO
 
       while (resultSet.next())
       {
-        String username = resultSet.getString("username"); //if not working change to "p.username"
+        String username = resultSet.getString("username");
         String firstname = resultSet.getString("firstname");
         String lastname = resultSet.getString("lastname");
         LocalDate birthday = resultSet.getDate("birthday").toLocalDate();
@@ -575,7 +575,7 @@ public class TaskDAOImpl implements TaskDAO
     }}
 
   @Override
-  public int getNumberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties specialty) //not tested
+  public int getNumberOfEmpAssignedToTaskWithSpecialties(int taskId, Specialties specialty)
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -602,7 +602,7 @@ public class TaskDAOImpl implements TaskDAO
   }
 
   @Override
-  public int getNumberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties specialty) // not tested
+  public int getNumberOfEmpWithSpecialtiesAreRequiredForTask(int taskId, Specialties specialty)
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -694,22 +694,6 @@ public class TaskDAOImpl implements TaskDAO
     }
   }
 
-  /*private void addTeam(int taskId)
-  {
-    try (Connection connection = ConnectionDB.getInstance().getConnection())
-    {
-      PreparedStatement statement = connection.prepareStatement(
-          "INSERT INTO team (taskid) VALUES (?)");
-
-      statement.setInt(1, taskId);
-
-      statement.executeUpdate();
-
-    }
-    catch(SQLException s){
-      System.out.println(s);
-    }
-  }*/
 
   private int getNumberOfNeededEmployeesByTask(int taskId)
   {

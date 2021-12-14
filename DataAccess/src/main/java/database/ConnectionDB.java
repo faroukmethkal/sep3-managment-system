@@ -25,7 +25,7 @@ public class ConnectionDB {
     public Connection getConnection() throws SQLException
     {
         return DriverManager.getConnection(
-                "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep", //change schema after db is done
+                "jdbc:postgresql://hattie.db.elephantsql.com:5432/bzjrfgwn?currentSchema=sep",
                 "bzjrfgwn", "ZPXdZD4hJLi7bjSr5foQeqn2ithW6iQV");
     }
 

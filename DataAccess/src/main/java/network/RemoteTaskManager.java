@@ -35,18 +35,18 @@ public class RemoteTaskManager implements RemoteTask
     System.out.println("Task Server started...");
   }
 
-  @Override public void createNewTask(Task task) throws RemoteException //change to addNewTask ?
+  @Override public void createNewTask(Task task) throws RemoteException
   {
     taskDB.addTask(task);
   }
 
-  @Override public List<Task> getTaskWhereSpecialtiesIs(Specialties s)// change to get TasksWhereSpecialtyIs ?
+  @Override public List<Task> getTaskWhereSpecialtiesIs(Specialties s)
       throws RemoteException
   {
     return taskDB.getTasksWhereSpecialtiesIs(s);
   }
 
-  @Override public List<Task> getAllTask() throws RemoteException //change to getAllTasks ?
+  @Override public List<Task> getAllTask() throws RemoteException
   {
     return taskDB.getAllTasks();
   }

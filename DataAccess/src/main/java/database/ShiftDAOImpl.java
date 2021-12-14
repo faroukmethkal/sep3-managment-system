@@ -290,7 +290,7 @@ public class ShiftDAOImpl implements ShiftDAO
 
       while (resultSet.next())
       {
-        String username = resultSet.getString("username"); //if not working change to "p.username"
+        String username = resultSet.getString("username");
         String firstname = resultSet.getString("firstname");
         String lastname = resultSet.getString("lastname");
         LocalDate birthday = resultSet.getDate("birthday").toLocalDate();
@@ -364,7 +364,7 @@ public class ShiftDAOImpl implements ShiftDAO
     }
   }
 
-  @Override public List<Shift> getShiftsStartingAtDate(LocalDate date) //exact date or date+later ?
+  @Override public List<Shift> getShiftsStartingAtDate(LocalDate date)
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
@@ -399,7 +399,7 @@ public class ShiftDAOImpl implements ShiftDAO
     }
   }
 
-  @Override public List<Shift> getShiftsStartingAtTime(LocalTime time) //exact time or time+later ?
+  @Override public List<Shift> getShiftsStartingAtTime(LocalTime time)
   {
     try (Connection connection = ConnectionDB.getInstance().getConnection())
     {
