@@ -62,10 +62,16 @@ class ShiftDAOImplTest
   @Test
   void getShiftById()
   {
+    if(db.getShiftById(db.getLatestId("TestingShift")) == null)
+    {
+      db.addShift(testShift);
+      testShift.setId(db.getLatestId("TestingShift"));
+    }
     Shift shift = null;
-    shift = db.getShiftById(2);
+    shift = db.getShiftById(db.getLatestId("TestingShift"));
 
     assertNotNull(shift);
+    db.removeShift(shift.getId());
   }
 
   @Test void addShift()
